@@ -3,7 +3,7 @@
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>题解 luoguP2002 消息扩散 | oldherd&#39;s blog</title>
-<link rel="shortcut icon" href="https://froldh.github.io/favicon.ico?v=1582641385326">
+<link rel="shortcut icon" href="https://froldh.github.io/favicon.ico?v=1582641497634">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://froldh.github.io/styles/main.css">
 <link rel="alternate" type="application/atom+xml" title="题解 luoguP2002 消息扩散 | oldherd&#39;s blog - Atom Feed" href="https://froldh.github.io/atom.xml">
@@ -12,11 +12,12 @@
 
 
     <meta name="description" content="跑个tarjan缩点。然后同一个scc的点可以互传。
+  
 缩点后是一个DAG,然后只要向入度为0的点传信息即可。
 细节:
 
 在实现时统计入度,要判断边的起点和终点是否在同一个scc中,是的话不要加入度
-很多题解都说要特判自环,实际上不需要的,强..." />
+很多题解都说要特判自环,实际上不需要..." />
     <meta name="keywords" content="强连通分量,缩点,题解" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
     <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
@@ -26,7 +27,7 @@
       <div class="main-content">
         <div class="site-header">
   <a href="https://froldh.github.io">
-  <img class="avatar" src="https://froldh.github.io/images/avatar.png?v=1582641385326" alt="">
+  <img class="avatar" src="https://froldh.github.io/images/avatar.png?v=1582641497634" alt="">
   </a>
   <h1 class="site-title">
     oldherd&#39;s blog
@@ -107,8 +108,9 @@
             
             <div class="post-content-wrapper">
               <div class="post-content">
-                <p>跑个tarjan缩点。然后同一个scc的点可以互传。<!--more--><br>
-缩点后是一个DAG,然后只要向入度为0的点传信息即可。</p>
+                <p>跑个tarjan缩点。然后同一个scc的点可以互传。</p>
+<!--more-->  
+<p>缩点后是一个DAG,然后只要向入度为0的点传信息即可。</p>
 <p>细节:</p>
 <ol>
 <li>在实现时统计入度,要判断边的起点和终点是否在同一个scc中,是的话不要加入度</li>

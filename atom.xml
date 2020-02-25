@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://froldh.github.io</id>
     <title>oldherd&apos;s blog</title>
-    <updated>2020-02-25T14:36:31.196Z</updated>
+    <updated>2020-02-25T14:38:21.760Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://froldh.github.io"/>
     <link rel="self" href="https://froldh.github.io/atom.xml"/>
@@ -243,8 +243,11 @@ signed main() {
         <link href="https://froldh.github.io/post/ti-jie-luogup2002-xiao-xi-kuo-san/">
         </link>
         <updated>2020-01-11T15:29:26.000Z</updated>
-        <content type="html"><![CDATA[<p>跑个tarjan缩点。然后同一个scc的点可以互传。<!--more--><br>
-缩点后是一个DAG,然后只要向入度为0的点传信息即可。</p>
+        <summary type="html"><![CDATA[<p>跑个tarjan缩点。然后同一个scc的点可以互传。</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>跑个tarjan缩点。然后同一个scc的点可以互传。</p>
+<!--more-->  
+<p>缩点后是一个DAG,然后只要向入度为0的点传信息即可。</p>
 <p>细节:</p>
 <ol>
 <li>在实现时统计入度,要判断边的起点和终点是否在同一个scc中,是的话不要加入度</li>
