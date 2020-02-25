@@ -1,0 +1,311 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>起跑线 普及模拟Round4 题解 | oldherd&#39;s blog</title>
+<link rel="shortcut icon" href="https://froldh.github.io/favicon.ico?v=1582640599767">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://froldh.github.io/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="起跑线 普及模拟Round4 题解 | oldherd&#39;s blog - Atom Feed" href="https://froldh.github.io/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+
+    <meta name="description" content="T1 追击
+判断位移和相对速度方向是否一致即可。
+#include &lt;bits/stdc++.h&gt;
+
+using namespace std;
+
+typedef long long ll;
+
+int main() {
+	ios:..." />
+    <meta name="keywords" content="" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://froldh.github.io">
+  <img class="avatar" src="https://froldh.github.io/images/avatar.png?v=1582640599767" alt="">
+  </a>
+  <h1 class="site-title">
+    oldherd&#39;s blog
+  </h1>
+  <p class="site-description">
+    又弱又笨的蒟蒻的博客
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              起跑线 普及模拟Round4 题解
+            </h2>
+            <div class="post-info">
+              <span>
+                2020-02-25
+              </span>
+              <span>
+                4 min read
+              </span>
+              
+            </div>
+            
+              <img class="post-feature-image" src="https://froldh.github.io/post-images/qi-pao-xian-pu-ji-mo-ni-round4-ti-jie.jpg" alt="">
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <h3 id="t1-追击">T1 追击</h3>
+<p>判断位移和相对速度方向是否一致即可。</p>
+<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
+
+using namespace std;
+
+typedef long long ll;
+
+int main() {
+	ios::sync_with_stdio(false);
+	cin.tie(0);
+	ll x, a, y, b;
+	cin &gt;&gt; x &gt;&gt; a &gt;&gt; y &gt;&gt; b;
+	if((x - y) * (a - b) &lt; 0) {
+		cout &lt;&lt; &quot;YES&quot; &lt;&lt; '\n';	
+	} else {
+		cout &lt;&lt; &quot;NO&quot; &lt;&lt; '\n';
+	}
+	return 0;
+}
+</code></pre>
+<h3 id="t2-最短">T2 最短</h3>
+<p>咕咕咕。。。</p>
+<h3 id="t3-数码">T3 数码</h3>
+<p>咕咕咕。。。</p>
+<h3 id="t4-三角">T4 三角</h3>
+<p>考虑构造最小的不能满足三角形的数列。<br>
+<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn><mo separator="true">,</mo><mn>1</mn><mo separator="true">,</mo><mn>2</mn><mo separator="true">,</mo><mn>3</mn><mo separator="true">,</mo><mn>5</mn><mo separator="true">,</mo><mn>8</mn><mo separator="true">,</mo><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi></mrow><annotation encoding="application/x-tex">1, 1, 2, 3, 5, 8, ...</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8388800000000001em;vertical-align:-0.19444em;"></span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">2</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">3</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">5</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">8</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">.</span><span class="mord">.</span><span class="mord">.</span></span></span></span><br>
+事斐波那契！<br>
+第84项斐波那契<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>⩾</mo><mn>1</mn><msup><mn>0</mn><mn>18</mn></msup></mrow><annotation encoding="application/x-tex">\geqslant 10^{18}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7733399999999999em;vertical-align:-0.13667em;"></span><span class="mrel amsrm">⩾</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span><span class="mord mtight">8</span></span></span></span></span></span></span></span></span></span></span></span>, 根据抽屉原理, 树上路径长度<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>⩾</mo><mn>84</mn></mrow><annotation encoding="application/x-tex">\geqslant 84</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7733399999999999em;vertical-align:-0.13667em;"></span><span class="mrel amsrm">⩾</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">8</span><span class="mord">4</span></span></span></span>的一定能构成。<br>
+<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>⩽</mo><mn>84</mn></mrow><annotation encoding="application/x-tex">\leqslant 84</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7733399999999999em;vertical-align:-0.13667em;"></span><span class="mrel amsrm">⩽</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">8</span><span class="mord">4</span></span></span></span>的路径直接暴力求点权。</p>
+<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
+
+using namespace std;
+
+typedef long long ll;
+
+const int maxn = 567890;
+int t[maxn], k[maxn], b[maxn], head[maxn], ver[maxn&lt;&lt;1], nex[maxn&lt;&lt;1], tot;
+inline void addedge(int u, int v) {
+	ver[tot] = v; nex[tot] = head[u]; head[u] = tot++;	
+}
+int n, q;
+
+int fa[maxn][32], dep[maxn];
+void dfs(int cur, int pre) {
+	dep[cur] = dep[pre] + 1; fa[cur][0] = pre;
+	for(int i = 1; i &lt;= 30; ++i) fa[cur][i] = fa[fa[cur][i-1]][i-1];
+	for(int i = head[cur]; ~i; i = nex[i])
+		if(!dep[ver[i]]) dfs(ver[i], cur);
+	
+}
+
+int lca(int u, int v) {
+	if(dep[u] &lt; dep[v])	swap(u, v);
+	for(int i = 30; ~i; --i) 
+		if(dep[fa[u][i]] &gt;= dep[v])	u = fa[u][i];
+	if(u == v) return u;
+	for(int i = 30; ~i; --i)
+		if(fa[u][i] != fa[v][i])
+			u = fa[u][i], v = fa[v][i];
+	return fa[u][0];
+}
+
+int main() {
+	srand((unsigned)time(0));
+	memset(head, -1, sizeof(head));
+	ios::sync_with_stdio(false);
+	cin.tie(0);
+	int u, v;
+	ll x;
+	cin &gt;&gt; n;
+	for(int i = 1; i &lt;= n; ++i)
+		cin	&gt;&gt; t[i] &gt;&gt; k[i] &gt;&gt; b[i];
+	for(int i = 1; i &lt; n; ++i) {
+		cin &gt;&gt; u &gt;&gt; v;
+		addedge(u, v);
+		addedge(v, u);
+	}
+	dfs(1, 1);
+	cin &gt;&gt; q;
+	while(q--) {
+		cin &gt;&gt; u &gt;&gt; v &gt;&gt; x;
+		int lc = lca(u, v);
+		if(-2 * dep[lc] + dep[v] + dep[u] + 1 &gt;= 84)
+			cout &lt;&lt; &quot;YES&quot; &lt;&lt; '\n';
+		else if(u == v) {
+			cout &lt;&lt; &quot;NO&quot; &lt;&lt; '\n';
+		} else {
+			vector&lt;ll&gt; vec;
+			while(u != lc) {
+				vec.push_back(x * x * t[u] + x * k[u] + b[u]);
+				u = fa[u][0];
+			}
+			while(v != lc) {
+				vec.push_back(x * x * t[v] + x * k[v] + b[v]);
+				v = fa[v][0];
+			}
+			vec.push_back(x * x * t[lc] + x * k[lc] + b[lc]);
+			random_shuffle(vec.begin(), vec.end());
+			bool flg = true;
+			for(int i = 0; flg &amp;&amp; i &lt; vec.size(); ++i)
+				for(int j = 0; flg &amp;&amp; j &lt; vec.size(); ++j)
+					for(int k = 0; flg &amp;&amp; k &lt; vec.size(); ++k)
+						if(i &lt; j &amp;&amp; j &lt; k) {
+							ll sum = vec[i] + vec[j] + vec[k];
+							ll mx = max(max(vec[i], vec[j]), vec[k]);
+							if(sum - mx &gt; mx) {
+								flg = false;
+								break;	
+							}
+						}
+			if(!flg) {
+				cout &lt;&lt; &quot;YES&quot; &lt;&lt; '\n';	
+			} else {
+				cout &lt;&lt; &quot;NO&quot;&lt;&lt; '\n';	
+			}
+		}
+	}
+	return 0;
+} 
+</code></pre>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#t1-%E8%BF%BD%E5%87%BB">T1 追击</a></li>
+<li><a href="#t2-%E6%9C%80%E7%9F%AD">T2 最短</a></li>
+<li><a href="#t3-%E6%95%B0%E7%A0%81">T3 数码</a></li>
+<li><a href="#t4-%E4%B8%89%E8%A7%92">T4 三角</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://froldh.github.io/post/qi-pao-xian-ti-gao-mo-ni-round2-ti-jie/">
+              <h3 class="post-title">
+                起跑线 提高模拟Round2 题解
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+  <a class="rss" href="https://froldh.github.io/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>
