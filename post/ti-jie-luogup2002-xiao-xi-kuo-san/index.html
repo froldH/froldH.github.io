@@ -2,19 +2,22 @@
   <head>
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>关于 | oldherd&#39;s blog</title>
+<title>题解 luoguP2002 消息扩散 | oldherd&#39;s blog</title>
 <link rel="shortcut icon" href="https://froldh.github.io/favicon.ico?v=1582641385326">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://froldh.github.io/styles/main.css">
-<link rel="alternate" type="application/atom+xml" title="关于 | oldherd&#39;s blog - Atom Feed" href="https://froldh.github.io/atom.xml">
+<link rel="alternate" type="application/atom+xml" title="题解 luoguP2002 消息扩散 | oldherd&#39;s blog - Atom Feed" href="https://froldh.github.io/atom.xml">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
 
 
 
-    <meta name="description" content="欢迎
-暂咕
-" />
-    <meta name="keywords" content="" />
+    <meta name="description" content="跑个tarjan缩点。然后同一个scc的点可以互传。
+缩点后是一个DAG,然后只要向入度为0的点传信息即可。
+细节:
+
+在实现时统计入度,要判断边的起点和终点是否在同一个scc中,是的话不要加入度
+很多题解都说要特判自环,实际上不需要的,强..." />
+    <meta name="keywords" content="强连通分量,缩点,题解" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
     <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
   </head>
@@ -76,22 +79,93 @@
         <div class="post-detail">
           <article class="post">
             <h2 class="post-title">
-              关于
+              题解 luoguP2002 消息扩散
             </h2>
             <div class="post-info">
               <span>
-                2019-01-25
+                2020-01-11
               </span>
               <span>
-                1 min read
+                2 min read
               </span>
+              
+                <a href="https://froldh.github.io/tag/5mXWvUQJU/" class="post-tag">
+                  # 强连通分量
+                </a>
+              
+                <a href="https://froldh.github.io/tag/JneoCegECK/" class="post-tag">
+                  # 缩点
+                </a>
+              
+                <a href="https://froldh.github.io/tag/31TbbmEXBV/" class="post-tag">
+                  # 题解
+                </a>
               
             </div>
             
+              <img class="post-feature-image" src="https://froldh.github.io/post-images/ti-jie-luogup2002-xiao-xi-kuo-san.jpg" alt="">
+            
             <div class="post-content-wrapper">
               <div class="post-content">
-                <p>欢迎<br>
-暂咕</p>
+                <p>跑个tarjan缩点。然后同一个scc的点可以互传。<!--more--><br>
+缩点后是一个DAG,然后只要向入度为0的点传信息即可。</p>
+<p>细节:</p>
+<ol>
+<li>在实现时统计入度,要判断边的起点和终点是否在同一个scc中,是的话不要加入度</li>
+<li>很多题解都说要特判自环,实际上不需要的,强连通分量的含义是极大的强连通子图。</li>
+</ol>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+#include &lt;cstring&gt;
+
+using namespace std;
+
+const int N = 123456, M = 567890;
+int head[N], ver[M], nex[M], my[M], tot;
+inline void addedge(int u, int v) {
+    ver[tot] = v; my[tot] = u; nex[tot] = head[u]; head[u] = tot++;
+}
+
+int co[N], dfn[N], low[N], sta[N], ind[N], top, dfs_clock = 1, col = 1;
+void tarjan(int cur) {
+    dfn[cur] = low[cur] = dfs_clock++;
+    sta[top++] = cur;
+    for(int i = head[cur]; ~i; i = nex[i]) {
+        if(!dfn[ver[i]]) {
+            tarjan(ver[i]);
+            low[cur] = min(low[cur], low[ver[i]]);
+        } else if(!co[ver[i]]) {
+            low[cur] = min(low[cur], dfn[ver[i]]);
+        }
+    }
+    if(dfn[cur] == low[cur]) {
+        while(sta[--top] != cur) {
+            co[sta[top]] = col;
+        }
+        co[cur] = col++;
+    }
+}
+
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(0);
+    cout.tie(0);
+    memset(head, -1, sizeof(head));
+    memset(ind, 0, sizeof(ind));
+    int n, m, u, v, cnt = 0;
+    cin &gt;&gt; n &gt;&gt; m;
+    for(int i = 1; i &lt;= m; ++i) {
+        cin &gt;&gt; u &gt;&gt; v;
+        if(u != v) addedge(u, v);
+    }
+    for(int i = 1; i &lt;= n; ++i) if(!co[i]) tarjan(i);
+    for(int i = 0; i &lt; tot; ++i) if(co[my[i]] != co[ver[i]]) ind[co[ver[i]]] = 1;
+    for(int i = 1; i &lt; col; ++i)
+        if(!ind[i]) ++cnt;
+    cout &lt;&lt; cnt &lt;&lt; '\n';
+    return 0;
+}
+
+</code></pre>
 
               </div>
               <div class="toc-container">
