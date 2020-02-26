@@ -3,7 +3,7 @@
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>起跑线 普及模拟Round4 题解 | oldherd&#39;s blog</title>
-<link rel="shortcut icon" href="https://froldh.github.io/favicon.ico?v=1582641497634">
+<link rel="shortcut icon" href="https://froldh.github.io/favicon.ico?v=1582679407052">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://froldh.github.io/styles/main.css">
 <link rel="alternate" type="application/atom+xml" title="起跑线 普及模拟Round4 题解 | oldherd&#39;s blog - Atom Feed" href="https://froldh.github.io/atom.xml">
@@ -11,16 +11,16 @@
 
 
 
-    <meta name="description" content="T1 追击
+    <meta name="description" content="T2 fst Rnk8 丢人了
+  
+T1 追击
 判断位移和相对速度方向是否一致即可。
 #include &lt;bits/stdc++.h&gt;
 
 using namespace std;
 
 typedef long long ll;
-
-int main() {
-	ios:..." />
+..." />
     <meta name="keywords" content="数论,斐波那契数列,dp,抽屉原理,模拟赛" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
     <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
@@ -30,7 +30,7 @@ int main() {
       <div class="main-content">
         <div class="site-header">
   <a href="https://froldh.github.io">
-  <img class="avatar" src="https://froldh.github.io/images/avatar.png?v=1582641497634" alt="">
+  <img class="avatar" src="https://froldh.github.io/images/avatar.png?v=1582679407052" alt="">
   </a>
   <h1 class="site-title">
     oldherd&#39;s blog
@@ -90,7 +90,7 @@ int main() {
                 2020-02-25
               </span>
               <span>
-                4 min read
+                6 min read
               </span>
               
                 <a href="https://froldh.github.io/tag/F8HrLg0mv/" class="post-tag">
@@ -119,7 +119,9 @@ int main() {
             
             <div class="post-content-wrapper">
               <div class="post-content">
-                <h3 id="t1-追击">T1 追击</h3>
+                <p>T2 fst Rnk8 丢人了</p>
+<!-- more -->  
+<h3 id="t1-追击">T1 追击</h3>
 <p>判断位移和相对速度方向是否一致即可。</p>
 <pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
 
@@ -141,7 +143,82 @@ int main() {
 }
 </code></pre>
 <h3 id="t2-最短">T2 最短</h3>
-<p>咕咕咕。。。</p>
+<p>如果没有额外的边，直接在图上跑BFS即可。<br>
+对于特殊边，显然，如果一个集合的某点先被访问，那么其他点到另一个集合的边就没有更新距离的作用了。所以实际上有效的边只有<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="script">O</mi><mo>(</mo><mi>a</mi><mo>+</mo><mi>b</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">\mathcal{O(a + b)}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathcal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">a</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathdefault">b</span><span class="mclose">)</span></span></span></span></span>而不是<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="script">O</mi><mo>(</mo><mi>a</mi><mi>b</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">\mathcal{O(ab)}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathcal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">a</span><span class="mord mathdefault">b</span><span class="mclose">)</span></span></span></span></span>。<br>
+所以动态判断这些边的处理即可。</p>
+<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
+
+using namespace std;
+
+vector&lt; vector&lt;int&gt; &gt; edge;
+vector&lt;int&gt; dis, c, d;
+vector&lt;bool&gt; isC, isD;
+
+
+queue&lt;int&gt; q;
+void bfs() {
+	bool visc = false, visd = false;
+	q.push(1);
+	dis[1] = 0;
+	while(!q.empty()) {
+		int cur = q.front(); q.pop();
+		for(int ver : edge[cur])
+			if(!~dis[ver]) {
+				dis[ver] = dis[cur] + 1;
+				q.push(ver);
+			}
+		if(isC[cur] &amp;&amp; !visd) {
+			visd = true;
+			for(int ver : d)
+				if(!~dis[ver]) {
+					dis[ver] = dis[cur] + 1;	
+					q.push(ver);
+				}
+		}
+		if(isD[cur] &amp;&amp; !visc) {
+			visc = true;
+			for(int ver : c)
+				if(!~dis[ver]) {
+					dis[ver] = dis[cur] + 1;
+					q.push(ver);	
+				}
+		}
+	}
+}
+
+int main() {
+	ios::sync_with_stdio(false);
+	cin.tie(0);
+	int n, m, a, b, tmp, u, v;
+	cin &gt;&gt; n &gt;&gt; m;
+	edge.resize(n + 1);
+	dis.assign(n + 1, -1);
+	isC.assign(n, false);
+	isD.assign(n, false);
+	for(int i = 1; i &lt;= m; ++i) {
+		cin &gt;&gt; u &gt;&gt; v;
+		edge[u].push_back(v);
+		edge[v].push_back(u);
+	}
+	cin &gt;&gt; a &gt;&gt; b;
+	c.resize(a);
+	d.resize(b);
+	for(int i = 0; i &lt; a; ++i) {
+		cin &gt;&gt; tmp;
+		isC[tmp] = true;
+		c[i] = tmp;
+	}
+	for(int i = 0; i &lt; b; ++i) {
+		cin &gt;&gt; tmp;
+		isD[tmp] = true;
+		d[i] = tmp;
+	}
+	bfs();
+	for(int i = 1; i &lt;= n; ++i)
+		cout &lt;&lt; dis[i] &lt;&lt; '\n';
+	return 0;
+}
+</code></pre>
 <h3 id="t3-数码">T3 数码</h3>
 <p>咕咕咕。。。</p>
 <h3 id="t4-三角">T4 三角</h3>

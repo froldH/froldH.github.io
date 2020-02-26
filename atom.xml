@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://froldh.github.io</id>
     <title>oldherd&apos;s blog</title>
-    <updated>2020-02-25T14:38:21.760Z</updated>
+    <updated>2020-02-26T01:10:33.395Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://froldh.github.io"/>
     <link rel="self" href="https://froldh.github.io/atom.xml"/>
@@ -16,7 +16,11 @@
         <link href="https://froldh.github.io/post/qi-pao-xian-pu-ji-mo-ni-round4-ti-jie/">
         </link>
         <updated>2020-02-25T14:13:37.000Z</updated>
-        <content type="html"><![CDATA[<h3 id="t1-追击">T1 追击</h3>
+        <summary type="html"><![CDATA[<p>T2 fst Rnk8 丢人了</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>T2 fst Rnk8 丢人了</p>
+<!-- more -->  
+<h3 id="t1-追击">T1 追击</h3>
 <p>判断位移和相对速度方向是否一致即可。</p>
 <pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
 
@@ -38,7 +42,82 @@ int main() {
 }
 </code></pre>
 <h3 id="t2-最短">T2 最短</h3>
-<p>咕咕咕。。。</p>
+<p>如果没有额外的边，直接在图上跑BFS即可。<br>
+对于特殊边，显然，如果一个集合的某点先被访问，那么其他点到另一个集合的边就没有更新距离的作用了。所以实际上有效的边只有<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="script">O</mi><mo>(</mo><mi>a</mi><mo>+</mo><mi>b</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">\mathcal{O(a + b)}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathcal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">a</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathdefault">b</span><span class="mclose">)</span></span></span></span></span>而不是<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="script">O</mi><mo>(</mo><mi>a</mi><mi>b</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">\mathcal{O(ab)}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathcal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">a</span><span class="mord mathdefault">b</span><span class="mclose">)</span></span></span></span></span>。<br>
+所以动态判断这些边的处理即可。</p>
+<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
+
+using namespace std;
+
+vector&lt; vector&lt;int&gt; &gt; edge;
+vector&lt;int&gt; dis, c, d;
+vector&lt;bool&gt; isC, isD;
+
+
+queue&lt;int&gt; q;
+void bfs() {
+	bool visc = false, visd = false;
+	q.push(1);
+	dis[1] = 0;
+	while(!q.empty()) {
+		int cur = q.front(); q.pop();
+		for(int ver : edge[cur])
+			if(!~dis[ver]) {
+				dis[ver] = dis[cur] + 1;
+				q.push(ver);
+			}
+		if(isC[cur] &amp;&amp; !visd) {
+			visd = true;
+			for(int ver : d)
+				if(!~dis[ver]) {
+					dis[ver] = dis[cur] + 1;	
+					q.push(ver);
+				}
+		}
+		if(isD[cur] &amp;&amp; !visc) {
+			visc = true;
+			for(int ver : c)
+				if(!~dis[ver]) {
+					dis[ver] = dis[cur] + 1;
+					q.push(ver);	
+				}
+		}
+	}
+}
+
+int main() {
+	ios::sync_with_stdio(false);
+	cin.tie(0);
+	int n, m, a, b, tmp, u, v;
+	cin &gt;&gt; n &gt;&gt; m;
+	edge.resize(n + 1);
+	dis.assign(n + 1, -1);
+	isC.assign(n, false);
+	isD.assign(n, false);
+	for(int i = 1; i &lt;= m; ++i) {
+		cin &gt;&gt; u &gt;&gt; v;
+		edge[u].push_back(v);
+		edge[v].push_back(u);
+	}
+	cin &gt;&gt; a &gt;&gt; b;
+	c.resize(a);
+	d.resize(b);
+	for(int i = 0; i &lt; a; ++i) {
+		cin &gt;&gt; tmp;
+		isC[tmp] = true;
+		c[i] = tmp;
+	}
+	for(int i = 0; i &lt; b; ++i) {
+		cin &gt;&gt; tmp;
+		isD[tmp] = true;
+		d[i] = tmp;
+	}
+	bfs();
+	for(int i = 1; i &lt;= n; ++i)
+		cout &lt;&lt; dis[i] &lt;&lt; '\n';
+	return 0;
+}
+</code></pre>
 <h3 id="t3-数码">T3 数码</h3>
 <p>咕咕咕。。。</p>
 <h3 id="t4-三角">T4 三角</h3>
@@ -146,7 +225,10 @@ int main() {
         <link href="https://froldh.github.io/post/qi-pao-xian-ti-gao-mo-ni-round2-ti-jie/">
         </link>
         <updated>2020-02-25T09:40:29.000Z</updated>
+        <summary type="html"><![CDATA[<p>三题暴力拿Rnk5很丢人的好伐</p>
+]]></summary>
         <content type="html"><![CDATA[<p>三题暴力拿Rnk5很丢人的好伐</p>
+<!-- more -->
 <h3 id="t1-数论">T1 数论</h3>
 <p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi><mo>⩽</mo><mn>20</mn></mrow><annotation encoding="application/x-tex">n \leqslant 20</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7733399999999999em;vertical-align:-0.13667em;"></span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel amsrm">⩽</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span><span class="mord">0</span></span></span></span> ,  枚举所有倍数容斥原理做即可。 复杂度<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="script">O</mi><mo>(</mo><msup><mn mathvariant="script">2</mn><mi>n</mi></msup><mi>n</mi><mi>l</mi><mi>o</mi><mi>g</mi><mi>r</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">\mathcal{O(2^n nlogr)}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathcal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord"><span class="mord mathcal">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.664392em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">n</span></span></span></span></span></span></span></span><span class="mord mathdefault">n</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">o</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mclose">)</span></span></span></span></span></p>
 <pre><code class="language-cpp">#include &lt;iostream&gt;
