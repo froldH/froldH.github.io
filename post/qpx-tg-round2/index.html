@@ -1,0 +1,238 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>起跑线 提高模拟Round2 题解 | oldherd&#39;s blog</title>
+<link rel="shortcut icon" href="https://froldh.github.io/favicon.ico?v=1582683768439">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://froldh.github.io/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="起跑线 提高模拟Round2 题解 | oldherd&#39;s blog - Atom Feed" href="https://froldh.github.io/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+
+    <meta name="description" content="三题暴力拿Rnk5很丢人的好伐
+
+T1 数论
+n⩽20n \leqslant 20n⩽20 ,  枚举所有倍数容斥原理做即可。 复杂度O(2nnlogr)\mathcal{O(2^n nlogr)}O(2nnlogr)
+#include &..." />
+    <meta name="keywords" content="模拟赛,题解,容斥原理" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://froldh.github.io">
+  <img class="avatar" src="https://froldh.github.io/images/avatar.png?v=1582683768439" alt="">
+  </a>
+  <h1 class="site-title">
+    oldherd&#39;s blog
+  </h1>
+  <p class="site-description">
+    又弱又笨的蒟蒻的博客
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              起跑线 提高模拟Round2 题解
+            </h2>
+            <div class="post-info">
+              <span>
+                2020-02-25
+              </span>
+              <span>
+                2 min read
+              </span>
+              
+                <a href="https://froldh.github.io/tag/omAfuSkc0/" class="post-tag">
+                  # 模拟赛
+                </a>
+              
+                <a href="https://froldh.github.io/tag/31TbbmEXBV/" class="post-tag">
+                  # 题解
+                </a>
+              
+                <a href="https://froldh.github.io/tag/Z-UmdYOU5/" class="post-tag">
+                  # 容斥原理
+                </a>
+              
+            </div>
+            
+              <img class="post-feature-image" src="https://froldh.github.io/post-images/qpx-tg-round2.jpg" alt="">
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <p>三题暴力拿Rnk5很丢人的好伐</p>
+<!-- more -->
+<h3 id="t1-数论">T1 数论</h3>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi><mo>⩽</mo><mn>20</mn></mrow><annotation encoding="application/x-tex">n \leqslant 20</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7733399999999999em;vertical-align:-0.13667em;"></span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel amsrm">⩽</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span><span class="mord">0</span></span></span></span> ,  枚举所有倍数容斥原理做即可。 复杂度<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="script">O</mi><mo>(</mo><msup><mn mathvariant="script">2</mn><mi>n</mi></msup><mi>n</mi><mi>l</mi><mi>o</mi><mi>g</mi><mi>r</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">\mathcal{O(2^n nlogr)}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathcal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord"><span class="mord mathcal">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.664392em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">n</span></span></span></span></span></span></span></span><span class="mord mathdefault">n</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">o</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mclose">)</span></span></span></span></span></p>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+#include &lt;vector&gt;
+#include &lt;algorithm&gt;
+
+using namespace std;
+
+typedef long long ll;
+
+vector&lt;ll&gt; v;
+ll ans = 0, l, r;
+int n;
+
+void dfs(int cur, ll lcm, int sign) {
+	if(cur == n) {
+		ans += (r / lcm  - (l - 1) / lcm) * sign;
+		return;
+	}
+	dfs(cur + 1, lcm, sign);
+	ll g = __gcd(lcm, v[cur]);
+	if((double)lcm / g * v[cur] &lt;= r)
+		dfs(cur + 1, lcm / g * v[cur], -sign);
+}
+
+int main() {
+	ios::sync_with_stdio(false);
+	cin.tie(0);
+	cin &gt;&gt; n &gt;&gt; l &gt;&gt; r;
+	v.resize(n);
+	for(int i = 0; i &lt; n; ++i)
+		cin &gt;&gt; v[i];
+	dfs(0, 1, 1);
+	cout &lt;&lt; r - l + 1 - ans &lt;&lt; '\n'; 
+	return 0;
+}
+</code></pre>
+<h3 id="t2-术论">T2 术论</h3>
+<p>正在咕。。。</p>
+<h3 id="t3-数论">T3 数论</h3>
+<p>正在咕。。。</p>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#t1-%E6%95%B0%E8%AE%BA">T1 数论</a></li>
+<li><a href="#t2-%E6%9C%AF%E8%AE%BA">T2 术论</a></li>
+<li><a href="#t3-%E6%95%B0%E8%AE%BA">T3 数论</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://froldh.github.io/post/rong-chi-yuan-li-bi-ji/">
+              <h3 class="post-title">
+                容斥原理笔记
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+  <a class="rss" href="https://froldh.github.io/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>

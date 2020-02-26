@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://froldh.github.io</id>
     <title>oldherd&apos;s blog</title>
-    <updated>2020-02-26T02:16:09.922Z</updated>
+    <updated>2020-02-26T02:22:57.284Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://froldh.github.io"/>
     <link rel="self" href="https://froldh.github.io/atom.xml"/>
@@ -12,8 +12,8 @@
     <rights>All rights reserved 2020, oldherd&apos;s blog</rights>
     <entry>
         <title type="html"><![CDATA[起跑线 普及模拟Round4 题解]]></title>
-        <id>https://froldh.github.io/post/qi-pao-xian-pu-ji-mo-ni-round4-ti-jie/</id>
-        <link href="https://froldh.github.io/post/qi-pao-xian-pu-ji-mo-ni-round4-ti-jie/">
+        <id>https://froldh.github.io/post/qpx-pj-round4/</id>
+        <link href="https://froldh.github.io/post/qpx-pj-round4/">
         </link>
         <updated>2020-02-25T14:13:37.000Z</updated>
         <summary type="html"><![CDATA[<p>T2 fst Rnk8 丢人了</p>
@@ -222,8 +222,8 @@ int main() {
     </entry>
     <entry>
         <title type="html"><![CDATA[起跑线 提高模拟Round2 题解]]></title>
-        <id>https://froldh.github.io/post/qi-pao-xian-ti-gao-mo-ni-round2-ti-jie/</id>
-        <link href="https://froldh.github.io/post/qi-pao-xian-ti-gao-mo-ni-round2-ti-jie/">
+        <id>https://froldh.github.io/post/qpx-tg-round2/</id>
+        <link href="https://froldh.github.io/post/qpx-tg-round2/">
         </link>
         <updated>2020-02-25T09:40:29.000Z</updated>
         <summary type="html"><![CDATA[<p>三题暴力拿Rnk5很丢人的好伐</p>
