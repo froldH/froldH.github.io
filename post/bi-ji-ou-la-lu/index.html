@@ -1,0 +1,227 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>笔记 欧拉路 | oldherd&#39;s blog</title>
+<link rel="shortcut icon" href="https://froldh.github.io/favicon.ico?v=1582857774085">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://froldh.github.io/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="笔记 欧拉路 | oldherd&#39;s blog - Atom Feed" href="https://froldh.github.io/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+
+    <meta name="description" content="偶数度数 --&gt; 欧拉回路
+两个奇数度数 --&gt; 普通欧拉回路
+  
+利用栈的性质处理一点多环的情况。
+注意一定是在回溯时入栈。
+在外部逆序输出栈内元素即可。
+#include &lt;cstdio&gt;
+#include &..." />
+    <meta name="keywords" content="模板,欧拉路,笔记" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://froldh.github.io">
+  <img class="avatar" src="https://froldh.github.io/images/avatar.png?v=1582857774085" alt="">
+  </a>
+  <h1 class="site-title">
+    oldherd&#39;s blog
+  </h1>
+  <p class="site-description">
+    又弱又笨的蒟蒻的博客
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              笔记 欧拉路
+            </h2>
+            <div class="post-info">
+              <span>
+                2019-11-08
+              </span>
+              <span>
+                2 min read
+              </span>
+              
+                <a href="https://froldh.github.io/tag/AdBh75utY/" class="post-tag">
+                  # 模板
+                </a>
+              
+                <a href="https://froldh.github.io/tag/ja3nbebGv/" class="post-tag">
+                  # 欧拉路
+                </a>
+              
+                <a href="https://froldh.github.io/tag/fYX0Uahu-X/" class="post-tag">
+                  # 笔记
+                </a>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <p>偶数度数 --&gt; 欧拉回路<br>
+两个奇数度数 --&gt; 普通欧拉回路</p>
+<!--more-->  
+<p>利用栈的性质处理一点多环的情况。<br>
+注意一定是在回溯时入栈。<br>
+在外部逆序输出栈内元素即可。</p>
+<pre><code class="language-cpp">#include &lt;cstdio&gt;
+#include &lt;cstring&gt;
+
+using namespace std;
+
+const int N = 1234, M = 5678;
+int head[N], ver[M&lt;&lt;1], nex[M&lt;&lt;1], vis[M&lt;&lt;1], tot;
+inline void addedge(int u, int v) {
+	ver[tot] = v; nex[tot] = head[u]; head[u] = tot++;
+}
+
+int sta[N*M], top;
+void dfsE(int cur) {
+	for(int i = head[cur]; ~i; i = nex[i]) 
+		if(!vis[i]) {
+			vis[i] = vis[i^1] = 1;
+			dfsE(ver[i]);
+			sta[top++] = ver[i];
+		}
+}
+
+int main() {
+	memset(head, -1, sizeof(head));
+	int n, m, u, v;
+	scanf(&quot;%d %d&quot;, &amp;n, &amp;m);
+	for(int i = 1; i &lt;= m; ++i) {
+		scanf(&quot;%d %d&quot;, &amp;u, &amp;v);
+		addedge(u, v);
+		addedge(v, u);
+	}
+	dfsE(1);
+	while(top) {
+		printf(&quot;%d &quot;, sta[--top]);
+	}
+    printf(&quot;1\n&quot;);
+	return 0;
+}
+</code></pre>
+
+              </div>
+              <div class="toc-container">
+                
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://froldh.github.io/post/ti-jie-usaco53-network-of-schools/">
+              <h3 class="post-title">
+                题解 [USACO5.3] Network of Schools
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+  <a class="rss" href="https://froldh.github.io/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>

@@ -1,0 +1,261 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>题解 [USACO5.3] Network of Schools | oldherd&#39;s blog</title>
+<link rel="shortcut icon" href="https://froldh.github.io/favicon.ico?v=1582857774085">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://froldh.github.io/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="题解 [USACO5.3] Network of Schools | oldherd&#39;s blog - Atom Feed" href="https://froldh.github.io/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+
+    <meta name="description" content="考虑缩点。
+  
+对缩点后的图：
+会变成外向树/内向树森林,或者DAG。
+对于入度为0的点需要放一个文件。
+将入度为0和出度为0的点连边为最优的构建强连通图的策略。则第二个子问题的答案为入度为0与出度为0的点数目的最大值。
+注意特判缩点后成..." />
+    <meta name="keywords" content="USACO,强连通分量,缩点,题解" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://froldh.github.io">
+  <img class="avatar" src="https://froldh.github.io/images/avatar.png?v=1582857774085" alt="">
+  </a>
+  <h1 class="site-title">
+    oldherd&#39;s blog
+  </h1>
+  <p class="site-description">
+    又弱又笨的蒟蒻的博客
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              题解 [USACO5.3] Network of Schools
+            </h2>
+            <div class="post-info">
+              <span>
+                2019-11-07
+              </span>
+              <span>
+                3 min read
+              </span>
+              
+                <a href="https://froldh.github.io/tag/7jwDQ7pzN/" class="post-tag">
+                  # USACO
+                </a>
+              
+                <a href="https://froldh.github.io/tag/5mXWvUQJU/" class="post-tag">
+                  # 强连通分量
+                </a>
+              
+                <a href="https://froldh.github.io/tag/JneoCegECK/" class="post-tag">
+                  # 缩点
+                </a>
+              
+                <a href="https://froldh.github.io/tag/31TbbmEXBV/" class="post-tag">
+                  # 题解
+                </a>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <p>考虑缩点。</p>
+<!--more-->  
+<p>对缩点后的图：<br>
+会变成外向树/内向树森林,或者DAG。<br>
+对于入度为0的点需要放一个文件。<br>
+将入度为0和出度为0的点连边为最优的构建强连通图的策略。则第二个子问题的答案为入度为0与出度为0的点数目的最大值。<br>
+注意特判缩点后成为一个点的情况。</p>
+<pre><code class="language-cpp">#include &lt;cstdio&gt;
+#include &lt;cstring&gt;
+#include &lt;algorithm&gt;
+
+using namespace std;
+
+const int N = 123, M = N*N;
+int head[N], ver[M], nex[M], my[M], tot;
+inline void addedge(int u, int v) {
+	ver[tot] = v; nex[tot] = head[u]; my[tot] = u; head[u] = tot++;
+}
+
+int dfn[N], low[N], cl[N], sta[N], num[N], ind[N], outd[N], col = 1, dfs_clock = 1, top = 0;
+void dfs(int cur) {
+	dfn[cur] = low[cur] = dfs_clock++;
+	sta[top++] = cur;
+	for(int i = head[cur]; ~i; i = nex[i]) {
+		if(!dfn[ver[i]]) {
+			dfs(ver[i]);
+			low[cur] = min(low[cur], low[ver[i]]); 
+		} else if(!cl[ver[i]]) {
+			low[cur] = min(low[cur], dfn[ver[i]]);
+		}
+	}
+	if(dfn[cur] == low[cur]) {
+		--top;
+		while(sta[top] != cur) {
+			++num[col];
+			cl[sta[top]] = col;
+			--top;
+		}
+		cl[cur] = col;
+		++num[col];
+		++col;
+	}
+}
+
+int main() {
+	memset(head, -1, sizeof(head));
+	int n, tmp;
+	scanf(&quot;%d&quot;, &amp;n);
+	for(int i = 1; i &lt;= n; ++i) {
+		scanf(&quot;%d&quot;, &amp;tmp);
+		while(tmp) {
+			addedge(i, tmp);
+			scanf(&quot;%d&quot;, &amp;tmp);
+		}
+	}
+	for(int i = 1; i &lt;= n; ++i) if(!dfn[i]) dfs(i);
+	for(int i = 0; i &lt; tot; ++i) {
+		if(cl[my[i]] != cl[ver[i]]) {
+			++ind[cl[ver[i]]]; ++outd[cl[my[i]]];
+		}
+	}
+	if(col == 2) {
+		printf(&quot;1\n0\n&quot;);
+		return 0;
+	}
+	int ans1 = 0, ans2 = 0;
+	for(int i = 1; i &lt; col; ++i) {
+		if(!ind[i]) ++ans1;
+		if(!outd[i]) ++ans2;
+	}
+	ans2 = max(ans1, ans2);  
+	printf(&quot;%d\n%d\n&quot;, ans1, ans2);
+	return 0;
+}
+</code></pre>
+
+              </div>
+              <div class="toc-container">
+                
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://froldh.github.io/post/haoi2006-shou-huan-ying-de-niu-ti-jie/">
+              <h3 class="post-title">
+                题解 [HAOI2006]受欢迎的牛
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+  <a class="rss" href="https://froldh.github.io/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>

@@ -1,0 +1,248 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>题解 luoguP3387 [模板]缩点 | oldherd&#39;s blog</title>
+<link rel="shortcut icon" href="https://froldh.github.io/favicon.ico?v=1582857774085">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://froldh.github.io/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="题解 luoguP3387 [模板]缩点 | oldherd&#39;s blog - Atom Feed" href="https://froldh.github.io/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+
+    <meta name="description" content="tarjan缩点后形成一个DAG
+  
+然后根据tarjan的性质,缩点的编号为逆拓扑序
+直接按缩点编号降序DP即可
+#include &lt;cstdio&gt;
+#include &lt;cstring&gt;
+#include &lt..." />
+    <meta name="keywords" content="模板,强连通分量,缩点,dp" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://froldh.github.io">
+  <img class="avatar" src="https://froldh.github.io/images/avatar.png?v=1582857774085" alt="">
+  </a>
+  <h1 class="site-title">
+    oldherd&#39;s blog
+  </h1>
+  <p class="site-description">
+    又弱又笨的蒟蒻的博客
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              题解 luoguP3387 [模板]缩点
+            </h2>
+            <div class="post-info">
+              <span>
+                2019-11-10
+              </span>
+              <span>
+                2 min read
+              </span>
+              
+                <a href="https://froldh.github.io/tag/AdBh75utY/" class="post-tag">
+                  # 模板
+                </a>
+              
+                <a href="https://froldh.github.io/tag/5mXWvUQJU/" class="post-tag">
+                  # 强连通分量
+                </a>
+              
+                <a href="https://froldh.github.io/tag/JneoCegECK/" class="post-tag">
+                  # 缩点
+                </a>
+              
+                <a href="https://froldh.github.io/tag/FwzEtJ52-T/" class="post-tag">
+                  # dp
+                </a>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <p>tarjan缩点后形成一个DAG</p>
+<!--more-->  
+<p>然后根据tarjan的性质,缩点的编号为逆拓扑序<br>
+直接按缩点编号降序DP即可</p>
+<pre><code class="language-cpp">#include &lt;cstdio&gt;
+#include &lt;cstring&gt;
+#include &lt;algorithm&gt;
+
+using namespace std;
+
+const int N = 12345, M = 123456;
+int head[N&lt;&lt;1], ver[M&lt;&lt;1], my[M&lt;&lt;1], nex[M&lt;&lt;1], tot;
+inline void addedge(int u, int v) {
+	ver[tot] = v, nex[tot] = head[u], my[tot] = u, head[u] = tot++;
+}
+
+int dfn[N], low[N], a[N], sta[N], co[N], sum[N], top, dfs_clock = 1, col = 1;
+void tarjan(int cur) {
+	dfn[cur] = low[cur] = dfs_clock++;
+	sta[top++] = cur;
+	for(int i = head[cur]; ~i; i = nex[i])
+		if(!dfn[ver[i]]) {
+			tarjan(ver[i]);
+			low[cur] = min(low[cur], low[ver[i]]);
+		} else if(!co[ver[i]]) {
+			low[cur] = min(low[cur], dfn[ver[i]]);
+		}
+	if(dfn[cur] == low[cur]) {
+		while(sta[--top] != cur) {
+			co[sta[top]] = col;
+			sum[col] += a[sta[top]];
+		}
+		sum[col] += a[cur];
+		co[cur] = col++;
+	}
+} 
+
+int f[N];
+
+int main() {
+	memset(head, -1, sizeof(head));
+	int n, m, u, v, ans = 0;
+	scanf(&quot;%d %d&quot;, &amp;n, &amp;m);
+	for(int i = 1; i &lt;= n; ++i) scanf(&quot;%d&quot;, a + i);
+	for(int i = 1; i &lt;= m; ++i) {
+		scanf(&quot;%d %d&quot;, &amp;u, &amp;v);
+		addedge(u, v);
+	}
+	for(int i = 1; i &lt;= n; ++i) if(!dfn[i]) tarjan(i);
+	for(int i = 0, end = tot; i &lt; end; ++i)
+		if(co[my[i]] != co[ver[i]])
+			addedge(co[my[i]] + n, co[ver[i]]);
+	for(int i = col - 1; i; --i) {
+		f[i] += sum[i];
+		ans = max(f[i], ans);
+		for(int j = head[i+n]; ~j; j = nex[j])
+			f[ver[j]] = max(f[i], f[ver[j]]);
+	}
+	printf(&quot;%d\n&quot;, ans);
+	return 0;
+}
+</code></pre>
+
+              </div>
+              <div class="toc-container">
+                
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://froldh.github.io/post/ti-jie-apio2009qiang-lue-ji-hua/">
+              <h3 class="post-title">
+                题解 [APIO2009]抢掠计划
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+  <a class="rss" href="https://froldh.github.io/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>

@@ -1,0 +1,264 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>题解 [APIO2009]抢掠计划 | oldherd&#39;s blog</title>
+<link rel="shortcut icon" href="https://froldh.github.io/favicon.ico?v=1582857774085">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://froldh.github.io/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="题解 [APIO2009]抢掠计划 | oldherd&#39;s blog - Atom Feed" href="https://froldh.github.io/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+
+    <meta name="description" content="在有向图中,边又没啥限制,因而考虑缩点。缩点的同时记录该点内部有无酒吧以及该点的总钱数。
+    
+缩完点之后,很自然地得到一个DAG。只要抢,就连同该DAG中的点一起包圆。
+然后我们可以在DAG上跑DP,根据tarjan的性质,缩点的编号..." />
+    <meta name="keywords" content="拓扑,DAG,APIO,缩点,dp,题解" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://froldh.github.io">
+  <img class="avatar" src="https://froldh.github.io/images/avatar.png?v=1582857774085" alt="">
+  </a>
+  <h1 class="site-title">
+    oldherd&#39;s blog
+  </h1>
+  <p class="site-description">
+    又弱又笨的蒟蒻的博客
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              题解 [APIO2009]抢掠计划
+            </h2>
+            <div class="post-info">
+              <span>
+                2019-11-10
+              </span>
+              <span>
+                3 min read
+              </span>
+              
+                <a href="https://froldh.github.io/tag/5m3fCngv8/" class="post-tag">
+                  # 拓扑
+                </a>
+              
+                <a href="https://froldh.github.io/tag/djm1V4OQD_/" class="post-tag">
+                  # DAG
+                </a>
+              
+                <a href="https://froldh.github.io/tag/IhO7woj3Cb/" class="post-tag">
+                  # APIO
+                </a>
+              
+                <a href="https://froldh.github.io/tag/JneoCegECK/" class="post-tag">
+                  # 缩点
+                </a>
+              
+                <a href="https://froldh.github.io/tag/FwzEtJ52-T/" class="post-tag">
+                  # dp
+                </a>
+              
+                <a href="https://froldh.github.io/tag/31TbbmEXBV/" class="post-tag">
+                  # 题解
+                </a>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <p>在有向图中,边又没啥限制,因而考虑缩点。缩点的同时记录该点内部有无酒吧以及该点的总钱数。</p>
+<!--more-->    
+<p>缩完点之后,很自然地得到一个DAG。只要抢,就连同该DAG中的点一起包圆。<br>
+然后我们可以在DAG上跑DP,根据tarjan的性质,缩点的编号是逆拓扑序的,因此只要按从起点所在点出发结点序递减的顺序递推即可,每次推到有酒吧的点更新答案。</p>
+<pre><code class="language-cpp">#include &lt;cstdio&gt;
+#include &lt;cstring&gt;
+#include &lt;algorithm&gt;
+
+using namespace std;
+
+const int N = 567890;
+
+int head[N&lt;&lt;1], ver[N&lt;&lt;1], nex[N&lt;&lt;1], my[N&lt;&lt;1], tot, n;
+inline void addedge(int u, int v) {
+	ver[tot] = v; nex[tot] = head[u]; my[tot] = u; head[u] = tot++;
+}
+
+int a[N], isba[N], s;
+
+int dfn[N], low[N], co[N], bar[N], mon[N], sta[N], dfs_clock = 1, col = 1, top;
+void tarjan(int cur) {
+	dfn[cur] = low[cur] = dfs_clock++;
+	sta[top++] = cur;
+	for(int i = head[cur]; ~i; i = nex[i])
+		if(!dfn[ver[i]]) {
+			tarjan(ver[i]);
+			low[cur] = min(low[cur], low[ver[i]]);
+		} else if(!co[ver[i]]) {
+			low[cur] = min(low[cur], dfn[ver[i]]);
+		}
+	if(dfn[cur] == low[cur]) {
+		--top;
+		while(sta[top] != cur) {
+			if(isba[sta[top]]) bar[col] = 1;
+			mon[col] += a[sta[top]];
+			co[sta[top--]] = col;
+		}
+		co[cur] = col;
+		mon[col] += a[cur];
+		if(isba[cur]) bar[col] = 1;
+		++col;
+	}
+}
+
+int f[N], ans;
+
+int main() {
+	memset(head, -1, sizeof(head));
+	int m, u, v, p;
+	scanf(&quot;%d %d&quot;, &amp;n, &amp;m);
+	for(int i = 1; i &lt;= m; ++i) {
+		scanf(&quot;%d %d&quot;, &amp;u, &amp;v);
+		addedge(u, v);
+	}
+	for(int i = 1; i &lt;= n; ++i) scanf(&quot;%d&quot;, a + i);
+	scanf(&quot;%d %d&quot;, &amp;s, &amp;p);
+	while(p--) scanf(&quot;%d&quot;, &amp;u), isba[u] = 1;
+	for(int i = 1; i &lt;= n; ++i) if(!dfn[i]) tarjan(i);
+	--col;
+	for(int i = 0, end = tot; i &lt; end; ++i) 
+		if(co[my[i]] != co[ver[i]])
+			addedge(co[my[i]] + n, co[ver[i]]);
+	for(int i = co[s]; i; --i) {
+		f[i] += mon[i];
+		if(bar[i]) ans = max(ans, f[i]);
+		for(int j = head[i+n]; ~j; j = nex[j])
+			f[ver[j]] = max(f[ver[j]], f[i]);
+	}
+	printf(&quot;%d\n&quot;, ans);
+	return 0;
+}
+
+</code></pre>
+
+              </div>
+              <div class="toc-container">
+                
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://froldh.github.io/post/ti-jie-poi2011-smi-garbage/">
+              <h3 class="post-title">
+                题解 [POI2011] SMI-Garbage
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+  <a class="rss" href="https://froldh.github.io/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>
