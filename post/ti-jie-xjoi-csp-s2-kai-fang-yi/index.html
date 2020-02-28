@@ -1,0 +1,509 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>题解 [XJOI] CSP-S2开放一 | oldherd&#39;s blog</title>
+<link rel="shortcut icon" href="https://froldh.github.io/favicon.ico?v=1582858691061">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://froldh.github.io/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="题解 [XJOI] CSP-S2开放一 | oldherd&#39;s blog - Atom Feed" href="https://froldh.github.io/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+
+    <meta name="description" content="期望得分 100+100+60 = 260
+实际得分 30+20+70 = 120
+  
+T1
+实际上是个暴力枚举
+考场打炸了,RE30
+订正代码
+#include &lt;cstdio&gt;
+#define ll long long
+ ..." />
+    <meta name="keywords" content="XJOI,最短路计数,暴力,最短路,dp,模拟赛,题解" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://froldh.github.io">
+  <img class="avatar" src="https://froldh.github.io/images/avatar.png?v=1582858691061" alt="">
+  </a>
+  <h1 class="site-title">
+    oldherd&#39;s blog
+  </h1>
+  <p class="site-description">
+    又弱又笨的蒟蒻的博客
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              题解 [XJOI] CSP-S2开放一
+            </h2>
+            <div class="post-info">
+              <span>
+                2019-11-11
+              </span>
+              <span>
+                10 min read
+              </span>
+              
+                <a href="https://froldh.github.io/tag/TwGv-_xlq/" class="post-tag">
+                  # XJOI
+                </a>
+              
+                <a href="https://froldh.github.io/tag/eN1hPyKmW/" class="post-tag">
+                  # 最短路计数
+                </a>
+              
+                <a href="https://froldh.github.io/tag/cbDOzv0DL/" class="post-tag">
+                  # 暴力
+                </a>
+              
+                <a href="https://froldh.github.io/tag/_EEV02HULk/" class="post-tag">
+                  # 最短路
+                </a>
+              
+                <a href="https://froldh.github.io/tag/FwzEtJ52-T/" class="post-tag">
+                  # dp
+                </a>
+              
+                <a href="https://froldh.github.io/tag/omAfuSkc0/" class="post-tag">
+                  # 模拟赛
+                </a>
+              
+                <a href="https://froldh.github.io/tag/31TbbmEXBV/" class="post-tag">
+                  # 题解
+                </a>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <p>期望得分 100+100+60 = 260<br>
+实际得分 30+20+70 = 120</p>
+<!--more-->  
+<h3 id="t1">T1</h3>
+<p>实际上是个暴力枚举<br>
+考场打炸了,RE30<br>
+订正代码</p>
+<pre><code class="language-cpp">#include &lt;cstdio&gt;
+#define ll long long
+ 
+using namespace std;
+ 
+const int p[] = {1, 10, 100, 1000, 10000, 100000, 1000000, 10000000, 100000000};
+ 
+int main() {
+    int t;
+    scanf(&quot;%d&quot;, &amp;t);
+    while(t--) {
+        ll cnt = 0;
+        int l, r, tmp, n;
+        scanf(&quot;%d %d&quot;, &amp;l, &amp;r);
+        tmp = l; n = 0;
+        while(tmp) {   
+            tmp /= 10; ++n;
+        }
+        for(int i = l; i &lt;= r; ++i) {
+            tmp = i;
+            int low = tmp % 10; tmp /= 10; tmp += low * p[n-1];
+            while(tmp != i) {
+                if(low &amp;&amp; tmp &gt;= l &amp;&amp; tmp &lt;= r) ++cnt;
+                low = tmp % 10; tmp /= 10; tmp += low * p[n-1];
+            }
+        }
+        printf(&quot;%lld\n&quot;, cnt / 2);
+    }
+    return 0;
+}
+</code></pre>
+<h3 id="t2">T2</h3>
+<p>实际上就是最短路计数<br>
+考虑把下半边折上去,就满足对称性<br>
+然后跑最短路计数<br>
+这里建了虚拟节点0方便统计<br>
+考场上表头开小导致死循环了得分20,开大就对了<br>
+RE代码</p>
+<pre><code class="language-cpp">#include &lt;cstdio&gt;
+#include &lt;cstring&gt;
+#include &lt;queue&gt;
+
+using namespace std;
+
+const int N = 123, MOD = 1000000009, INF = 0x3f3f3f3f;
+int a[N][N];
+int head[N], ver[N*N], wei[N*N], nex[N*N], tot;
+inline void addedge(int u, int v, int w) {
+	ver[tot] = v, wei[tot] = w, nex[tot] = head[u], head[u] = tot++;
+}
+
+struct node{
+	int x, d;
+	node() {}
+	node(int X, int DIS) : x(X), d(DIS) {}
+	bool operator &lt; (const node&amp; o) const { return d &lt; o.d; }
+};
+priority_queue&lt;node&gt; q;
+int dis[N*N], f[N*N];
+void dij() {
+	memset(dis, INF, sizeof(dis));
+	memset(f, 0, sizeof(f));
+	dis[1] = a[1][1]; f[1] = 1;
+	q.push(node(1, dis[1]));
+	while(!q.empty()) {
+		node cur = q.top(); q.pop();
+		if(-cur.d &gt; dis[cur.x]) continue;
+		for(int i = head[cur.x]; ~i; i = nex[i])
+			if(dis[ver[i]] &gt; dis[cur.x] + wei[i]) {
+				dis[ver[i]] = dis[cur.x] + wei[i];
+				f[ver[i]] = f[cur.x];
+				q.push(node(ver[i], -dis[ver[i]]));
+			} else if(dis[ver[i]] == dis[cur.x] + wei[i]) {
+				f[ver[i]] = (f[cur.x] + f[ver[i]]) % MOD;
+			}
+				
+	}
+}
+
+int main() {
+	int n;
+	while(~scanf(&quot;%d&quot;, &amp;n) &amp;&amp; n) {
+		for(int i = 1; i &lt;= n; ++i)
+			for(int j = 1; j &lt;= n; ++j) {
+				scanf(&quot;%d&quot;, &amp;a[i][j]);
+				if(j &gt; n+1-i) a[n+1-j][n+1-i] += a[i][j];
+			}
+		memset(head, -1, sizeof(head));
+		tot = 0;
+		for(int i = 1; i &lt;= n; ++i)
+			for(int j = 1; j &lt;= n+1-i; ++j) {
+					int cur = (i-1)*n+j;
+					if(j != 1) addedge(cur, cur-1, a[i][j-1]);
+					if(j != n+1-i) addedge(cur, cur+1, a[i][j+1]), addedge(cur, cur+n, a[i+1][j]);
+					if(i != 1) addedge(cur, cur-n, a[i-1][j]);
+					if(i+j == n+1) addedge((i-1)*n+j, 0, 0);
+				}
+		dij();
+		printf(&quot;%d\n&quot;, f[0]);
+	}
+	return 0;
+}
+</code></pre>
+<p>订正代码:</p>
+<pre><code class="language-cpp">#include &lt;cstdio&gt;
+#include &lt;cstring&gt;
+#include &lt;queue&gt;
+
+using namespace std;
+
+const int N = 123, MOD = 1000000009, INF = 0x3f3f3f3f;
+int a[N][N];
+int head[N*N], ver[N*N*N], wei[N*N*N], nex[N*N*N], tot;
+inline void addedge(int u, int v, int w) {
+	ver[tot] = v, wei[tot] = w, nex[tot] = head[u], head[u] = tot++;
+}
+
+struct node{
+	int x, d;
+	node() {}
+	node(int X, int DIS) : x(X), d(DIS) {}
+	bool operator &lt; (const node&amp; o) const { return d &lt; o.d; }
+};
+priority_queue&lt;node&gt; q;
+int dis[N*N], f[N*N];
+void dij() {
+	memset(dis, INF, sizeof(dis));
+	memset(f, 0, sizeof(f));
+	dis[1] = a[1][1]; f[1] = 1;
+	q.push(node(1, dis[1]));
+	while(!q.empty()) {
+		node cur = q.top(); q.pop();
+		if(-cur.d &gt; dis[cur.x]) continue;
+		for(int i = head[cur.x]; ~i; i = nex[i])
+			if(dis[ver[i]] &gt; dis[cur.x] + wei[i]) {
+				dis[ver[i]] = dis[cur.x] + wei[i];
+				f[ver[i]] = f[cur.x];
+				q.push(node(ver[i], -dis[ver[i]]));
+			} else if(dis[ver[i]] == dis[cur.x] + wei[i]) {
+				f[ver[i]] = (f[cur.x] + f[ver[i]]) % MOD;
+			}
+				
+	}
+}
+
+int main() {
+	int n;
+	while(~scanf(&quot;%d&quot;, &amp;n) &amp;&amp; n) {
+		for(int i = 1; i &lt;= n; ++i)
+			for(int j = 1; j &lt;= n; ++j) {
+				scanf(&quot;%d&quot;, &amp;a[i][j]);
+				if(j &gt; n+1-i) a[n+1-j][n+1-i] += a[i][j];
+			}
+		memset(head, -1, sizeof(head));
+		tot = 0;
+		for(int i = 1; i &lt;= n; ++i)
+			for(int j = 1; j &lt;= n+1-i; ++j) {
+					int cur = (i-1)*n+j;
+					if(j != 1) addedge(cur, cur-1, a[i][j-1]);
+					if(j != n+1-i) addedge(cur, cur+1, a[i][j+1]), addedge(cur, cur+n, a[i+1][j]);
+					if(i != 1) addedge(cur, cur-n, a[i-1][j]);
+					if(i+j == n+1) addedge((i-1)*n+j, 0, 0);
+				}
+		dij();
+		printf(&quot;%d\n&quot;, f[0]);
+	}
+	return 0;
+}
+</code></pre>
+<h3 id="t3">T3</h3>
+<p>考场上打了个树上背包暴力<br>
+70</p>
+<p>70分代码,树上背包</p>
+<pre><code class="language-cpp">#include &lt;cstdio&gt;
+#include &lt;cstring&gt;
+#include &lt;algorithm&gt;
+
+using namespace std;
+
+const int N = 3456;
+int head[N], ver[N&lt;&lt;1], nex[N&lt;&lt;1], tot, n;
+inline void addedge(int u, int v) {
+	ver[tot] = v; nex[tot] = head[u]; head[u] = tot++;
+}
+int a[N], f[N][N], lim;
+void dfs(int cur, int pre) {
+	for(int i = head[cur]; ~i; i = nex[i])
+		if(pre != ver[i]) {
+			dfs(ver[i], cur);
+			for(int j = lim; ~j; --j)
+				for(int k = j; ~k; --k)
+					f[cur][j] = max(f[cur][j], f[cur][j-k] + f[ver[i]][k]);
+		}
+	for(int i = lim; i &gt; 0; --i)
+		f[cur][i] = f[cur][i-1] + a[cur];
+}
+
+int main() {
+	memset(head, -1, sizeof(head));
+	int u, v;
+	scanf(&quot;%d %d&quot;, &amp;n, &amp;lim);
+	for(int i = 1; i &lt;= n; ++i) scanf(&quot;%d&quot;, a + i);
+	for(int i = 1; i &lt; n; ++i) {
+		scanf(&quot;%d %d&quot;, &amp;u, &amp;v);
+		addedge(u, v);
+		addedge(v, u);
+	}
+	dfs(1, 0);
+	printf(&quot;%d\n&quot;, f[1][lim]);
+	return 0;
+}
+</code></pre>
+<p>100分代码<br>
+鬼知道是这种优化！！！<br>
+背包范围按<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>m</mi><mi>i</mi><mi>n</mi><mo>(</mo><mi>s</mi><mi>i</mi><mi>z</mi><mi>e</mi><mo separator="true">,</mo><mi>l</mi><mi>i</mi><mi>m</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">min(size, lim)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">m</span><span class="mord mathdefault">i</span><span class="mord mathdefault">n</span><span class="mopen">(</span><span class="mord mathdefault">s</span><span class="mord mathdefault">i</span><span class="mord mathdefault" style="margin-right:0.04398em;">z</span><span class="mord mathdefault">e</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">i</span><span class="mord mathdefault">m</span><span class="mclose">)</span></span></span></span>枚举</p>
+<pre><code class="language-cpp">#include &lt;cstdio&gt;
+#include &lt;cstring&gt;
+#include &lt;queue&gt;
+
+using namespace std;
+
+const int N = 123, MOD = 1000000009, INF = 0x3f3f3f3f;
+int a[N][N];
+int head[N*N], ver[N*N*N], wei[N*N*N], nex[N*N*N], tot;
+inline void addedge(int u, int v, int w) {
+	ver[tot] = v, wei[tot] = w, nex[tot] = head[u], head[u] = tot++;
+}
+
+struct node{
+	int x, d;
+	node() {}
+	node(int X, int DIS) : x(X), d(DIS) {}
+	bool operator &lt; (const node&amp; o) const { return d &lt; o.d; }
+};
+priority_queue&lt;node&gt; q;
+int dis[N*N], f[N*N];
+void dij() {
+	memset(dis, INF, sizeof(dis));
+	memset(f, 0, sizeof(f));
+	dis[1] = a[1][1]; f[1] = 1;
+	q.push(node(1, dis[1]));
+	while(!q.empty()) {
+		node cur = q.top(); q.pop();
+		if(-cur.d &gt; dis[cur.x]) continue;
+		for(int i = head[cur.x]; ~i; i = nex[i])
+			if(dis[ver[i]] &gt; dis[cur.x] + wei[i]) {
+				dis[ver[i]] = dis[cur.x] + wei[i];
+				f[ver[i]] = f[cur.x];
+				q.push(node(ver[i], -dis[ver[i]]));
+			} else if(dis[ver[i]] == dis[cur.x] + wei[i]) {
+				f[ver[i]] = (f[cur.x] + f[ver[i]]) % MOD;
+			}
+				
+	}
+}
+
+int main() {
+	int n;
+	while(~scanf(&quot;%d&quot;, &amp;n) &amp;&amp; n) {
+		for(int i = 1; i &lt;= n; ++i)
+			for(int j = 1; j &lt;= n; ++j) {
+				scanf(&quot;%d&quot;, &amp;a[i][j]);
+				if(j &gt; n+1-i) a[n+1-j][n+1-i] += a[i][j];
+			}
+		memset(head, -1, sizeof(head));
+		tot = 0;
+		for(int i = 1; i &lt;= n; ++i)
+			for(int j = 1; j &lt;= n+1-i; ++j) {
+					int cur = (i-1)*n+j;
+					if(j != 1) addedge(cur, cur-1, a[i][j-1]);
+					if(j != n+1-i) addedge(cur, cur+1, a[i][j+1]), addedge(cur, cur+n, a[i+1][j]);
+					if(i != 1) addedge(cur, cur-n, a[i-1][j]);
+					if(i+j == n+1) addedge((i-1)*n+j, 0, 0);
+				}
+		dij();
+		printf(&quot;%d\n&quot;, f[0]);
+	}
+	return 0;
+}
+</code></pre>
+<p>问题：细节方面很不小心,T2存图的表头开小直接TLE丢掉80分<br>
+T3认为复杂度不对就没打优化,还是要敢试<br>
+T1RE可能也不是特别出乎意料吧,毕竟拍都懒得拍了<br>
+就这样漏洞百出我竟然还敢提前48分钟交卷<br>
+总的来说应当更加仔细<br>
+应该拍大数据(雾)<br>
+考场上最后的时间要留出来检查表头有没有开够,以及一些初始化的细节<br>
+还是考挂了自己菜,要多加油了</p>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#t1">T1</a></li>
+<li><a href="#t2">T2</a></li>
+<li><a href="#t3">T3</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://froldh.github.io/post/ti-jie-luogup1379-ba-shu-ma-nan-ti/">
+              <h3 class="post-title">
+                题解 luoguP1379 八数码难题
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+  <a class="rss" href="https://froldh.github.io/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>

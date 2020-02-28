@@ -1,0 +1,286 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>题解 [NOIp2018]旅行 | oldherd&#39;s blog</title>
+<link rel="shortcut icon" href="https://froldh.github.io/favicon.ico?v=1582858691061">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://froldh.github.io/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="题解 [NOIp2018]旅行 | oldherd&#39;s blog - Atom Feed" href="https://froldh.github.io/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+
+    <meta name="description" content="m=n−1m = n-1m=n−1
+贪心dfs,按照结点编号较小的输出即可。
+60pts60pts60pts到手
+m=nm = nm=n
+这不就是一棵基环树嘛?
+  
+对于任意的方案,一种方案是走完整个环,另一种是走完n-1条边,然后回溯。..." />
+    <meta name="keywords" content="NOIp,基环树,greedy,dfs,题解" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://froldh.github.io">
+  <img class="avatar" src="https://froldh.github.io/images/avatar.png?v=1582858691061" alt="">
+  </a>
+  <h1 class="site-title">
+    oldherd&#39;s blog
+  </h1>
+  <p class="site-description">
+    又弱又笨的蒟蒻的博客
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              题解 [NOIp2018]旅行
+            </h2>
+            <div class="post-info">
+              <span>
+                2019-11-10
+              </span>
+              <span>
+                3 min read
+              </span>
+              
+                <a href="https://froldh.github.io/tag/Thi2UHQDl/" class="post-tag">
+                  # NOIp
+                </a>
+              
+                <a href="https://froldh.github.io/tag/tcKl3-rCU/" class="post-tag">
+                  # 基环树
+                </a>
+              
+                <a href="https://froldh.github.io/tag/v1FdaSj0Bb/" class="post-tag">
+                  # greedy
+                </a>
+              
+                <a href="https://froldh.github.io/tag/5jnuxBl4qH/" class="post-tag">
+                  # dfs
+                </a>
+              
+                <a href="https://froldh.github.io/tag/31TbbmEXBV/" class="post-tag">
+                  # 题解
+                </a>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>m</mi><mo>=</mo><mi>n</mi><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">m = n-1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">m</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span><br>
+贪心dfs,按照结点编号较小的输出即可。<br>
+<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>60</mn><mi>p</mi><mi>t</mi><mi>s</mi></mrow><annotation encoding="application/x-tex">60pts</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8388800000000001em;vertical-align:-0.19444em;"></span><span class="mord">6</span><span class="mord">0</span><span class="mord mathdefault">p</span><span class="mord mathdefault">t</span><span class="mord mathdefault">s</span></span></span></span>到手<br>
+<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>m</mi><mo>=</mo><mi>n</mi></mrow><annotation encoding="application/x-tex">m = n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">m</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span></span></span></span><br>
+这不就是一棵基环树嘛?</p>
+<!--more-->  
+<p>对于任意的方案,一种方案是走完整个环,另一种是走完n-1条边,然后回溯。回溯过程中我们还有选择的余地(可以访问其他子树),所以必然更优。<br>
+用dfs标记环上的每一个结点(类似强连通缩点),枚举断边即可。<br>
+<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><msup><mi>n</mi><mn>2</mn></msup><mo>)</mo></mrow><annotation encoding="application/x-tex">O(n^2)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.064108em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault">n</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span></p>
+<pre><code class="language-cpp">#include &lt;cstdio&gt;
+#include &lt;cstring&gt;
+#include &lt;vector&gt;
+#include &lt;algorithm&gt;
+#define itra vector&lt;int&gt;::iterator
+
+using namespace std;
+
+const int N = 5678, INF = 0x3f3f3f3f;
+
+vector&lt;int&gt; mp[N];
+int n;
+
+int sta[N], vis[N], bd[N], top, bp;
+bool flg = true;
+void find(int cur, int pre) {
+	if(!flg) return;
+	int sz = mp[cur].size();
+	for(int i = 0; i &lt; sz; ++i)
+		if(mp[cur][i] != pre) {
+			if(vis[mp[cur][i]]) {
+				flg = false;
+				--top;
+				while(sta[top] != mp[cur][i])
+					bd[bp++] = sta[top--];
+				bd[bp++] = sta[top];
+				bd[bp++] = cur;
+				return;
+			}
+			vis[mp[cur][i]] = 1;
+			sta[top++] = mp[cur][i];
+			find(mp[cur][i], cur);
+			if(!flg) return;
+			--top;
+		}
+}
+
+int ans[N], tat[N], ta, b1, b2;
+void dfs(int cur, int pre) {
+	tat[ta++] = cur;
+	int sz = mp[cur].size();
+	for(int i = 0; i &lt; sz; ++i)
+		if(mp[cur][i] != pre &amp;&amp; !(cur==b1&amp;&amp;mp[cur][i]==b2) &amp;&amp; !(cur==b2&amp;&amp;mp[cur][i]==b1)) {
+			dfs(mp[cur][i], cur);
+		}
+}
+
+inline bool ck() {
+	for(int i = 0; i &lt; n; ++i)
+		if(ans[i] != tat[i])
+			return tat[i] &lt; ans[i];
+	return false;
+}
+
+inline void upd() { if(ck()) for(int i = 0; i &lt; n; ++i) ans[i] = tat[i]; }
+
+int main() {
+	memset(vis, 0, sizeof(vis));
+	ans[0] = INF;
+	int m, u, v;
+	scanf(&quot;%d %d&quot;, &amp;n, &amp;m);
+	for(int i = 1; i &lt;= m; ++i) {
+		scanf(&quot;%d %d&quot;, &amp;u, &amp;v);
+		mp[u].push_back(v); mp[v].push_back(u);
+	}
+	for(int i = 1; i &lt;= n; ++i) sort(mp[i].begin(), mp[i].end());
+	if(n == m) {
+		top = bp = 0;
+		vis[1] = 1;
+		sta[top++] = 1;
+		find(1, 0);
+		for(int i = 0; i &lt; bp - 1; ++i) {
+			b1 = bd[i], b2 = bd[i+1];
+			ta = 0;
+			dfs(1, 0);
+			upd();
+		}
+		for(int i = 0; i &lt; n; ++i) printf(&quot;%d &quot;, ans[i]);
+		printf(&quot;\n&quot;);
+	} else {
+		dfs(1, 0);
+		for(int i = 0; i &lt; n; ++i) printf(&quot;%d &quot;, tat[i]);
+		printf(&quot;\n&quot;);
+	}
+	return 0;
+}
+</code></pre>
+
+              </div>
+              <div class="toc-container">
+                
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://froldh.github.io/post/ti-jie-poi2011-smi-garbage/">
+              <h3 class="post-title">
+                题解 [POI2011] SMI-Garbage
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+  <a class="rss" href="https://froldh.github.io/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>

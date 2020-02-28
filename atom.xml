@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://froldh.github.io</id>
     <title>oldherd&apos;s blog</title>
-    <updated>2020-02-28T02:43:01.798Z</updated>
+    <updated>2020-02-28T02:58:16.697Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://froldh.github.io"/>
     <link rel="self" href="https://froldh.github.io/atom.xml"/>
@@ -756,6 +756,396 @@ int main() {
 ]]></content>
     </entry>
     <entry>
+        <title type="html"><![CDATA[题解 [XJOI] CSP-S2开放一]]></title>
+        <id>https://froldh.github.io/post/ti-jie-xjoi-csp-s2-kai-fang-yi/</id>
+        <link href="https://froldh.github.io/post/ti-jie-xjoi-csp-s2-kai-fang-yi/">
+        </link>
+        <updated>2019-11-11T08:11:53.000Z</updated>
+        <summary type="html"><![CDATA[<p>期望得分 100+100+60 = 260<br>
+实际得分 30+20+70 = 120</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>期望得分 100+100+60 = 260<br>
+实际得分 30+20+70 = 120</p>
+<!--more-->  
+<h3 id="t1">T1</h3>
+<p>实际上是个暴力枚举<br>
+考场打炸了,RE30<br>
+订正代码</p>
+<pre><code class="language-cpp">#include &lt;cstdio&gt;
+#define ll long long
+ 
+using namespace std;
+ 
+const int p[] = {1, 10, 100, 1000, 10000, 100000, 1000000, 10000000, 100000000};
+ 
+int main() {
+    int t;
+    scanf(&quot;%d&quot;, &amp;t);
+    while(t--) {
+        ll cnt = 0;
+        int l, r, tmp, n;
+        scanf(&quot;%d %d&quot;, &amp;l, &amp;r);
+        tmp = l; n = 0;
+        while(tmp) {   
+            tmp /= 10; ++n;
+        }
+        for(int i = l; i &lt;= r; ++i) {
+            tmp = i;
+            int low = tmp % 10; tmp /= 10; tmp += low * p[n-1];
+            while(tmp != i) {
+                if(low &amp;&amp; tmp &gt;= l &amp;&amp; tmp &lt;= r) ++cnt;
+                low = tmp % 10; tmp /= 10; tmp += low * p[n-1];
+            }
+        }
+        printf(&quot;%lld\n&quot;, cnt / 2);
+    }
+    return 0;
+}
+</code></pre>
+<h3 id="t2">T2</h3>
+<p>实际上就是最短路计数<br>
+考虑把下半边折上去,就满足对称性<br>
+然后跑最短路计数<br>
+这里建了虚拟节点0方便统计<br>
+考场上表头开小导致死循环了得分20,开大就对了<br>
+RE代码</p>
+<pre><code class="language-cpp">#include &lt;cstdio&gt;
+#include &lt;cstring&gt;
+#include &lt;queue&gt;
+
+using namespace std;
+
+const int N = 123, MOD = 1000000009, INF = 0x3f3f3f3f;
+int a[N][N];
+int head[N], ver[N*N], wei[N*N], nex[N*N], tot;
+inline void addedge(int u, int v, int w) {
+	ver[tot] = v, wei[tot] = w, nex[tot] = head[u], head[u] = tot++;
+}
+
+struct node{
+	int x, d;
+	node() {}
+	node(int X, int DIS) : x(X), d(DIS) {}
+	bool operator &lt; (const node&amp; o) const { return d &lt; o.d; }
+};
+priority_queue&lt;node&gt; q;
+int dis[N*N], f[N*N];
+void dij() {
+	memset(dis, INF, sizeof(dis));
+	memset(f, 0, sizeof(f));
+	dis[1] = a[1][1]; f[1] = 1;
+	q.push(node(1, dis[1]));
+	while(!q.empty()) {
+		node cur = q.top(); q.pop();
+		if(-cur.d &gt; dis[cur.x]) continue;
+		for(int i = head[cur.x]; ~i; i = nex[i])
+			if(dis[ver[i]] &gt; dis[cur.x] + wei[i]) {
+				dis[ver[i]] = dis[cur.x] + wei[i];
+				f[ver[i]] = f[cur.x];
+				q.push(node(ver[i], -dis[ver[i]]));
+			} else if(dis[ver[i]] == dis[cur.x] + wei[i]) {
+				f[ver[i]] = (f[cur.x] + f[ver[i]]) % MOD;
+			}
+				
+	}
+}
+
+int main() {
+	int n;
+	while(~scanf(&quot;%d&quot;, &amp;n) &amp;&amp; n) {
+		for(int i = 1; i &lt;= n; ++i)
+			for(int j = 1; j &lt;= n; ++j) {
+				scanf(&quot;%d&quot;, &amp;a[i][j]);
+				if(j &gt; n+1-i) a[n+1-j][n+1-i] += a[i][j];
+			}
+		memset(head, -1, sizeof(head));
+		tot = 0;
+		for(int i = 1; i &lt;= n; ++i)
+			for(int j = 1; j &lt;= n+1-i; ++j) {
+					int cur = (i-1)*n+j;
+					if(j != 1) addedge(cur, cur-1, a[i][j-1]);
+					if(j != n+1-i) addedge(cur, cur+1, a[i][j+1]), addedge(cur, cur+n, a[i+1][j]);
+					if(i != 1) addedge(cur, cur-n, a[i-1][j]);
+					if(i+j == n+1) addedge((i-1)*n+j, 0, 0);
+				}
+		dij();
+		printf(&quot;%d\n&quot;, f[0]);
+	}
+	return 0;
+}
+</code></pre>
+<p>订正代码:</p>
+<pre><code class="language-cpp">#include &lt;cstdio&gt;
+#include &lt;cstring&gt;
+#include &lt;queue&gt;
+
+using namespace std;
+
+const int N = 123, MOD = 1000000009, INF = 0x3f3f3f3f;
+int a[N][N];
+int head[N*N], ver[N*N*N], wei[N*N*N], nex[N*N*N], tot;
+inline void addedge(int u, int v, int w) {
+	ver[tot] = v, wei[tot] = w, nex[tot] = head[u], head[u] = tot++;
+}
+
+struct node{
+	int x, d;
+	node() {}
+	node(int X, int DIS) : x(X), d(DIS) {}
+	bool operator &lt; (const node&amp; o) const { return d &lt; o.d; }
+};
+priority_queue&lt;node&gt; q;
+int dis[N*N], f[N*N];
+void dij() {
+	memset(dis, INF, sizeof(dis));
+	memset(f, 0, sizeof(f));
+	dis[1] = a[1][1]; f[1] = 1;
+	q.push(node(1, dis[1]));
+	while(!q.empty()) {
+		node cur = q.top(); q.pop();
+		if(-cur.d &gt; dis[cur.x]) continue;
+		for(int i = head[cur.x]; ~i; i = nex[i])
+			if(dis[ver[i]] &gt; dis[cur.x] + wei[i]) {
+				dis[ver[i]] = dis[cur.x] + wei[i];
+				f[ver[i]] = f[cur.x];
+				q.push(node(ver[i], -dis[ver[i]]));
+			} else if(dis[ver[i]] == dis[cur.x] + wei[i]) {
+				f[ver[i]] = (f[cur.x] + f[ver[i]]) % MOD;
+			}
+				
+	}
+}
+
+int main() {
+	int n;
+	while(~scanf(&quot;%d&quot;, &amp;n) &amp;&amp; n) {
+		for(int i = 1; i &lt;= n; ++i)
+			for(int j = 1; j &lt;= n; ++j) {
+				scanf(&quot;%d&quot;, &amp;a[i][j]);
+				if(j &gt; n+1-i) a[n+1-j][n+1-i] += a[i][j];
+			}
+		memset(head, -1, sizeof(head));
+		tot = 0;
+		for(int i = 1; i &lt;= n; ++i)
+			for(int j = 1; j &lt;= n+1-i; ++j) {
+					int cur = (i-1)*n+j;
+					if(j != 1) addedge(cur, cur-1, a[i][j-1]);
+					if(j != n+1-i) addedge(cur, cur+1, a[i][j+1]), addedge(cur, cur+n, a[i+1][j]);
+					if(i != 1) addedge(cur, cur-n, a[i-1][j]);
+					if(i+j == n+1) addedge((i-1)*n+j, 0, 0);
+				}
+		dij();
+		printf(&quot;%d\n&quot;, f[0]);
+	}
+	return 0;
+}
+</code></pre>
+<h3 id="t3">T3</h3>
+<p>考场上打了个树上背包暴力<br>
+70</p>
+<p>70分代码,树上背包</p>
+<pre><code class="language-cpp">#include &lt;cstdio&gt;
+#include &lt;cstring&gt;
+#include &lt;algorithm&gt;
+
+using namespace std;
+
+const int N = 3456;
+int head[N], ver[N&lt;&lt;1], nex[N&lt;&lt;1], tot, n;
+inline void addedge(int u, int v) {
+	ver[tot] = v; nex[tot] = head[u]; head[u] = tot++;
+}
+int a[N], f[N][N], lim;
+void dfs(int cur, int pre) {
+	for(int i = head[cur]; ~i; i = nex[i])
+		if(pre != ver[i]) {
+			dfs(ver[i], cur);
+			for(int j = lim; ~j; --j)
+				for(int k = j; ~k; --k)
+					f[cur][j] = max(f[cur][j], f[cur][j-k] + f[ver[i]][k]);
+		}
+	for(int i = lim; i &gt; 0; --i)
+		f[cur][i] = f[cur][i-1] + a[cur];
+}
+
+int main() {
+	memset(head, -1, sizeof(head));
+	int u, v;
+	scanf(&quot;%d %d&quot;, &amp;n, &amp;lim);
+	for(int i = 1; i &lt;= n; ++i) scanf(&quot;%d&quot;, a + i);
+	for(int i = 1; i &lt; n; ++i) {
+		scanf(&quot;%d %d&quot;, &amp;u, &amp;v);
+		addedge(u, v);
+		addedge(v, u);
+	}
+	dfs(1, 0);
+	printf(&quot;%d\n&quot;, f[1][lim]);
+	return 0;
+}
+</code></pre>
+<p>100分代码<br>
+鬼知道是这种优化！！！<br>
+背包范围按<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>m</mi><mi>i</mi><mi>n</mi><mo>(</mo><mi>s</mi><mi>i</mi><mi>z</mi><mi>e</mi><mo separator="true">,</mo><mi>l</mi><mi>i</mi><mi>m</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">min(size, lim)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">m</span><span class="mord mathdefault">i</span><span class="mord mathdefault">n</span><span class="mopen">(</span><span class="mord mathdefault">s</span><span class="mord mathdefault">i</span><span class="mord mathdefault" style="margin-right:0.04398em;">z</span><span class="mord mathdefault">e</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">i</span><span class="mord mathdefault">m</span><span class="mclose">)</span></span></span></span>枚举</p>
+<pre><code class="language-cpp">#include &lt;cstdio&gt;
+#include &lt;cstring&gt;
+#include &lt;queue&gt;
+
+using namespace std;
+
+const int N = 123, MOD = 1000000009, INF = 0x3f3f3f3f;
+int a[N][N];
+int head[N*N], ver[N*N*N], wei[N*N*N], nex[N*N*N], tot;
+inline void addedge(int u, int v, int w) {
+	ver[tot] = v, wei[tot] = w, nex[tot] = head[u], head[u] = tot++;
+}
+
+struct node{
+	int x, d;
+	node() {}
+	node(int X, int DIS) : x(X), d(DIS) {}
+	bool operator &lt; (const node&amp; o) const { return d &lt; o.d; }
+};
+priority_queue&lt;node&gt; q;
+int dis[N*N], f[N*N];
+void dij() {
+	memset(dis, INF, sizeof(dis));
+	memset(f, 0, sizeof(f));
+	dis[1] = a[1][1]; f[1] = 1;
+	q.push(node(1, dis[1]));
+	while(!q.empty()) {
+		node cur = q.top(); q.pop();
+		if(-cur.d &gt; dis[cur.x]) continue;
+		for(int i = head[cur.x]; ~i; i = nex[i])
+			if(dis[ver[i]] &gt; dis[cur.x] + wei[i]) {
+				dis[ver[i]] = dis[cur.x] + wei[i];
+				f[ver[i]] = f[cur.x];
+				q.push(node(ver[i], -dis[ver[i]]));
+			} else if(dis[ver[i]] == dis[cur.x] + wei[i]) {
+				f[ver[i]] = (f[cur.x] + f[ver[i]]) % MOD;
+			}
+				
+	}
+}
+
+int main() {
+	int n;
+	while(~scanf(&quot;%d&quot;, &amp;n) &amp;&amp; n) {
+		for(int i = 1; i &lt;= n; ++i)
+			for(int j = 1; j &lt;= n; ++j) {
+				scanf(&quot;%d&quot;, &amp;a[i][j]);
+				if(j &gt; n+1-i) a[n+1-j][n+1-i] += a[i][j];
+			}
+		memset(head, -1, sizeof(head));
+		tot = 0;
+		for(int i = 1; i &lt;= n; ++i)
+			for(int j = 1; j &lt;= n+1-i; ++j) {
+					int cur = (i-1)*n+j;
+					if(j != 1) addedge(cur, cur-1, a[i][j-1]);
+					if(j != n+1-i) addedge(cur, cur+1, a[i][j+1]), addedge(cur, cur+n, a[i+1][j]);
+					if(i != 1) addedge(cur, cur-n, a[i-1][j]);
+					if(i+j == n+1) addedge((i-1)*n+j, 0, 0);
+				}
+		dij();
+		printf(&quot;%d\n&quot;, f[0]);
+	}
+	return 0;
+}
+</code></pre>
+<p>问题：细节方面很不小心,T2存图的表头开小直接TLE丢掉80分<br>
+T3认为复杂度不对就没打优化,还是要敢试<br>
+T1RE可能也不是特别出乎意料吧,毕竟拍都懒得拍了<br>
+就这样漏洞百出我竟然还敢提前48分钟交卷<br>
+总的来说应当更加仔细<br>
+应该拍大数据(雾)<br>
+考场上最后的时间要留出来检查表头有没有开够,以及一些初始化的细节<br>
+还是考挂了自己菜,要多加油了</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[题解 luoguP1379 八数码难题]]></title>
+        <id>https://froldh.github.io/post/ti-jie-luogup1379-ba-shu-ma-nan-ti/</id>
+        <link href="https://froldh.github.io/post/ti-jie-luogup1379-ba-shu-ma-nan-ti/">
+        </link>
+        <updated>2019-11-11T00:43:05.000Z</updated>
+        <summary type="html"><![CDATA[<p>看到很多神仙都是一顿A* / 双向广搜 等操作。<br>
+其实状态数也没那么多</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>看到很多神仙都是一顿A* / 双向广搜 等操作。<br>
+其实状态数也没那么多</p>
+<!--more-->  
+<p>直接hash存储已经搜过的值,然后暴力地广搜就能过<br>
+用string来表示状态,map存一下就好了</p>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+#include &lt;map&gt;
+#include &lt;queue&gt;
+#define pis pair&lt;int,string&gt;
+
+using namespace std;
+
+const string end = &quot;123804765&quot;;
+
+inline int findZero(string s) { for(int i = 0; i &lt; 9; ++i) if(s[i] == '0') return i; }
+map&lt;string, bool&gt; hash;
+queue&lt;pis&gt; q;
+int bfs(string start) {
+	hash[start] = true;
+	q.push(make_pair(0, start));
+	while(!q.empty()) {
+		int d = q.front().first;
+		string cur = q.front().second;
+		q.pop();
+		if(cur == end) {
+			return d;
+		}
+		int x = findZero(cur);
+		string tmp;
+		if(x / 3 != 0) {
+			tmp = cur;
+			swap(tmp[x], tmp[x-3]);
+			if(!hash[tmp]) {
+				hash[tmp] = true;
+				q.push(make_pair(d + 1, tmp));
+			}
+		}
+		if(x % 3 != 0) {
+			tmp = cur;
+			swap(tmp[x], tmp[x - 1]);
+			if(!hash[tmp]) {
+				hash[tmp] = true;
+				q.push(make_pair(d + 1, tmp));
+			}
+		}
+		if(x % 3 != 2) {
+			tmp = cur;
+			swap(tmp[x], tmp[x + 1]);
+			if(!hash[tmp]) {
+				hash[tmp] = true;
+				q.push(make_pair(d + 1, tmp));
+			}
+		}
+		if(x / 3 != 2) {
+			tmp = cur;
+			swap(tmp[x], tmp[x + 3]);
+			if(!hash[tmp]) {
+				hash[tmp] = true;
+				q.push(make_pair(d + 1, tmp));
+			}
+		}
+	}
+	return -1;
+}
+
+int main() {
+	ios::sync_with_stdio(false);
+	string start;
+	cin &gt;&gt; start;
+	cout &lt;&lt; bfs(start) &lt;&lt; endl;
+	return 0;
+}
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
         <title type="html"><![CDATA[题解 luoguP3387 [模板]缩点]]></title>
         <id>https://froldh.github.io/post/title-ti-jie-luogup3387-mo-ban-suo-dian/</id>
         <link href="https://froldh.github.io/post/title-ti-jie-luogup3387-mo-ban-suo-dian/">
@@ -764,7 +1154,7 @@ int main() {
         <summary type="html"><![CDATA[<p>tarjan缩点后形成一个DAG</p>
 ]]></summary>
         <content type="html"><![CDATA[<p>tarjan缩点后形成一个DAG</p>
-<!--more-->  
+<!--more-->
 <p>然后根据tarjan的性质,缩点的编号为逆拓扑序<br>
 直接按缩点编号降序DP即可</p>
 <pre><code class="language-cpp">#include &lt;cstdio&gt;
@@ -907,162 +1297,6 @@ int main() {
 	return 0;
 }
 
-</code></pre>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[题解 [POI2011] SMI-Garbage]]></title>
-        <id>https://froldh.github.io/post/ti-jie-poi2011-smi-garbage/</id>
-        <link href="https://froldh.github.io/post/ti-jie-poi2011-smi-garbage/">
-        </link>
-        <updated>2019-11-08T15:59:24.000Z</updated>
-        <summary type="html"><![CDATA[<p>欧拉回路拆环</p>
-]]></summary>
-        <content type="html"><![CDATA[<p>欧拉回路拆环</p>
-<!--more-->  
-<p>考虑在入栈的时候检查该元素是否在栈中,若在,表示成环。<br>
-注意:由于常见的求欧拉路的程序给出的结尾都不是开头点,所以在dfs调用后栈里面还剩下一个环,输出即可。</p>
-<pre><code class="language-cpp">#include &lt;cstdio&gt;
-#include &lt;iostream&gt;
-#include &lt;cstring&gt;
-#include &lt;vector&gt;
-#define itra vector&lt;int&gt;::iterator
-
-using namespace std;
-
-const int N = 123456, M = 1234567;
-int head[N], deg[N], ver[M&lt;&lt;1], vis[M&lt;&lt;1], nex[M&lt;&lt;1], tot;
-inline void addedge(int u, int v) {
-	ver[tot] = v; nex[tot] = head[u]; head[u] = tot++;
-}
-
-vector&lt;int&gt; va[N/10];
-vector&lt;int&gt; sta;
-
-
-int instack[N], vist[N], tt;
-void dfs(int cur) {
-	vist[cur] = 1;
-	for(int i = head[cur]; ~i; i = nex[i])
-		if(!vis[i]) {
-			vis[i] = vis[i^1] = 1;
-			head[cur] = nex[i];
-			dfs(ver[i]);
-			if(instack[ver[i]]) {
-				va[tt].push_back(ver[i]);
-				while(sta.back() != ver[i]) {
-					va[tt].push_back(sta.back());
-					instack[sta.back()] = 0;
-					sta.pop_back();
-				}
-				va[tt].push_back(ver[i]);
-				++tt;
-			} else {
-				sta.push_back(ver[i]);
-				instack[ver[i]] = 1;
-			}
-		}
-}
-
-int main() {
-	memset(head, -1, sizeof(head));
-	int n, m, u, v, f, t, flg = 1;
-	scanf(&quot;%d %d&quot;, &amp;n, &amp;m);
-	for(int i = 1; i &lt;= m; ++i) {
-		scanf(&quot;%d %d %d %d&quot;, &amp;u, &amp;v, &amp;f, &amp;t);
-		if(f^t) {
-			addedge(u, v); addedge(v, u);
-			++deg[u]; ++deg[v];
-		}
-	}
- 	for(int i = 1; i &lt;= n; ++i) {
- 		if(deg[i]%2) {
- 			flg = 0;
- 			break;
- 		}
- 	}
- 	if(!flg) {
- 		printf(&quot;NIE\n&quot;);
- 		return 0;
-	 }
-	 for(int i = 1; i &lt;= n; ++i) 
-	 	if(!vist[i]) {
-	 		dfs(i);
-	 		if(instack[i]) {
-	 			va[tt].push_back(i);
-	 			while(!sta.empty()) {
-	 				va[tt].push_back(sta.back());
-	 				instack[sta.back()] = 0;
-	 				sta.pop_back();
-	 			}
-	 			++tt;
-	 		}
-	 	}
-	 printf(&quot;%d\n&quot;, tt);
-	 for(int i = 0; i &lt; tt; ++i) {
-	 	printf(&quot;%d &quot;, va[i].size()-1);
-	 	for(itra it = va[i].begin(); it != va[i].end(); ++it) {
-	 		printf(&quot;%d &quot;, (*it));
-	 	}
-	 	printf(&quot;\n&quot;);
-	 }
-	return 0;
-} 
-</code></pre>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[笔记 欧拉路]]></title>
-        <id>https://froldh.github.io/post/bi-ji-ou-la-lu/</id>
-        <link href="https://froldh.github.io/post/bi-ji-ou-la-lu/">
-        </link>
-        <updated>2019-11-08T10:57:50.000Z</updated>
-        <summary type="html"><![CDATA[<p>偶数度数 --&gt; 欧拉回路<br>
-两个奇数度数 --&gt; 普通欧拉回路</p>
-]]></summary>
-        <content type="html"><![CDATA[<p>偶数度数 --&gt; 欧拉回路<br>
-两个奇数度数 --&gt; 普通欧拉回路</p>
-<!--more-->  
-<p>利用栈的性质处理一点多环的情况。<br>
-注意一定是在回溯时入栈。<br>
-在外部逆序输出栈内元素即可。</p>
-<pre><code class="language-cpp">#include &lt;cstdio&gt;
-#include &lt;cstring&gt;
-
-using namespace std;
-
-const int N = 1234, M = 5678;
-int head[N], ver[M&lt;&lt;1], nex[M&lt;&lt;1], vis[M&lt;&lt;1], tot;
-inline void addedge(int u, int v) {
-	ver[tot] = v; nex[tot] = head[u]; head[u] = tot++;
-}
-
-int sta[N*M], top;
-void dfsE(int cur) {
-	for(int i = head[cur]; ~i; i = nex[i]) 
-		if(!vis[i]) {
-			vis[i] = vis[i^1] = 1;
-			dfsE(ver[i]);
-			sta[top++] = ver[i];
-		}
-}
-
-int main() {
-	memset(head, -1, sizeof(head));
-	int n, m, u, v;
-	scanf(&quot;%d %d&quot;, &amp;n, &amp;m);
-	for(int i = 1; i &lt;= m; ++i) {
-		scanf(&quot;%d %d&quot;, &amp;u, &amp;v);
-		addedge(u, v);
-		addedge(v, u);
-	}
-	dfsE(1);
-	while(top) {
-		printf(&quot;%d &quot;, sta[--top]);
-	}
-    printf(&quot;1\n&quot;);
-	return 0;
-}
 </code></pre>
 ]]></content>
     </entry>
