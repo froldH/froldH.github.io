@@ -3,7 +3,7 @@
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>起跑线 普及模拟Round4 题解 | oldherd&#39;s blog</title>
-<link rel="shortcut icon" href="https://froldh.github.io/favicon.ico?v=1582855396943">
+<link rel="shortcut icon" href="https://froldh.github.io/favicon.ico?v=1582855836354">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://froldh.github.io/styles/main.css">
 <link rel="alternate" type="application/atom+xml" title="起跑线 普及模拟Round4 题解 | oldherd&#39;s blog - Atom Feed" href="https://froldh.github.io/atom.xml">
@@ -13,14 +13,13 @@
 
     <meta name="description" content="T2 fst Rnk8 丢人了
   
-T1 追击
+T1 追击问题
 判断位移和相对速度方向是否一致即可。
 #include &lt;bits/stdc++.h&gt;
 
 using namespace std;
 
-typedef long long ll;
-..." />
+typedef long long ll..." />
     <meta name="keywords" content="bfs,最短路,数论,斐波那契数列,dp,抽屉原理,模拟赛" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
     <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
@@ -30,7 +29,7 @@ typedef long long ll;
       <div class="main-content">
         <div class="site-header">
   <a href="https://froldh.github.io">
-  <img class="avatar" src="https://froldh.github.io/images/avatar.png?v=1582855396943" alt="">
+  <img class="avatar" src="https://froldh.github.io/images/avatar.png?v=1582855836354" alt="">
   </a>
   <h1 class="site-title">
     oldherd&#39;s blog
@@ -129,7 +128,7 @@ typedef long long ll;
               <div class="post-content">
                 <p>T2 fst Rnk8 丢人了</p>
 <!-- more -->  
-<h3 id="t1-追击">T1 追击</h3>
+<h3 id="t1-追击问题">T1 追击问题</h3>
 <p>判断位移和相对速度方向是否一致即可。</p>
 <pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
 
@@ -150,7 +149,7 @@ int main() {
 	return 0;
 }
 </code></pre>
-<h3 id="t2-最短">T2 最短</h3>
+<h3 id="t2-最短路问题">T2 最短路问题</h3>
 <p>如果没有额外的边，直接在图上跑BFS即可。<br>
 对于特殊边，显然，如果一个集合的某点先被访问，那么其他点到另一个集合的边就没有更新距离的作用了。所以实际上有效的边只有<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="script">O</mi><mo>(</mo><mi>a</mi><mo>+</mo><mi>b</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">\mathcal{O(a + b)}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathcal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">a</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathdefault">b</span><span class="mclose">)</span></span></span></span></span>而不是<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="script">O</mi><mo>(</mo><mi>a</mi><mi>b</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">\mathcal{O(ab)}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathcal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">a</span><span class="mord mathdefault">b</span><span class="mclose">)</span></span></span></span></span>。<br>
 所以动态判断这些边的处理即可。<br>
@@ -227,9 +226,9 @@ int main() {
 	return 0;
 }
 </code></pre>
-<h3 id="t3-数码">T3 数码</h3>
+<h3 id="t3-数码问题">T3 数码问题</h3>
 <p>咕咕咕。。。</p>
-<h3 id="t4-三角">T4 三角</h3>
+<h3 id="t4-三角形问题">T4 三角形问题</h3>
 <p>考虑构造最小的不能满足三角形的数列。<br>
 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn><mo separator="true">,</mo><mn>1</mn><mo separator="true">,</mo><mn>2</mn><mo separator="true">,</mo><mn>3</mn><mo separator="true">,</mo><mn>5</mn><mo separator="true">,</mo><mn>8</mn><mo separator="true">,</mo><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi></mrow><annotation encoding="application/x-tex">1, 1, 2, 3, 5, 8, ...</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8388800000000001em;vertical-align:-0.19444em;"></span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">2</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">3</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">5</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">8</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">.</span><span class="mord">.</span><span class="mord">.</span></span></span></span><br>
 事斐波那契！<br>
@@ -335,10 +334,10 @@ int main() {
 <ul>
 <li>
 <ul>
-<li><a href="#t1-%E8%BF%BD%E5%87%BB">T1 追击</a></li>
-<li><a href="#t2-%E6%9C%80%E7%9F%AD">T2 最短</a></li>
-<li><a href="#t3-%E6%95%B0%E7%A0%81">T3 数码</a></li>
-<li><a href="#t4-%E4%B8%89%E8%A7%92">T4 三角</a></li>
+<li><a href="#t1-%E8%BF%BD%E5%87%BB%E9%97%AE%E9%A2%98">T1 追击问题</a></li>
+<li><a href="#t2-%E6%9C%80%E7%9F%AD%E8%B7%AF%E9%97%AE%E9%A2%98">T2 最短路问题</a></li>
+<li><a href="#t3-%E6%95%B0%E7%A0%81%E9%97%AE%E9%A2%98">T3 数码问题</a></li>
+<li><a href="#t4-%E4%B8%89%E8%A7%92%E5%BD%A2%E9%97%AE%E9%A2%98">T4 三角形问题</a></li>
 </ul>
 </li>
 </ul>
