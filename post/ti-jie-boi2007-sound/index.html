@@ -1,0 +1,244 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>题解 [BOI2007]Sound | oldherd&#39;s blog</title>
+<link rel="shortcut icon" href="https://froldh.github.io/favicon.ico?v=1582856922480">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://froldh.github.io/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="题解 [BOI2007]Sound | oldherd&#39;s blog - Atom Feed" href="https://froldh.github.io/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+
+    <meta name="description" content="f(x)=min{a[k]},k∈[x−m+1,x]f(x) = min\{a[k]\}, k \in [x-m+1, x]f(x)=min{a[k]},k∈[x−m+1,x]
+  
+这显然是一个可以用优先队列优化的递推(dp)。
+若 $ ..." />
+    <meta name="keywords" content="BOI,优先队列,dp优化,dp" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://froldh.github.io">
+  <img class="avatar" src="https://froldh.github.io/images/avatar.png?v=1582856922480" alt="">
+  </a>
+  <h1 class="site-title">
+    oldherd&#39;s blog
+  </h1>
+  <p class="site-description">
+    又弱又笨的蒟蒻的博客
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              题解 [BOI2007]Sound
+            </h2>
+            <div class="post-info">
+              <span>
+                2019-11-07
+              </span>
+              <span>
+                2 min read
+              </span>
+              
+                <a href="https://froldh.github.io/tag/Aow8vOo2u/" class="post-tag">
+                  # BOI
+                </a>
+              
+                <a href="https://froldh.github.io/tag/svEG2WcR1/" class="post-tag">
+                  # 优先队列
+                </a>
+              
+                <a href="https://froldh.github.io/tag/7oV8UzH2vg/" class="post-tag">
+                  # dp优化
+                </a>
+              
+                <a href="https://froldh.github.io/tag/FwzEtJ52-T/" class="post-tag">
+                  # dp
+                </a>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>f</mi><mo>(</mo><mi>x</mi><mo>)</mo><mo>=</mo><mi>m</mi><mi>i</mi><mi>n</mi><mo>{</mo><mi>a</mi><mo>[</mo><mi>k</mi><mo>]</mo><mo>}</mo><mo separator="true">,</mo><mi>k</mi><mo>∈</mo><mo>[</mo><mi>x</mi><mo>−</mo><mi>m</mi><mo>+</mo><mn>1</mn><mo separator="true">,</mo><mi>x</mi><mo>]</mo></mrow><annotation encoding="application/x-tex">f(x) = min\{a[k]\}, k \in [x-m+1, x]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord mathdefault">x</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">m</span><span class="mord mathdefault">i</span><span class="mord mathdefault">n</span><span class="mopen">{</span><span class="mord mathdefault">a</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mclose">]</span><span class="mclose">}</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">∈</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord mathdefault">x</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord mathdefault">m</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">x</span><span class="mclose">]</span></span></span></span></p>
+<!--more-->  
+<p>这显然是一个可以用优先队列优化的递推(dp)。<br>
+若 $ i \leqslant j $ 且 $ a[i] \geqslant a[j] $ 显然是无效的,优势只有数值更小或者下标更靠后(因为递推左边界在向右缩小)。<br>
+所以用单调队列维护即可。<br>
+<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>m</mi><mi>a</mi><mi>x</mi></mrow><annotation encoding="application/x-tex">max</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">m</span><span class="mord mathdefault">a</span><span class="mord mathdefault">x</span></span></span></span> 同理。<br>
+复杂度 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mrow><mi mathvariant="script">O</mi><mo>(</mo><mi>n</mi><mo>)</mo></mrow><mo>)</mo></mrow><annotation encoding="application/x-tex">O(\mathcal{O(n)})</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord"><span class="mord mathcal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mclose">)</span></span><span class="mclose">)</span></span></span></span></p>
+<pre><code class="language-cpp">#include &lt;cstdio&gt;
+#include &lt;queue&gt;
+
+using namespace std;
+
+const int N = 1234567;
+struct node{
+	int x, v;
+	node() {}
+	node(int X, int V) :x(X), v(V) {}
+};
+deque&lt;node&gt; qmin, qmax;
+
+int main() {
+	int n, m, c, tmp, flg = 1;
+	scanf(&quot;%d %d %d&quot;, &amp;n, &amp;m, &amp;c);
+	for(int i = 1; i &lt;= m-1; ++i) {
+		scanf(&quot;%d&quot;, &amp;tmp);
+		while(!qmin.empty()) {
+			if(qmin.back().v &gt;= tmp) qmin.pop_back();
+			else break;
+		}
+		qmin.push_back(node(i, tmp));
+		while(!qmax.empty()) {
+			if(qmax.back().v &lt;= tmp) qmax.pop_back();
+			else break;
+		}
+		qmax.push_back(node(i, tmp));
+	}
+	for(int i = m; i &lt;= n; ++i) {
+		scanf(&quot;%d&quot;, &amp;tmp);
+		while(!qmin.empty()) {
+			if(qmin.back().v &gt;= tmp) qmin.pop_back();
+			else break;
+		}
+		qmin.push_back(node(i, tmp));
+		while(!qmax.empty()) {
+			if(qmax.back().v &lt;= tmp) qmax.pop_back();
+			else break;
+		}
+		qmax.push_back(node(i, tmp)); 
+		while(qmin.front().x &lt; i-m+1) qmin.pop_front();
+		while(qmax.front().x &lt; i-m+1) qmax.pop_front();
+		if(qmax.front().v - qmin.front().v &lt;= c) {
+			printf(&quot;%d\n&quot;, i-m+1);
+			flg = 0;
+		}
+	}
+	if(flg) {
+		printf(&quot;NONE\n&quot;);
+	}
+	return 0;
+}
+</code></pre>
+
+              </div>
+              <div class="toc-container">
+                
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://froldh.github.io/post/xr-3-t2-xiao-dao-xiao-xi-ti-jie/">
+              <h3 class="post-title">
+                题解 XR-3 T2 小道消息
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+  <a class="rss" href="https://froldh.github.io/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>

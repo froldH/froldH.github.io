@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://froldh.github.io</id>
     <title>oldherd&apos;s blog</title>
-    <updated>2020-02-28T02:10:52.064Z</updated>
+    <updated>2020-02-28T02:28:53.326Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://froldh.github.io"/>
     <link rel="self" href="https://froldh.github.io/atom.xml"/>
@@ -11,9 +11,9 @@
     <icon>https://froldh.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, oldherd&apos;s blog</rights>
     <entry>
-        <title type="html"><![CDATA[起跑线 普及模拟Round5 题解]]></title>
-        <id>https://froldh.github.io/post/qi-pao-xian-pu-ji-mo-ni-5-ti-jie/</id>
-        <link href="https://froldh.github.io/post/qi-pao-xian-pu-ji-mo-ni-5-ti-jie/">
+        <title type="html"><![CDATA[题解 [起跑线]普及模拟Round5]]></title>
+        <id>https://froldh.github.io/post/qpx-pk-round5/</id>
+        <link href="https://froldh.github.io/post/qpx-pk-round5/">
         </link>
         <updated>2020-02-27T14:29:44.000Z</updated>
         <summary type="html"><![CDATA[<p>这场人均AK罢，T2挂了(鬼晓得有负数哦，时间够还去剪枝就是作死)<br>
@@ -211,7 +211,7 @@ int main() {
 ]]></content>
     </entry>
     <entry>
-        <title type="html"><![CDATA[起跑线 提高模拟Round3 题解]]></title>
+        <title type="html"><![CDATA[题解 [起跑线]提高模拟Round3]]></title>
         <id>https://froldh.github.io/post/qpx-tg-round3/</id>
         <link href="https://froldh.github.io/post/qpx-tg-round3/">
         </link>
@@ -376,7 +376,7 @@ int main() {
 ]]></content>
     </entry>
     <entry>
-        <title type="html"><![CDATA[起跑线 普及模拟Round4 题解]]></title>
+        <title type="html"><![CDATA[题解 [起跑线]普及模拟Round4]]></title>
         <id>https://froldh.github.io/post/qpx-pj-round4/</id>
         <link href="https://froldh.github.io/post/qpx-pj-round4/">
         </link>
@@ -586,7 +586,7 @@ int main() {
 ]]></content>
     </entry>
     <entry>
-        <title type="html"><![CDATA[起跑线 提高模拟Round2 题解]]></title>
+        <title type="html"><![CDATA[题解 [起跑线]提高模拟Round2]]></title>
         <id>https://froldh.github.io/post/qpx-tg-round2/</id>
         <link href="https://froldh.github.io/post/qpx-tg-round2/">
         </link>
@@ -639,7 +639,7 @@ int main() {
 ]]></content>
     </entry>
     <entry>
-        <title type="html"><![CDATA[容斥原理笔记]]></title>
+        <title type="html"><![CDATA[笔记 容斥原理]]></title>
         <id>https://froldh.github.io/post/rong-chi-yuan-li-bi-ji/</id>
         <link href="https://froldh.github.io/post/rong-chi-yuan-li-bi-ji/">
         </link>
@@ -752,6 +752,197 @@ int main() {
     return 0;
 }
 
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[题解 [HAOI2006]受欢迎的牛]]></title>
+        <id>https://froldh.github.io/post/haoi2006-shou-huan-ying-de-niu-ti-jie/</id>
+        <link href="https://froldh.github.io/post/haoi2006-shou-huan-ying-de-niu-ti-jie/">
+        </link>
+        <updated>2019-11-07T12:55:50.000Z</updated>
+        <summary type="html"><![CDATA[<p>到现在才来学强连通分量QaQ</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>到现在才来学强连通分量QaQ</p>
+<!--more-->   
+<p>注意理解非树边对low的更新:<br>
+只有返祖边入点的dfn和入点未划到强连通分量里的横叉边才是合理的更新low。其他非树边均不可。然后根据dfs的性质,应当判断非树边指向的点有没有加入强连通分量。</p>
+<pre><code class="language-cpp">#include &lt;cstdio&gt;
+#include &lt;cstring&gt;
+#include &lt;algorithm&gt;
+
+using namespace std;
+
+const int N = 12345, M = 56789;
+int head[N], ver[M], nex[M], my[M], tot;
+inline void addedge(int u, int v) {
+	ver[tot] = v; nex[tot] = head[u]; my[tot] = u; head[u] = tot++;
+}
+
+int dfn[N], low[N], cl[N], sta[N], outd[N], num[N], top = 0, dfs_clock = 1, col = 1;
+void dfs(int cur) {
+	dfn[cur] = low[cur] = dfs_clock++;
+	sta[top++] = cur;
+	for(int i = head[cur]; ~i; i = nex[i]) {
+		if(!dfn[ver[i]]) {
+			dfs(ver[i]);
+			low[cur] = min(low[cur], low[ver[i]]);
+		} else if(!cl[ver[i]]) {
+			low[cur] = min(low[cur], dfn[ver[i]]);
+		}
+	}
+	if(dfn[cur] == low[cur]) {
+		--top;
+		while(sta[top] != cur) {
+			cl[sta[top]] = col;
+			++num[col];
+			--top;
+		}
+		cl[cur] = col;
+		++num[col];
+		++col;
+	}
+}
+
+int main() {
+	memset(head, -1, sizeof(head));
+	int n, m, u, v, tms = 0, ans;
+	scanf(&quot;%d %d&quot;, &amp;n, &amp;m);
+	for(int i = 1; i &lt;= m; ++i) {
+		scanf(&quot;%d %d&quot;, &amp;u, &amp;v);
+		addedge(u, v);
+	}
+	for(int i = 1; i &lt;= n; ++i) if(!dfn[i]) 
+		dfs(i);
+	for(int i = 0; i &lt; tot; ++i) {
+		if(cl[my[i]] != cl[ver[i]]) {
+			++outd[cl[my[i]]];
+		}
+	}
+	for(int i = 1; i &lt; col; ++i)
+		if(!outd[i]) {
+			++tms;
+			ans = num[i];
+		}
+	if(tms == 1) {
+		printf(&quot;%d\n&quot;, ans);
+	} else {
+		printf(&quot;0\n&quot;);
+	}
+	return 0;	
+}
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[题解 [BOI2007]Sound]]></title>
+        <id>https://froldh.github.io/post/ti-jie-boi2007-sound/</id>
+        <link href="https://froldh.github.io/post/ti-jie-boi2007-sound/">
+        </link>
+        <updated>2019-11-07T05:10:10.000Z</updated>
+        <summary type="html"><![CDATA[<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>f</mi><mo>(</mo><mi>x</mi><mo>)</mo><mo>=</mo><mi>m</mi><mi>i</mi><mi>n</mi><mo>{</mo><mi>a</mi><mo>[</mo><mi>k</mi><mo>]</mo><mo>}</mo><mo separator="true">,</mo><mi>k</mi><mo>∈</mo><mo>[</mo><mi>x</mi><mo>−</mo><mi>m</mi><mo>+</mo><mn>1</mn><mo separator="true">,</mo><mi>x</mi><mo>]</mo></mrow><annotation encoding="application/x-tex">f(x) = min\{a[k]\}, k \in [x-m+1, x]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord mathdefault">x</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">m</span><span class="mord mathdefault">i</span><span class="mord mathdefault">n</span><span class="mopen">{</span><span class="mord mathdefault">a</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mclose">]</span><span class="mclose">}</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">∈</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord mathdefault">x</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord mathdefault">m</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">x</span><span class="mclose">]</span></span></span></span></p>
+]]></summary>
+        <content type="html"><![CDATA[<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>f</mi><mo>(</mo><mi>x</mi><mo>)</mo><mo>=</mo><mi>m</mi><mi>i</mi><mi>n</mi><mo>{</mo><mi>a</mi><mo>[</mo><mi>k</mi><mo>]</mo><mo>}</mo><mo separator="true">,</mo><mi>k</mi><mo>∈</mo><mo>[</mo><mi>x</mi><mo>−</mo><mi>m</mi><mo>+</mo><mn>1</mn><mo separator="true">,</mo><mi>x</mi><mo>]</mo></mrow><annotation encoding="application/x-tex">f(x) = min\{a[k]\}, k \in [x-m+1, x]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord mathdefault">x</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">m</span><span class="mord mathdefault">i</span><span class="mord mathdefault">n</span><span class="mopen">{</span><span class="mord mathdefault">a</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mclose">]</span><span class="mclose">}</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">∈</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord mathdefault">x</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord mathdefault">m</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">x</span><span class="mclose">]</span></span></span></span></p>
+<!--more-->  
+<p>这显然是一个可以用优先队列优化的递推(dp)。<br>
+若 $ i \leqslant j $ 且 $ a[i] \geqslant a[j] $ 显然是无效的,优势只有数值更小或者下标更靠后(因为递推左边界在向右缩小)。<br>
+所以用单调队列维护即可。<br>
+<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>m</mi><mi>a</mi><mi>x</mi></mrow><annotation encoding="application/x-tex">max</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">m</span><span class="mord mathdefault">a</span><span class="mord mathdefault">x</span></span></span></span> 同理。<br>
+复杂度 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mrow><mi mathvariant="script">O</mi><mo>(</mo><mi>n</mi><mo>)</mo></mrow><mo>)</mo></mrow><annotation encoding="application/x-tex">O(\mathcal{O(n)})</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord"><span class="mord mathcal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mclose">)</span></span><span class="mclose">)</span></span></span></span></p>
+<pre><code class="language-cpp">#include &lt;cstdio&gt;
+#include &lt;queue&gt;
+
+using namespace std;
+
+const int N = 1234567;
+struct node{
+	int x, v;
+	node() {}
+	node(int X, int V) :x(X), v(V) {}
+};
+deque&lt;node&gt; qmin, qmax;
+
+int main() {
+	int n, m, c, tmp, flg = 1;
+	scanf(&quot;%d %d %d&quot;, &amp;n, &amp;m, &amp;c);
+	for(int i = 1; i &lt;= m-1; ++i) {
+		scanf(&quot;%d&quot;, &amp;tmp);
+		while(!qmin.empty()) {
+			if(qmin.back().v &gt;= tmp) qmin.pop_back();
+			else break;
+		}
+		qmin.push_back(node(i, tmp));
+		while(!qmax.empty()) {
+			if(qmax.back().v &lt;= tmp) qmax.pop_back();
+			else break;
+		}
+		qmax.push_back(node(i, tmp));
+	}
+	for(int i = m; i &lt;= n; ++i) {
+		scanf(&quot;%d&quot;, &amp;tmp);
+		while(!qmin.empty()) {
+			if(qmin.back().v &gt;= tmp) qmin.pop_back();
+			else break;
+		}
+		qmin.push_back(node(i, tmp));
+		while(!qmax.empty()) {
+			if(qmax.back().v &lt;= tmp) qmax.pop_back();
+			else break;
+		}
+		qmax.push_back(node(i, tmp)); 
+		while(qmin.front().x &lt; i-m+1) qmin.pop_front();
+		while(qmax.front().x &lt; i-m+1) qmax.pop_front();
+		if(qmax.front().v - qmin.front().v &lt;= c) {
+			printf(&quot;%d\n&quot;, i-m+1);
+			flg = 0;
+		}
+	}
+	if(flg) {
+		printf(&quot;NONE\n&quot;);
+	}
+	return 0;
+}
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[题解 XR-3 T2 小道消息]]></title>
+        <id>https://froldh.github.io/post/xr-3-t2-xiao-dao-xiao-xi-ti-jie/</id>
+        <link href="https://froldh.github.io/post/xr-3-t2-xiao-dao-xiao-xi-ti-jie/">
+        </link>
+        <updated>2019-08-26T15:32:54.000Z</updated>
+        <summary type="html"><![CDATA[<p>结论的话,传到话的人号码是素数,并且这个数字的两倍大于n,答案为1,否则为2.</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>结论的话,传到话的人号码是素数,并且这个数字的两倍大于n,答案为1,否则为2.</p>
+<!--more -->  
+<p>伪证(以下涉及的序号均为衣服上的数字而非人的序号):<br>
+设号码为<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>t</mi></mrow><annotation encoding="application/x-tex">t</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.61508em;vertical-align:0em;"></span><span class="mord mathdefault">t</span></span></span></span>, <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>t</mi><mo>=</mo><mi>k</mi><mo>+</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">t = k + 1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.61508em;vertical-align:0em;"></span><span class="mord mathdefault">t</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.77777em;vertical-align:-0.08333em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span>.若t为素数,则它与<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>2...2</mn><mi>t</mi></mrow><annotation encoding="application/x-tex">2...2t</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span><span class="mord">.</span><span class="mord">.</span><span class="mord">.</span><span class="mord">2</span><span class="mord mathdefault">t</span></span></span></span>-<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span>的除了<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>t</mi></mrow><annotation encoding="application/x-tex">t</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.61508em;vertical-align:0em;"></span><span class="mord mathdefault">t</span></span></span></span>外的数均互质,故而答案为1。<br>
+然后,若t为素数但是<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>2</mn><mi>t</mi><mo>&lt;</mo><mo>=</mo><mi>n</mi></mrow><annotation encoding="application/x-tex">2t &lt;= n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68354em;vertical-align:-0.0391em;"></span><span class="mord">2</span><span class="mord mathdefault">t</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&lt;</span></span><span class="base"><span class="strut" style="height:0.36687em;vertical-align:0em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span></span></span></span>,这样,1次传话后未被传达的数为<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi><mi>t</mi><mo separator="true">,</mo><mi>t</mi><mo>∈</mo><mo>{</mo><mn>2</mn><mo separator="true">,</mo><mn>3</mn><mo separator="true">,</mo><mn>4</mn><mo separator="true">,</mo><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mo>}</mo></mrow><annotation encoding="application/x-tex">nt, t\in \{2, 3, 4, ...\}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.80952em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">n</span><span class="mord mathdefault">t</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">t</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">∈</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">{</span><span class="mord">2</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">3</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">4</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">.</span><span class="mord">.</span><span class="mord">.</span><span class="mclose">}</span></span></span></span>。由于t为素数,故<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>t</mi><mo>&gt;</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">t &gt; 1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.65418em;vertical-align:-0.0391em;"></span><span class="mord mathdefault">t</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&gt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span>.所以这些数会在第2天传话中被<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>t</mi><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">t-1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69841em;vertical-align:-0.08333em;"></span><span class="mord mathdefault">t</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span>或<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>t</mi><mo>+</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">t+1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69841em;vertical-align:-0.08333em;"></span><span class="mord mathdefault">t</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span>传到。<br>
+若<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>t</mi></mrow><annotation encoding="application/x-tex">t</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.61508em;vertical-align:0em;"></span><span class="mord mathdefault">t</span></span></span></span>不为素数,第一轮传话之后,没有被传到话的人包括:<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>t</mi></mrow><annotation encoding="application/x-tex">t</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.61508em;vertical-align:0em;"></span><span class="mord mathdefault">t</span></span></span></span>的所有质因数,<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>t</mi></mrow><annotation encoding="application/x-tex">t</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.61508em;vertical-align:0em;"></span><span class="mord mathdefault">t</span></span></span></span>的质因数的正整数倍。但是,<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>t</mi><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">t-1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69841em;vertical-align:-0.08333em;"></span><span class="mord mathdefault">t</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span>与这些数字都是互素的,所以这些数字都会在第2天被传到。</p>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+#include &lt;cmath&gt;
+#define ull unsigned long long
+
+using namespace std;
+
+int main() {
+	ull n, k;
+	int sqt;
+	cin &gt;&gt; n &gt;&gt; k;
+	n++; k++;
+	sqt = (int)sqrt(k) + 1;		//不能加太大不然对于小的数sqrt_x + 10甚至会大于x
+	bool flag = true;
+	if(!(k%2) &amp;&amp; k != 2) flag = false;
+	for(int i = 3; i &lt;= sqt &amp;&amp; flag; i += 2)
+		if(!(k%i))
+			flag = false;
+	if(flag) {
+		if((k&lt;&lt;1) &gt; n) cout &lt;&lt; 1 &lt;&lt; endl;
+		else cout &lt;&lt; 2 &lt;&lt; endl;
+	} else {
+		cout &lt;&lt; 2 &lt;&lt; endl;	
+	}
+	return 0;
 </code></pre>
 ]]></content>
     </entry>

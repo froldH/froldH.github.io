@@ -1,0 +1,407 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>题解 [起跑线]普及模拟Round5 | oldherd&#39;s blog</title>
+<link rel="shortcut icon" href="https://froldh.github.io/favicon.ico?v=1582856922480">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://froldh.github.io/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="题解 [起跑线]普及模拟Round5 | oldherd&#39;s blog - Atom Feed" href="https://froldh.github.io/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+
+    <meta name="description" content="这场人均AK罢，T2挂了(鬼晓得有负数哦，时间够还去剪枝就是作死)
+Rnk12 300丢死人了
+
+T1 解方程
+取几个模数暴力就好了。听说自然溢出也能过？
+复杂度O(nr)\mathcal{O(nr)}O(nr)
+#include &lt;..." />
+    <meta name="keywords" content="起跑线,二分,分治,暴力,dfs,数论,模拟赛,题解" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://froldh.github.io">
+  <img class="avatar" src="https://froldh.github.io/images/avatar.png?v=1582856922480" alt="">
+  </a>
+  <h1 class="site-title">
+    oldherd&#39;s blog
+  </h1>
+  <p class="site-description">
+    又弱又笨的蒟蒻的博客
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              题解 [起跑线]普及模拟Round5
+            </h2>
+            <div class="post-info">
+              <span>
+                2020-02-27
+              </span>
+              <span>
+                5 min read
+              </span>
+              
+                <a href="https://froldh.github.io/tag/-KTJ1ZJJE/" class="post-tag">
+                  # 起跑线
+                </a>
+              
+                <a href="https://froldh.github.io/tag/7UuN2_4sO/" class="post-tag">
+                  # 二分
+                </a>
+              
+                <a href="https://froldh.github.io/tag/KZrmfwgWK0/" class="post-tag">
+                  # 分治
+                </a>
+              
+                <a href="https://froldh.github.io/tag/cbDOzv0DL/" class="post-tag">
+                  # 暴力
+                </a>
+              
+                <a href="https://froldh.github.io/tag/5jnuxBl4qH/" class="post-tag">
+                  # dfs
+                </a>
+              
+                <a href="https://froldh.github.io/tag/F8HrLg0mv/" class="post-tag">
+                  # 数论
+                </a>
+              
+                <a href="https://froldh.github.io/tag/omAfuSkc0/" class="post-tag">
+                  # 模拟赛
+                </a>
+              
+                <a href="https://froldh.github.io/tag/31TbbmEXBV/" class="post-tag">
+                  # 题解
+                </a>
+              
+            </div>
+            
+              <img class="post-feature-image" src="https://froldh.github.io/post-images/qpx-pk-round5.jpg" alt="">
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <p>这场人均AK罢，T2挂了(鬼晓得有负数哦，时间够还去剪枝就是作死)<br>
+Rnk12 300丢死人了</p>
+<!-- more -->
+<h3 id="t1-解方程">T1 解方程</h3>
+<p>取几个模数暴力就好了。听说自然溢出也能过？<br>
+复杂度<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="script">O</mi><mo>(</mo><mi>n</mi><mi>r</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">\mathcal{O(nr)}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathcal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mclose">)</span></span></span></span></span></p>
+<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
+
+using namespace std;
+
+typedef long long ll;
+
+const ll m1 = 998244353, m2 = 19260817, m3 = 1000000007;
+vector&lt;ll&gt; a, ans;
+
+
+int main() {
+	ios::sync_with_stdio(false);
+	cin.tie(0);
+	int n, l, r, cnt = 0;
+	cin &gt;&gt; n &gt;&gt; l &gt;&gt; r;
+	a.resize(n + 1);
+	for(int i = 0; i &lt;= n; ++i) cin &gt;&gt; a[i];
+	for(int i = l; i &lt;= r; ++i) {
+		ll t1 = 1, t2 = 1, t3 = 1, a1 = 0, a2 = 0, a3 = 0;
+		for(int j = 0; j &lt;= n; ++j) {
+			a1 = (a1 + (t1 * a[j]) % m1) % m1;
+			a2 = (a2 + (t2 * a[j]) % m2) % m2;
+			a3 = (a3 + (t3 * a[j]) % m3) % m3;
+			t1 = t1 * i % m1;
+			t2 = t2 * i % m2;
+			t3 = t3 * i % m3;
+		}
+		if(a1 == 0 &amp;&amp; a2 == 0 &amp;&amp; a3 == 0) {
+			ans.push_back(i);
+			++cnt;
+		}
+	}
+	cout &lt;&lt; cnt &lt;&lt; '\n';
+	for(int i = 0; i &lt; cnt; ++i) cout &lt;&lt; ans[i] &lt;&lt; '\n';
+	return 0;
+}
+</code></pre>
+<h3 id="t2-求和问题">T2 求和问题</h3>
+<p>暴力dfs。<br>
+艹，竟然有负数，不要去用可行性剪枝。<br>
+复杂度<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="script">O</mi><mo>(</mo><msup><mn mathvariant="script">2</mn><mi>n</mi></msup><mo>)</mo></mrow><annotation encoding="application/x-tex">\mathcal{O(2^n)}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathcal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord"><span class="mord mathcal">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.664392em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">n</span></span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span></span></p>
+<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
+
+using namespace std;
+
+typedef long long ll;
+
+vector&lt;ll&gt; x;
+ll ans;
+int n, k, q;
+
+void dfs(int cur, ll sum, int cnt) {
+	if(cur == n) {
+		if(sum == q &amp;&amp; k == cnt) ++ans;
+		return;	
+	}
+	dfs(cur + 1, sum, cnt);
+	if(cnt &lt; k)
+		dfs(cur + 1, sum + x[cur], cnt + 1);
+}
+
+bool cmp(ll a, ll b) {
+	return a &gt; b;	
+}
+
+int main() {
+	ios::sync_with_stdio(false);
+	cin.tie(0);
+	cin &gt;&gt; n &gt;&gt; k &gt;&gt; q;
+	x.resize(n);
+	for(int i = 0; i &lt; n; ++i) {
+		cin &gt;&gt; x[i];
+	}
+	sort(x.begin(), x.end(), cmp); 
+	dfs(0, 0, 0);
+	cout &lt;&lt; ans &lt;&lt; '\n';
+	return 0;
+}
+</code></pre>
+<h3 id="t3-集合">T3 集合</h3>
+<p>先排序，枚举最小值，二分查最大值，中间的数都能选。<br>
+复杂度<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="script">O</mi><mo>(</mo><mi>n</mi><mi>l</mi><mi>o</mi><mi>g</mi><mi>n</mi><mo>+</mo><mi>q</mi><mi>l</mi><mi>o</mi><mi>g</mi><mi>n</mi><mi>l</mi><mi>o</mi><mi>g</mi><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">\mathcal{O(nlogn + qlognlogn)}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathcal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">o</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">q</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">o</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mord mathdefault">n</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">o</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span></span>(预处理2的幂表格应该是<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="script">O</mi><mo>(</mo><mo>(</mo><mi>n</mi><mo>+</mo><mi>q</mi><mo>)</mo><mi>l</mi><mi>o</mi><mi>g</mi><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">\mathcal{O((n+q)logn)}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathcal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">q</span><span class="mclose">)</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">o</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span></span>)</p>
+<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
+
+using namespace std;
+
+typedef long long ll;
+
+const ll mod = 1000000007;
+
+vector&lt;ll&gt; v;
+
+int bsh(int l, int r, ll x) {
+	while(l &lt; r) {
+		int mid = (l + r + 1) &gt;&gt; 1;
+		if(v[mid] &lt;= x) l = mid;
+		else r = mid - 1;
+	}
+	return l;
+}
+
+ll qp(ll a, ll b) {
+	ll res = 1 % mod;
+	for(; b; b &gt;&gt;= 1) {
+		if(b &amp; 1) res = res * a % mod;
+		a = a * a % mod;
+	}
+	return res;
+}
+
+int main() {
+	ios::sync_with_stdio(false);
+	cin.tie(0);
+	ll ans = 0;
+	int n, k;
+	cin &gt;&gt; n &gt;&gt; k;
+	v.resize(n);
+	for(int i = 0; i &lt; n; ++i) cin &gt;&gt; v[i];
+	sort(v.begin(), v.end());
+	for(int i = 0; i &lt; n; ++i) {
+		int nxt = bsh(i, n - 1, v[i] + k);
+		if(v[nxt] == v[i] + k) {
+			ll len = nxt - i + 1 - 2;
+			ans = (ans + qp(2, len)) % mod;
+		}
+	}
+	cout &lt;&lt; ans &lt;&lt; '\n';
+	return 0;
+}
+</code></pre>
+<h3 id="t4-求和">T4 求和</h3>
+<p>对于比较大的<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span></span></span></span>采用暴力求,为<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="script">O</mi><mo>(</mo><mfrac><mi>n</mi><mi>k</mi></mfrac><mo>)</mo></mrow><annotation encoding="application/x-tex">\mathcal{O(\frac{n}{k})}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.095em;vertical-align:-0.345em;"></span><span class="mord"><span class="mord mathcal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.695392em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.03148em;">k</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">n</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mclose">)</span></span></span></span></span>。<br>
+比较小的<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span></span></span></span>打个表预处理。<br>
+当<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span></span></span></span>取到<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msqrt><mi>n</mi></msqrt></mrow><annotation encoding="application/x-tex">\sqrt{n}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.04em;vertical-align:-0.23972em;"></span><span class="mord sqrt"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8002800000000001em;"><span class="svg-align" style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord" style="padding-left:0.833em;"><span class="mord mathdefault">n</span></span></span><span style="top:-2.76028em;"><span class="pstrut" style="height:3em;"></span><span class="hide-tail" style="min-width:0.853em;height:1.08em;"><svg width='400em' height='1.08em' viewBox='0 0 400000 1080' preserveAspectRatio='xMinYMin slice'><path d='M95,702c-2.7,0,-7.17,-2.7,-13.5,-8c-5.8,-5.3,-9.5,
+-10,-9.5,-14c0,-2,0.3,-3.3,1,-4c1.3,-2.7,23.83,-20.7,67.5,-54c44.2,-33.3,65.8,
+-50.3,66.5,-51c1.3,-1.3,3,-2,5,-2c4.7,0,8.7,3.3,12,10s173,378,173,378c0.7,0,
+35.3,-71,104,-213c68.7,-142,137.5,-285,206.5,-429c69,-144,104.5,-217.7,106.5,
+-221c5.3,-9.3,12,-14,20,-14H400000v40H845.2724s-225.272,467,-225.272,467
+s-235,486,-235,486c-2.7,4.7,-9,7,-19,7c-6,0,-10,-1,-12,-3s-194,-422,-194,-422
+s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.23972em;"><span></span></span></span></span></span></span></span></span>的时候从数学上讲对随机数据是理论最快的。<br>
+复杂度<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="script">O</mi><mo>(</mo><mi>q</mi><msqrt><mi>n</mi></msqrt><mo>)</mo></mrow><annotation encoding="application/x-tex">\mathcal{O(q\sqrt{n})}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.05028em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathcal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.03588em;">q</span><span class="mord sqrt"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8002800000000001em;"><span class="svg-align" style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord" style="padding-left:0.833em;"><span class="mord mathdefault">n</span></span></span><span style="top:-2.76028em;"><span class="pstrut" style="height:3em;"></span><span class="hide-tail" style="min-width:0.853em;height:1.08em;"><svg width='400em' height='1.08em' viewBox='0 0 400000 1080' preserveAspectRatio='xMinYMin slice'><path d='M95,702c-2.7,0,-7.17,-2.7,-13.5,-8c-5.8,-5.3,-9.5,
+-10,-9.5,-14c0,-2,0.3,-3.3,1,-4c1.3,-2.7,23.83,-20.7,67.5,-54c44.2,-33.3,65.8,
+-50.3,66.5,-51c1.3,-1.3,3,-2,5,-2c4.7,0,8.7,3.3,12,10s173,378,173,378c0.7,0,
+35.3,-71,104,-213c68.7,-142,137.5,-285,206.5,-429c69,-144,104.5,-217.7,106.5,
+-221c5.3,-9.3,12,-14,20,-14H400000v40H845.2724s-225.272,467,-225.272,467
+s-235,486,-235,486c-2.7,4.7,-9,7,-19,7c-6,0,-10,-1,-12,-3s-194,-422,-194,-422
+s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.23972em;"><span></span></span></span></span></span><span class="mclose">)</span></span></span></span></span>。</p>
+<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
+
+using namespace std;
+
+typedef long long ll;
+
+const int bis = 315, maxn = 123456;
+int a[maxn];
+ll kd[bis + 10][bis + 10];
+
+int main() {
+	int n, q, k, b;
+	scanf(&quot;%d %d&quot;, &amp;n, &amp;q);
+	for(int i = 1; i &lt;= n; ++i)
+		scanf(&quot;%d&quot;, a + i);
+	for(int i = 1; i &lt;= n; ++i) {
+		for(int j = 1; j &lt;= bis; ++j) {
+			kd[j][i % j] += a[i];
+		}
+	}
+	while(q--) {
+		scanf(&quot;%d %d&quot;, &amp;k, &amp;b);
+		if(k &lt;= bis) {
+			if(b &gt; k) printf(&quot;0\n&quot;);
+			else printf(&quot;%lld\n&quot;, kd[k][b]);
+		} else {
+			ll ans = 0;
+			for(int i = 0; ((ll)i * k + b) &lt;= n; ++i) {
+				ans = ans + a[i * k + b];
+			}
+			printf(&quot;%lld\n&quot;, ans);
+		}
+	}
+	return 0;
+}
+</code></pre>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#t1-%E8%A7%A3%E6%96%B9%E7%A8%8B">T1 解方程</a></li>
+<li><a href="#t2-%E6%B1%82%E5%92%8C%E9%97%AE%E9%A2%98">T2 求和问题</a></li>
+<li><a href="#t3-%E9%9B%86%E5%90%88">T3 集合</a></li>
+<li><a href="#t4-%E6%B1%82%E5%92%8C">T4 求和</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://froldh.github.io/post/qpx-tg-round3/">
+              <h3 class="post-title">
+                题解 [起跑线]提高模拟Round3
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+  <a class="rss" href="https://froldh.github.io/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>
