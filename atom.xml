@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://froldh.github.io</id>
     <title>oldherd&apos;s blog</title>
-    <updated>2020-02-28T03:07:58.537Z</updated>
+    <updated>2020-03-09T07:58:36.762Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://froldh.github.io"/>
     <link rel="self" href="https://froldh.github.io/atom.xml"/>
@@ -10,6 +10,69 @@
     <logo>https://froldh.github.io/images/avatar.png</logo>
     <icon>https://froldh.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, oldherd&apos;s blog</rights>
+    <entry>
+        <title type="html"><![CDATA[笔记 自适应辛普森积分]]></title>
+        <id>https://froldh.github.io/post/bi-ji-zi-gua-ying-xin-pu-sen-ji-fen/</id>
+        <link href="https://froldh.github.io/post/bi-ji-zi-gua-ying-xin-pu-sen-ji-fen/">
+        </link>
+        <updated>2020-03-09T06:09:30.000Z</updated>
+        <summary type="html"><![CDATA[<p>辛普森积分用于计算<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mstyle scriptlevel="0" displaystyle="true"><mrow><msubsup><mo>∫</mo><mi>a</mi><mi>b</mi></msubsup><mi>f</mi><mo>(</mo><mi>x</mi><mo>)</mo><mi>d</mi><mi>x</mi></mrow></mstyle></mrow><annotation encoding="application/x-tex">\displaystyle \mathcal{\int_{a}^{b}f(x)dx}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:2.5109580000000005em;vertical-align:-0.9119499999999999em;"></span><span class="mord"><span class="mop"><span class="mop op-symbol large-op" style="margin-right:0.44445em;position:relative;top:-0.0011249999999999316em;">∫</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.5990080000000004em;"><span style="top:-1.7880500000000001em;margin-left:-0.44445em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">a</span></span></span></span><span style="top:-3.812900000000001em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">b</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.9119499999999999em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord mathdefault">x</span><span class="mclose">)</span><span class="mord mathdefault">d</span><span class="mord mathdefault">x</span></span></span></span></span>。</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>辛普森积分用于计算<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mstyle scriptlevel="0" displaystyle="true"><mrow><msubsup><mo>∫</mo><mi>a</mi><mi>b</mi></msubsup><mi>f</mi><mo>(</mo><mi>x</mi><mo>)</mo><mi>d</mi><mi>x</mi></mrow></mstyle></mrow><annotation encoding="application/x-tex">\displaystyle \mathcal{\int_{a}^{b}f(x)dx}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:2.5109580000000005em;vertical-align:-0.9119499999999999em;"></span><span class="mord"><span class="mop"><span class="mop op-symbol large-op" style="margin-right:0.44445em;position:relative;top:-0.0011249999999999316em;">∫</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.5990080000000004em;"><span style="top:-1.7880500000000001em;margin-left:-0.44445em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">a</span></span></span></span><span style="top:-3.812900000000001em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">b</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.9119499999999999em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord mathdefault">x</span><span class="mclose">)</span><span class="mord mathdefault">d</span><span class="mord mathdefault">x</span></span></span></span></span>。</p>
+<!--more-->  
+<h3 id="三点辛普森值">三点辛普森值</h3>
+<p>对于一个自变量区间<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>[</mo><mi>l</mi><mo separator="true">,</mo><mi>r</mi><mo>]</mo></mrow><annotation encoding="application/x-tex">[l, r]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mclose">]</span></span></span></span>, 我们将<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mstyle scriptlevel="0" displaystyle="true"><mfrac><mrow><mi>f</mi><mo>(</mo><mi>l</mi><mo>)</mo><mo>+</mo><mi>f</mi><mo>(</mo><mi>r</mi><mo>)</mo><mo>+</mo><mi>f</mi><mo>(</mo><mfrac><mrow><mi>l</mi><mo>+</mo><mi>r</mi></mrow><mn mathvariant="script">2</mn></mfrac><mo>)</mo></mrow><mn mathvariant="script">6</mn></mfrac></mstyle></mrow><annotation encoding="application/x-tex">\displaystyle \mathcal{\frac{f(l) + f(r) + f(\frac{l+r}{2})}{6}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:2.3011079999999997em;vertical-align:-0.686em;"></span><span class="mord"><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.6151079999999998em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathcal">6</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.7350000000000003em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8801079999999999em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathcal mtight">2</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.01968em;">l</span><span class="mbin mtight">+</span><span class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mclose">)</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span>定义为其三点辛普森值。</p>
+<h3 id="辛普森积分与辛普森法">辛普森积分与辛普森法</h3>
+<p>辛普森积分认为, 当<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>b</mi><mo>−</mo><mi>a</mi></mrow><annotation encoding="application/x-tex">b - a</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.77777em;vertical-align:-0.08333em;"></span><span class="mord mathdefault">b</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">a</span></span></span></span>趋向<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span>的时候，某函数在<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>[</mo><mi>a</mi><mo separator="true">,</mo><mi>b</mi><mo>]</mo></mrow><annotation encoding="application/x-tex">[a, b]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord mathdefault">a</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">b</span><span class="mclose">]</span></span></span></span>上的积分近似于其三点辛普森值常函数在这个区间上的积分。即<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mstyle scriptlevel="0" displaystyle="true"><mrow><msubsup><mo>∫</mo><mi>a</mi><mi>b</mi></msubsup><mi>f</mi><mo>(</mo><mi>x</mi><mo>)</mo><mi>d</mi><mi>x</mi><mo>≐</mo><mo>(</mo><mi>r</mi><mo>−</mo><mi>l</mi><mo>)</mo><mfrac><mrow><mi>f</mi><mo>(</mo><mi>l</mi><mo>)</mo><mo>+</mo><mi>f</mi><mo>(</mo><mi>r</mi><mo>)</mo><mo>+</mo><mi>f</mi><mo>(</mo><mfrac><mrow><mi>l</mi><mo>+</mo><mi>r</mi></mrow><mn mathvariant="script">2</mn></mfrac><mo>)</mo></mrow><mn mathvariant="script">6</mn></mfrac></mrow></mstyle></mrow><annotation encoding="application/x-tex">\displaystyle \mathcal{\int_{a}^{b}f(x)dx \doteq (r-l)\frac{f(l) + f(r) + f(\frac{l+r}{2})}{6}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:2.527058em;vertical-align:-0.9119499999999999em;"></span><span class="mord"><span class="mop"><span class="mop op-symbol large-op" style="margin-right:0.44445em;position:relative;top:-0.0011249999999999316em;">∫</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.5990080000000004em;"><span style="top:-1.7880500000000001em;margin-left:-0.44445em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">a</span></span></span></span><span style="top:-3.812900000000001em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">b</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.9119499999999999em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord mathdefault">x</span><span class="mclose">)</span><span class="mord mathdefault">d</span><span class="mord mathdefault">x</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≐</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mclose">)</span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.6151079999999998em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathcal">6</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.7350000000000003em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8801079999999999em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathcal mtight">2</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.01968em;">l</span><span class="mbin mtight">+</span><span class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mclose">)</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span>。其中<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mstyle scriptlevel="0" displaystyle="true"><mrow><mo>(</mo><mi>r</mi><mo>−</mo><mi>l</mi><mo>)</mo><mfrac><mrow><mi>f</mi><mo>(</mo><mi>l</mi><mo>)</mo><mo>+</mo><mi>f</mi><mo>(</mo><mi>r</mi><mo>)</mo><mo>+</mo><mi>f</mi><mo>(</mo><mfrac><mrow><mi>l</mi><mo>+</mo><mi>r</mi></mrow><mn mathvariant="script">2</mn></mfrac><mo>)</mo></mrow><mn mathvariant="script">6</mn></mfrac></mrow></mstyle></mrow><annotation encoding="application/x-tex">\displaystyle \mathcal{(r-l)\frac{f(l) + f(r) + f(\frac{l+r}{2})}{6}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:2.3011079999999997em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mclose">)</span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.6151079999999998em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathcal">6</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.7350000000000003em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8801079999999999em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathcal mtight">2</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.01968em;">l</span><span class="mbin mtight">+</span><span class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mclose">)</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span>称为辛普森积分值。故可以将原区间等分为很多小段, 求出辛普森积分值然后相加得到积分的近似值。一般认为，划分的小段长度越短, 用这个方法求得的近似值与原值越接近, 该方法精度越高。<br>
+但是这样做会遇到问题, 我们并不知道划分为多少段才能够达到我们要求的精度。在有些函数上, 并不需要划分得过密, 例如一次函数无论划分多少段其辛普森积分值都严格等于该函数的积分值, 在某些二阶导数很大(即“变化”程度很大)的函数上则需要划分很多段才能取得较高精度的近似解。此外, 在同一函数上的“变化”程度也会不同。这意味着, 笼统的划分一方面将使我们在许多不必要的地方浪费时间(并且过度划分可能会因为浮点数运算过多降低精度), 另一方面在必要的地方计算不足而使得结果的精度不高。</p>
+<h3 id="自适应辛普森法">自适应辛普森法</h3>
+<p>好在辛普森法有一个“自适应”的版本。<br>
+我们记<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>S</mi><mo>(</mo><mi>l</mi><mo separator="true">,</mo><mi>r</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">S(l, r)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mclose">)</span></span></span></span>为区间<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>[</mo><mi>l</mi><mo separator="true">,</mo><mi>r</mi><mo>]</mo></mrow><annotation encoding="application/x-tex">[l, r]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mclose">]</span></span></span></span>上的辛普森积分值。如果<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="normal">∣</mi><mi>S</mi><mo>(</mo><mi>l</mi><mo separator="true">,</mo><mfrac><mrow><mi>l</mi><mo>+</mo><mi>r</mi></mrow><mn>2</mn></mfrac><mo>)</mo><mo>+</mo><mi>S</mi><mo>(</mo><mfrac><mrow><mi>l</mi><mo>+</mo><mi>r</mi></mrow><mn>2</mn></mfrac><mo separator="true">,</mo><mi>r</mi><mo>)</mo><mo>−</mo><mi>S</mi><mo>(</mo><mi>l</mi><mo separator="true">,</mo><mi>r</mi><mo>)</mo><mi mathvariant="normal">∣</mi><mo>⩽</mo><mn>15</mn><mi>e</mi><mi>p</mi><mi>s</mi></mrow><annotation encoding="application/x-tex">|S(l, \frac{l+r}{2}) + S(\frac{l+r}{2}, r) - S(l, r)| \leqslant 15eps</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.2251079999999999em;vertical-align:-0.345em;"></span><span class="mord">∣</span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8801079999999999em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.01968em;">l</span><span class="mbin mtight">+</span><span class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1.2251079999999999em;vertical-align:-0.345em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mopen">(</span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8801079999999999em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.01968em;">l</span><span class="mbin mtight">+</span><span class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mclose">)</span><span class="mord">∣</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel amsrm">⩽</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8388800000000001em;vertical-align:-0.19444em;"></span><span class="mord">1</span><span class="mord">5</span><span class="mord mathdefault">e</span><span class="mord mathdefault">p</span><span class="mord mathdefault">s</span></span></span></span>, 我们认为这个划分在精度<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>e</mi><mi>p</mi><mi>s</mi></mrow><annotation encoding="application/x-tex">eps</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">e</span><span class="mord mathdefault">p</span><span class="mord mathdefault">s</span></span></span></span>下取得的辛普森积分值等于原来函数的积分值。<br>
+那么算法的流程就清晰了, 如果精度足够就直接返回辛普森积分值, 如果精度不够, 就不断递归进行划分, 直到精度足够。</p>
+<p>注意点:</p>
+<ol>
+<li>实际上double计算时也会有误差, 所以一般把精度设得更高一些。</li>
+<li>向下递归时, <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>e</mi><mi>p</mi><mi>s</mi><mi mathvariant="normal">/</mi><mn>2</mn></mrow><annotation encoding="application/x-tex">eps / 2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">e</span><span class="mord mathdefault">p</span><span class="mord mathdefault">s</span><span class="mord">/</span><span class="mord">2</span></span></span></span>。</li>
+</ol>
+<h3 id="板子代码">板子代码</h3>
+<p>(Luogu P4525)</p>
+<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
+
+using namespace std;
+
+typedef long long ll;
+
+double a, b, c, d;
+inline double f(double x) { // 原函数求值, 可替换
+	return (c * x + d) / (a * x + b);
+}
+
+inline double simpson(double l, double r) {
+	return (f(l) + 4 * f(0.5*(l+r)) + f(r)) * (r - l) / 6;
+}
+
+double asr(double l, double r, double eps, double la) {
+	double mid = 0.5 * (l + r);
+	double ls = simpson(l, mid), rs = simpson(mid, r);
+	if(abs(ls + rs - la) &lt;= 15 * eps) return ls + rs;
+	return asr(l, mid, eps * 0.5, ls) + asr(mid, r, eps * 0.5, rs);
+}
+
+int main() {
+	ios::sync_with_stdio(false);
+	cin.tie(0);
+	double l, r;
+	cin &gt;&gt; a &gt;&gt; b &gt;&gt; c &gt;&gt; d &gt;&gt; l &gt;&gt; r;
+	cout.setf(ios::fixed);
+	cout.precision(6);
+	cout &lt;&lt; asr(l, r, 1e-7, simpson(l, r)) &lt;&lt; '\n';
+	return 0;
+}
+</code></pre>
+<h3 id="参考资料">参考资料</h3>
+<p>刘汝佳 《算法竞赛入门经典(训练指南) 第2版》</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[题解 [起跑线]普及模拟Round5]]></title>
         <id>https://froldh.github.io/post/qpx-pj-round5/</id>
@@ -1214,89 +1277,6 @@ int main() {
 	printf(&quot;%d\n&quot;, ans);
 	return 0;
 }
-</code></pre>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[题解 [APIO2009]抢掠计划]]></title>
-        <id>https://froldh.github.io/post/ti-jie-apio2009qiang-lue-ji-hua/</id>
-        <link href="https://froldh.github.io/post/ti-jie-apio2009qiang-lue-ji-hua/">
-        </link>
-        <updated>2019-11-10T03:24:47.000Z</updated>
-        <summary type="html"><![CDATA[<p>在有向图中,边又没啥限制,因而考虑缩点。缩点的同时记录该点内部有无酒吧以及该点的总钱数。</p>
-]]></summary>
-        <content type="html"><![CDATA[<p>在有向图中,边又没啥限制,因而考虑缩点。缩点的同时记录该点内部有无酒吧以及该点的总钱数。</p>
-<!--more-->    
-<p>缩完点之后,很自然地得到一个DAG。只要抢,就连同该DAG中的点一起包圆。<br>
-然后我们可以在DAG上跑DP,根据tarjan的性质,缩点的编号是逆拓扑序的,因此只要按从起点所在点出发结点序递减的顺序递推即可,每次推到有酒吧的点更新答案。</p>
-<pre><code class="language-cpp">#include &lt;cstdio&gt;
-#include &lt;cstring&gt;
-#include &lt;algorithm&gt;
-
-using namespace std;
-
-const int N = 567890;
-
-int head[N&lt;&lt;1], ver[N&lt;&lt;1], nex[N&lt;&lt;1], my[N&lt;&lt;1], tot, n;
-inline void addedge(int u, int v) {
-	ver[tot] = v; nex[tot] = head[u]; my[tot] = u; head[u] = tot++;
-}
-
-int a[N], isba[N], s;
-
-int dfn[N], low[N], co[N], bar[N], mon[N], sta[N], dfs_clock = 1, col = 1, top;
-void tarjan(int cur) {
-	dfn[cur] = low[cur] = dfs_clock++;
-	sta[top++] = cur;
-	for(int i = head[cur]; ~i; i = nex[i])
-		if(!dfn[ver[i]]) {
-			tarjan(ver[i]);
-			low[cur] = min(low[cur], low[ver[i]]);
-		} else if(!co[ver[i]]) {
-			low[cur] = min(low[cur], dfn[ver[i]]);
-		}
-	if(dfn[cur] == low[cur]) {
-		--top;
-		while(sta[top] != cur) {
-			if(isba[sta[top]]) bar[col] = 1;
-			mon[col] += a[sta[top]];
-			co[sta[top--]] = col;
-		}
-		co[cur] = col;
-		mon[col] += a[cur];
-		if(isba[cur]) bar[col] = 1;
-		++col;
-	}
-}
-
-int f[N], ans;
-
-int main() {
-	memset(head, -1, sizeof(head));
-	int m, u, v, p;
-	scanf(&quot;%d %d&quot;, &amp;n, &amp;m);
-	for(int i = 1; i &lt;= m; ++i) {
-		scanf(&quot;%d %d&quot;, &amp;u, &amp;v);
-		addedge(u, v);
-	}
-	for(int i = 1; i &lt;= n; ++i) scanf(&quot;%d&quot;, a + i);
-	scanf(&quot;%d %d&quot;, &amp;s, &amp;p);
-	while(p--) scanf(&quot;%d&quot;, &amp;u), isba[u] = 1;
-	for(int i = 1; i &lt;= n; ++i) if(!dfn[i]) tarjan(i);
-	--col;
-	for(int i = 0, end = tot; i &lt; end; ++i) 
-		if(co[my[i]] != co[ver[i]])
-			addedge(co[my[i]] + n, co[ver[i]]);
-	for(int i = co[s]; i; --i) {
-		f[i] += mon[i];
-		if(bar[i]) ans = max(ans, f[i]);
-		for(int j = head[i+n]; ~j; j = nex[j])
-			f[ver[j]] = max(f[ver[j]], f[i]);
-	}
-	printf(&quot;%d\n&quot;, ans);
-	return 0;
-}
-
 </code></pre>
 ]]></content>
     </entry>
