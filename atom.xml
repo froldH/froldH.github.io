@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>https://froldh.github.io</id>
+    <id>http://localhost:4000</id>
     <title>oldherd&apos;s blog</title>
-    <updated>2020-03-10T00:03:59.153Z</updated>
+    <updated>2020-03-10T01:52:43.180Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
-    <link rel="alternate" href="https://froldh.github.io"/>
-    <link rel="self" href="https://froldh.github.io/atom.xml"/>
+    <link rel="alternate" href="http://localhost:4000"/>
+    <link rel="self" href="http://localhost:4000/atom.xml"/>
     <subtitle>又弱又笨的蒟蒻的博客</subtitle>
-    <logo>https://froldh.github.io/images/avatar.png</logo>
-    <icon>https://froldh.github.io/favicon.ico</icon>
+    <logo>http://localhost:4000/images/avatar.png</logo>
+    <icon>http://localhost:4000/favicon.ico</icon>
     <rights>All rights reserved 2020, oldherd&apos;s blog</rights>
     <entry>
         <title type="html"><![CDATA[笔记 自适应辛普森积分]]></title>
-        <id>https://froldh.github.io/post/bi-ji-zi-gua-ying-xin-pu-sen-ji-fen/</id>
-        <link href="https://froldh.github.io/post/bi-ji-zi-gua-ying-xin-pu-sen-ji-fen/">
+        <id>http://localhost:4000/post/bi-ji-zi-gua-ying-xin-pu-sen-ji-fen/</id>
+        <link href="http://localhost:4000/post/bi-ji-zi-gua-ying-xin-pu-sen-ji-fen/">
         </link>
         <updated>2020-03-09T06:09:30.000Z</updated>
         <summary type="html"><![CDATA[<p>辛普森积分用于计算<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mstyle scriptlevel="0" displaystyle="true"><mrow><msubsup><mo>∫</mo><mi>a</mi><mi>b</mi></msubsup><mi>f</mi><mo>(</mo><mi>x</mi><mo>)</mo><mi>d</mi><mi>x</mi></mrow></mstyle></mrow><annotation encoding="application/x-tex">\displaystyle \mathcal{\int_{a}^{b}f(x)dx}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:2.5109580000000005em;vertical-align:-0.9119499999999999em;"></span><span class="mord"><span class="mop"><span class="mop op-symbol large-op" style="margin-right:0.44445em;position:relative;top:-0.0011249999999999316em;">∫</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.5990080000000004em;"><span style="top:-1.7880500000000001em;margin-left:-0.44445em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">a</span></span></span></span><span style="top:-3.812900000000001em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">b</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.9119499999999999em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord mathdefault">x</span><span class="mclose">)</span><span class="mord mathdefault">d</span><span class="mord mathdefault">x</span></span></span></span></span>。</p>
@@ -70,14 +70,64 @@ int main() {
 	return 0;
 }
 </code></pre>
+<h3 id="习题">习题</h3>
+<h4 id="1-hdu1724-ellipse">(1) HDU1724 Ellipse</h4>
+<p>对一个中心在原点的椭圆, 求如图蓝色区域面积。<br>
+<img src="http://localhost:4000/post-images/1583804865537.jpg" alt="" loading="lazy"><br>
+裸题, 由椭圆标准方程<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mstyle scriptlevel="0" displaystyle="true"><mfrac><msup><mi>x</mi><mn>2</mn></msup><msup><mi>a</mi><mn>2</mn></msup></mfrac><mo>+</mo><mfrac><msup><mi>y</mi><mn>2</mn></msup><msup><mi>b</mi><mn>2</mn></msup></mfrac><mo>=</mo><mn>1</mn></mstyle></mrow><annotation encoding="application/x-tex">\displaystyle \frac{x^2}{a^2}+\frac{y^2}{b^2}=1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:2.177108em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.491108em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathdefault">a</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.740108em;"><span style="top:-2.9890000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:2.177108em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.491108em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathdefault">b</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.740108em;"><span style="top:-2.9890000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span>化出上半边的式子<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mstyle scriptlevel="0" displaystyle="true"><mi>y</mi><mo>=</mo><mi>b</mi><msqrt><mrow><mn>1</mn><mo>−</mo><mfrac><msup><mi>x</mi><mn>2</mn></msup><msup><mi>a</mi><mn>2</mn></msup></mfrac></mrow></msqrt></mstyle></mrow><annotation encoding="application/x-tex">\displaystyle y = b\sqrt{1-\frac{x^2}{a^2}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.44em;vertical-align:-0.7405709999999996em;"></span><span class="mord mathdefault">b</span><span class="mord sqrt"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.6994290000000003em;"><span class="svg-align" style="top:-4.4em;"><span class="pstrut" style="height:4.4em;"></span><span class="mord" style="padding-left:1em;"><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.417108em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathdefault">a</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.740108em;"><span style="top:-2.9890000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.740108em;"><span style="top:-2.9890000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span><span style="top:-3.6594290000000007em;"><span class="pstrut" style="height:4.4em;"></span><span class="hide-tail" style="min-width:1.02em;height:2.48em;"><svg width='400em' height='2.48em' viewBox='0 0 400000 2592' preserveAspectRatio='xMinYMin slice'><path d='M424,2478c-1.3,-0.7,-38.5,-172,-111.5,-514c-73,
+-342,-109.8,-513.3,-110.5,-514c0,-2,-10.7,14.3,-32,49c-4.7,7.3,-9.8,15.7,-15.5,
+25c-5.7,9.3,-9.8,16,-12.5,20s-5,7,-5,7c-4,-3.3,-8.3,-7.7,-13,-13s-13,-13,-13,
+-13s76,-122,76,-122s77,-121,77,-121s209,968,209,968c0,-2,84.7,-361.7,254,-1079
+c169.3,-717.3,254.7,-1077.7,256,-1081c4,-6.7,10,-10,18,-10H400000v40H1014.6
+s-87.3,378.7,-272.6,1166c-185.3,787.3,-279.3,1182.3,-282,1185c-2,6,-10,9,-24,9
+c-8,0,-12,-0.7,-12,-2z M1001 80H400000v40H1014z'/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.7405709999999996em;"><span></span></span></span></span></span></span></span></span>然后乘2即得面积。</p>
+<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
+
+using namespace std;
+
+typedef long long ll;
+
+double a, b, a2;
+
+double f(double x) {
+	return 2 * b * sqrt(1 - (x*x) / a2);	
+}
+
+inline double simpson(double l, double r) {
+	return (r - l) * (f(l) + f(r) + 4 * f(0.5 * (l + r))) / 6;
+}
+
+double asr(double l, double r, double eps, double la) {
+	double mid = 0.5 * (l + r);
+	double ls = simpson(l, mid), rs = simpson(mid, r);
+	if(abs(ls + rs - la) &lt;= 15 * eps) return ls + rs + (ls + rs - la) / 15;
+	return asr(l, mid, 0.5 * eps, ls) + asr(mid, r, 0.5 * eps, rs);
+}
+
+int main() {
+	ios::sync_with_stdio(false);
+	cin.tie(0);
+	cout.setf(ios::fixed);
+	cout.precision(3);
+	double l, r;
+	int n;
+	cin &gt;&gt; n;
+	while(n--) {
+		cin &gt;&gt; a &gt;&gt; b &gt;&gt; l &gt;&gt; r;
+		a2 = a * a;
+		cout &lt;&lt; asr(l, r, 1e-5, simpson(l, r)) &lt;&lt; '\n';
+	}
+	return 0;
+}
+</code></pre>
 <h3 id="参考资料">参考资料</h3>
 <p>刘汝佳 《算法竞赛入门经典(训练指南) 第2版》</p>
 ]]></content>
     </entry>
     <entry>
         <title type="html"><![CDATA[题解 [起跑线]普及模拟Round5]]></title>
-        <id>https://froldh.github.io/post/qpx-pj-round5/</id>
-        <link href="https://froldh.github.io/post/qpx-pj-round5/">
+        <id>http://localhost:4000/post/qpx-pj-round5/</id>
+        <link href="http://localhost:4000/post/qpx-pj-round5/">
         </link>
         <updated>2020-02-27T14:29:44.000Z</updated>
         <summary type="html"><![CDATA[<p>这场人均AK罢，T2挂了(鬼晓得有负数哦，时间够还去剪枝就是作死)<br>
@@ -276,8 +326,8 @@ int main() {
     </entry>
     <entry>
         <title type="html"><![CDATA[题解 [起跑线]提高模拟Round3]]></title>
-        <id>https://froldh.github.io/post/qpx-tg-round3/</id>
-        <link href="https://froldh.github.io/post/qpx-tg-round3/">
+        <id>http://localhost:4000/post/qpx-tg-round3/</id>
+        <link href="http://localhost:4000/post/qpx-tg-round3/">
         </link>
         <updated>2020-02-26T14:45:05.000Z</updated>
         <summary type="html"><![CDATA[<p>Rnk3  T1、T2连续翻车丢人<br>
@@ -441,8 +491,8 @@ int main() {
     </entry>
     <entry>
         <title type="html"><![CDATA[题解 [起跑线]普及模拟Round4]]></title>
-        <id>https://froldh.github.io/post/qpx-pj-round4/</id>
-        <link href="https://froldh.github.io/post/qpx-pj-round4/">
+        <id>http://localhost:4000/post/qpx-pj-round4/</id>
+        <link href="http://localhost:4000/post/qpx-pj-round4/">
         </link>
         <updated>2020-02-25T14:13:37.000Z</updated>
         <summary type="html"><![CDATA[<p>T2 fst Rnk8 丢人了</p>
@@ -651,8 +701,8 @@ int main() {
     </entry>
     <entry>
         <title type="html"><![CDATA[题解 [起跑线]提高模拟Round2]]></title>
-        <id>https://froldh.github.io/post/qpx-tg-round2/</id>
-        <link href="https://froldh.github.io/post/qpx-tg-round2/">
+        <id>http://localhost:4000/post/qpx-tg-round2/</id>
+        <link href="http://localhost:4000/post/qpx-tg-round2/">
         </link>
         <updated>2020-02-25T09:40:29.000Z</updated>
         <summary type="html"><![CDATA[<p>三题暴力拿Rnk5很丢人的好伐</p>
@@ -704,8 +754,8 @@ int main() {
     </entry>
     <entry>
         <title type="html"><![CDATA[笔记 容斥原理]]></title>
-        <id>https://froldh.github.io/post/rong-chi-yuan-li-bi-ji/</id>
-        <link href="https://froldh.github.io/post/rong-chi-yuan-li-bi-ji/">
+        <id>http://localhost:4000/post/rong-chi-yuan-li-bi-ji/</id>
+        <link href="http://localhost:4000/post/rong-chi-yuan-li-bi-ji/">
         </link>
         <updated>2020-02-25T06:05:40.000Z</updated>
         <summary type="html"><![CDATA[<p>关于容斥原理的学习笔记</p>
@@ -751,8 +801,8 @@ signed main() {
     </entry>
     <entry>
         <title type="html"><![CDATA[题解 luoguP2002 消息扩散]]></title>
-        <id>https://froldh.github.io/post/ti-jie-luogup2002-xiao-xi-kuo-san/</id>
-        <link href="https://froldh.github.io/post/ti-jie-luogup2002-xiao-xi-kuo-san/">
+        <id>http://localhost:4000/post/ti-jie-luogup2002-xiao-xi-kuo-san/</id>
+        <link href="http://localhost:4000/post/ti-jie-luogup2002-xiao-xi-kuo-san/">
         </link>
         <updated>2020-01-11T15:29:26.000Z</updated>
         <summary type="html"><![CDATA[<p>跑个tarjan缩点。然后同一个scc的点可以互传。</p>
@@ -821,8 +871,8 @@ int main() {
     </entry>
     <entry>
         <title type="html"><![CDATA[题解 [XJOI] CSP-S2开放一]]></title>
-        <id>https://froldh.github.io/post/ti-jie-xjoi-csp-s2-kai-fang-yi/</id>
-        <link href="https://froldh.github.io/post/ti-jie-xjoi-csp-s2-kai-fang-yi/">
+        <id>http://localhost:4000/post/ti-jie-xjoi-csp-s2-kai-fang-yi/</id>
+        <link href="http://localhost:4000/post/ti-jie-xjoi-csp-s2-kai-fang-yi/">
         </link>
         <updated>2019-11-11T08:11:53.000Z</updated>
         <summary type="html"><![CDATA[<p>期望得分 100+100+60 = 260<br>
@@ -1127,8 +1177,8 @@ T1RE可能也不是特别出乎意料吧,毕竟拍都懒得拍了<br>
     </entry>
     <entry>
         <title type="html"><![CDATA[题解 luoguP1379 八数码难题]]></title>
-        <id>https://froldh.github.io/post/ti-jie-luogup1379-ba-shu-ma-nan-ti/</id>
-        <link href="https://froldh.github.io/post/ti-jie-luogup1379-ba-shu-ma-nan-ti/">
+        <id>http://localhost:4000/post/ti-jie-luogup1379-ba-shu-ma-nan-ti/</id>
+        <link href="http://localhost:4000/post/ti-jie-luogup1379-ba-shu-ma-nan-ti/">
         </link>
         <updated>2019-11-11T00:43:05.000Z</updated>
         <summary type="html"><![CDATA[<p>看到很多神仙都是一顿A* / 双向广搜 等操作。<br>
@@ -1211,8 +1261,8 @@ int main() {
     </entry>
     <entry>
         <title type="html"><![CDATA[题解 luoguP3387 [模板]缩点]]></title>
-        <id>https://froldh.github.io/post/title-ti-jie-luogup3387-mo-ban-suo-dian/</id>
-        <link href="https://froldh.github.io/post/title-ti-jie-luogup3387-mo-ban-suo-dian/">
+        <id>http://localhost:4000/post/title-ti-jie-luogup3387-mo-ban-suo-dian/</id>
+        <link href="http://localhost:4000/post/title-ti-jie-luogup3387-mo-ban-suo-dian/">
         </link>
         <updated>2019-11-10T13:05:33.000Z</updated>
         <summary type="html"><![CDATA[<p>tarjan缩点后形成一个DAG</p>
