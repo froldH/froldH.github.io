@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://froldh.github.io</id>
     <title>oldherd&apos;s blog</title>
-    <updated>2020-03-10T04:58:06.978Z</updated>
+    <updated>2020-03-11T06:03:46.501Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://froldh.github.io"/>
     <link rel="self" href="https://froldh.github.io/atom.xml"/>
@@ -117,6 +117,104 @@ int main() {
 		a2 = a * a;
 		cout &lt;&lt; asr(l, r, 1e-5, simpson(l, r)) &lt;&lt; '\n';
 	}
+	return 0;
+}
+</code></pre>
+<h4 id="2-bzoj-2178-圆的面积并">(2) BZOJ 2178  圆的面积并</h4>
+<p>给定<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span></span></span></span>个圆, <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi><mo>⩽</mo><mn>1000</mn></mrow><annotation encoding="application/x-tex">n \leqslant 1000</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7733399999999999em;vertical-align:-0.13667em;"></span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel amsrm">⩽</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">0</span><span class="mord">0</span><span class="mord">0</span></span></span></span>， 坐标范围在<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>[</mo><mo>−</mo><mn>1000</mn><mo separator="true">,</mo><mn>1000</mn><mo>]</mo></mrow><annotation encoding="application/x-tex">[-1000, 1000]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord">−</span><span class="mord">1</span><span class="mord">0</span><span class="mord">0</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">1</span><span class="mord">0</span><span class="mord">0</span><span class="mord">0</span><span class="mclose">]</span></span></span></span>。求圆的面积并。<br>
+计算几何题, 按交点分割成多边形和弧形, 代码又臭又长。<br>
+但是可以用simpson水过去。计算某个坐标上的所有圆的截线段并的长度作为函数值、将圆的横坐标覆盖的区间范围作为自变量的范围求积分相加即可。<br>
+一个小trick: 实际上在之前的计算中同一个函数值被计算了很多次, 在这里函数值计算的代价很大, 考虑算出来之后把值记下来, 使每一个值只被算一遍。<br>
+BZOJ好像有一组数据来卡这个做法, 限制一下递归层数, 大概强制递归10层就不会漏掉。</p>
+<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
+
+using namespace std;
+
+typedef long long ll;
+
+struct circ {
+	double x, y, r;
+	circ(){}
+	circ(int X, int Y, int R) : x(X), y(Y), r(R) {}
+};
+
+struct seg {
+	double l, r;
+	seg() {}
+	seg(double L, double R) : l(L), r(R) {}
+}sgs[1010];
+
+circ circs[1010], tmp[1010];
+int isen[1010], ed = 0;
+
+double f(double x) {
+	vector&lt;seg&gt; v;
+	for(int i = 0; i &lt; ed; ++i) {
+		circ&amp; cur = circs[i]; 
+		if(cur.x - cur.r &lt; x &amp;&amp; cur.x + cur.r &gt; x) {
+			double dl = sqrt(cur.r * cur.r - (cur.x-x) * (cur.x-x));
+			v.push_back(seg(cur.y - dl, cur.y + dl));
+		}
+	} 
+	if(v.empty()) return 0;
+	sort(v.begin(), v.end(), [&amp;](seg a, seg b){ return a.l &lt; b.l; });
+	double ans = v[0].r - v[0].l, nr = v[0].r;
+	int vs = v.size(); 
+	for(int i = 1; i &lt; vs; ++i)
+		if(v[i].r &gt; nr) ans += v[i].r - max(nr, v[i].l), nr = v[i].r;
+	return ans;
+}
+
+inline double simpson(double l, double r, double fl, double fmid, double fr) {
+	return (r - l) * (fl + fr + 4 * fmid) / 6;
+}
+
+double asr(double l, double r, double fl, double fmid, double fr, double la, int depth) {
+	double mid = 0.5 * (l + r);
+	double flmid = f(0.5*(l+mid)), frmid = f(0.5*(mid+r));
+	double ls = simpson(l, mid, fl, flmid, fmid), rs = simpson(mid, r, fmid, frmid, fr);
+	if(abs(ls + rs - la) &lt;= 1e-8 &amp;&amp; depth &gt; 10) return la;
+	return asr(l, mid, fl, flmid, fmid, ls, depth + 1) + asr(mid, r, fmid, frmid, fr, rs, depth + 1);
+}
+
+inline double dis2(double x1, double y1, double x2, double y2) {
+	return (x1-x2)*(x1-x2) + (y1-y2)*(y1-y2);
+}
+
+int main() {
+	ios::sync_with_stdio(false);
+	cin.tie(0);
+	cout.setf(ios::fixed);
+	cout.precision(3);
+	int n;
+	double tx, ty, tr;
+	cin &gt;&gt; n;
+	for(int i = 0; i &lt; n; ++i) {
+		cin &gt;&gt; tx &gt;&gt; ty &gt;&gt; tr;
+		tmp[i] = circ(tx, ty, tr);
+	}
+	for(int i = 0; i &lt; n; ++i)
+		for(int j = i + 1; j &lt; n; ++j) 
+			if(dis2(tmp[i].x, tmp[i].y, tmp[j].x, tmp[j].y) &lt;= (tmp[i].r-tmp[j].r)*(tmp[i].r-tmp[j].r)) {
+				if(tmp[i].r &lt; tmp[j].r) isen[i] = 1;
+				else isen[j] = 1;
+				break;
+			}
+	for(int i = 0; i &lt; n; ++i)
+		if(!isen[i])
+			circs[ed] = tmp[i], sgs[ed++] = seg(tmp[i].x-tmp[i].r, tmp[i].x+tmp[i].r);
+	sort(sgs, sgs+ed, [&amp;](seg x, seg y){ return x.l &lt; y.l; });
+	double l = sgs[0].l, r = sgs[0].r, ans;
+	for(int i = 1; i &lt; ed; ++i) {
+		if(sgs[i].l &gt; r) {
+			double fl = f(l), fr = f(r), fmid = f(0.5*(l+r));
+			ans	+= asr(l, r, fl, fmid, fr, simpson(l, r, fl, fmid, fr), 0);
+			l = sgs[i].l, r = sgs[i].r;
+		} else r = max(sgs[i].r, r);
+	}
+	double fl = f(l), fr = f(r), fmid = f(0.5*(l+r));
+	ans	+= asr(l, r, fl, fmid, fr, simpson(l, r, fl, fmid, fr), 0);
+	cout &lt;&lt; ans &lt;&lt; '\n';
 	return 0;
 }
 </code></pre>
