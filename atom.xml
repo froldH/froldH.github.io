@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://froldh.github.io</id>
     <title>oldherd&apos;s blog</title>
-    <updated>2020-03-11T06:07:02.724Z</updated>
+    <updated>2020-03-11T06:16:51.830Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://froldh.github.io"/>
     <link rel="self" href="https://froldh.github.io/atom.xml"/>
@@ -169,12 +169,12 @@ inline double simpson(double l, double r, double fl, double fmid, double fr) {
 	return (r - l) * (fl + fr + 4 * fmid) / 6;
 }
 
-double asr(double l, double r, double fl, double fmid, double fr, double la, int depth) {
+double asr(double l, double r, double fl, double fmid, double fr, double la, int d) {
 	double mid = 0.5 * (l + r);
 	double flmid = f(0.5*(l+mid)), frmid = f(0.5*(mid+r));
 	double ls = simpson(l, mid, fl, flmid, fmid), rs = simpson(mid, r, fmid, frmid, fr);
-	if(abs(ls + rs - la) &lt;= 1e-8 &amp;&amp; depth &gt; 10) return la;
-	return asr(l, mid, fl, flmid, fmid, ls, depth + 1) + asr(mid, r, fmid, frmid, fr, rs, depth + 1);
+	if(abs(ls + rs - la) &lt;= 1e-8 &amp;&amp; d &gt; 10) return la;
+	return asr(l, mid, fl, flmid, fmid, ls, d+1) + asr(mid, r, fmid, frmid, fr, rs, d+1);
 }
 
 inline double dis2(double x1, double y1, double x2, double y2) {

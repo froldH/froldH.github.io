@@ -3,7 +3,7 @@
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>笔记 自适应辛普森积分 | oldherd&#39;s blog</title>
-<link rel="shortcut icon" href="https://froldh.github.io/favicon.ico?v=1583906811563">
+<link rel="shortcut icon" href="https://froldh.github.io/favicon.ico?v=1583907371487">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://froldh.github.io/styles/main.css">
 <link rel="alternate" type="application/atom+xml" title="笔记 自适应辛普森积分 | oldherd&#39;s blog - Atom Feed" href="https://froldh.github.io/atom.xml">
@@ -24,7 +24,7 @@
       <div class="main-content">
         <div class="site-header">
   <a href="https://froldh.github.io">
-  <img class="avatar" src="https://froldh.github.io/images/avatar.png?v=1583906811563" alt="">
+  <img class="avatar" src="https://froldh.github.io/images/avatar.png?v=1583907371487" alt="">
   </a>
   <h1 class="site-title">
     oldherd&#39;s blog
@@ -256,12 +256,12 @@ inline double simpson(double l, double r, double fl, double fmid, double fr) {
 	return (r - l) * (fl + fr + 4 * fmid) / 6;
 }
 
-double asr(double l, double r, double fl, double fmid, double fr, double la, int depth) {
+double asr(double l, double r, double fl, double fmid, double fr, double la, int d) {
 	double mid = 0.5 * (l + r);
 	double flmid = f(0.5*(l+mid)), frmid = f(0.5*(mid+r));
 	double ls = simpson(l, mid, fl, flmid, fmid), rs = simpson(mid, r, fmid, frmid, fr);
-	if(abs(ls + rs - la) &lt;= 1e-8 &amp;&amp; depth &gt; 10) return la;
-	return asr(l, mid, fl, flmid, fmid, ls, depth + 1) + asr(mid, r, fmid, frmid, fr, rs, depth + 1);
+	if(abs(ls + rs - la) &lt;= 1e-8 &amp;&amp; d &gt; 10) return la;
+	return asr(l, mid, fl, flmid, fmid, ls, d+1) + asr(mid, r, fmid, frmid, fr, rs, d+1);
 }
 
 inline double dis2(double x1, double y1, double x2, double y2) {
