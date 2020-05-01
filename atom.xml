@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>http://localhost:4000</id>
+    <id>https://froldh.github.io</id>
     <title>oldherd&apos;s blog</title>
-    <updated>2020-05-01T01:36:56.397Z</updated>
+    <updated>2020-05-01T01:39:08.579Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
-    <link rel="alternate" href="http://localhost:4000"/>
-    <link rel="self" href="http://localhost:4000/atom.xml"/>
+    <link rel="alternate" href="https://froldh.github.io"/>
+    <link rel="self" href="https://froldh.github.io/atom.xml"/>
     <subtitle>又弱又笨的蒟蒻的博客</subtitle>
-    <logo>http://localhost:4000/images/avatar.png</logo>
-    <icon>http://localhost:4000/favicon.ico</icon>
+    <logo>https://froldh.github.io/images/avatar.png</logo>
+    <icon>https://froldh.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, oldherd&apos;s blog</rights>
     <entry>
         <title type="html"><![CDATA[题解(部分) Educational Codeforces Round 85 [Rated for Div. 2]]]></title>
-        <id>http://localhost:4000/post/ti-jie-bu-fen-educational-codeforces-round-85-rated-for-div-2/</id>
-        <link href="http://localhost:4000/post/ti-jie-bu-fen-educational-codeforces-round-85-rated-for-div-2/">
+        <id>https://froldh.github.io/post/ti-jie-bu-fen-educational-codeforces-round-85-rated-for-div-2/</id>
+        <link href="https://froldh.github.io/post/ti-jie-bu-fen-educational-codeforces-round-85-rated-for-div-2/">
         </link>
         <updated>2020-04-11T02:30:25.000Z</updated>
         <content type="html"><![CDATA[<!-- more -->  
@@ -226,8 +226,8 @@ int main() {
     </entry>
     <entry>
         <title type="html"><![CDATA[题解 P4655 【[CEOI2017]Building Bridges】]]></title>
-        <id>http://localhost:4000/post/ti-jie-p4655-ceoi2017building-bridges/</id>
-        <link href="http://localhost:4000/post/ti-jie-p4655-ceoi2017building-bridges/">
+        <id>https://froldh.github.io/post/ti-jie-p4655-ceoi2017building-bridges/</id>
+        <link href="https://froldh.github.io/post/ti-jie-p4655-ceoi2017building-bridges/">
         </link>
         <updated>2020-04-05T02:30:50.000Z</updated>
         <summary type="html"><![CDATA[<p>题外话： 前几天神tommy教了李超线段树。</p>
@@ -317,8 +317,8 @@ int main() {
     </entry>
     <entry>
         <title type="html"><![CDATA[题解 [Ynoi2012]NOIP2015洋溢着希望]]></title>
-        <id>http://localhost:4000/post/ti-jie-ynoi2012noip2015-yang-yi-zhao-xi-wang/</id>
-        <link href="http://localhost:4000/post/ti-jie-ynoi2012noip2015-yang-yi-zhao-xi-wang/">
+        <id>https://froldh.github.io/post/ti-jie-ynoi2012noip2015-yang-yi-zhao-xi-wang/</id>
+        <link href="https://froldh.github.io/post/ti-jie-ynoi2012noip2015-yang-yi-zhao-xi-wang/">
         </link>
         <updated>2020-03-31T01:44:29.000Z</updated>
         <content type="html"><![CDATA[<!-- more -->
@@ -431,8 +431,8 @@ int main() {
     </entry>
     <entry>
         <title type="html"><![CDATA[[JOISC 2020] D1T1 building4]]></title>
-        <id>http://localhost:4000/post/joisc-2020-day1-t1-building4/</id>
-        <link href="http://localhost:4000/post/joisc-2020-day1-t1-building4/">
+        <id>https://froldh.github.io/post/joisc-2020-day1-t1-building4/</id>
+        <link href="https://froldh.github.io/post/joisc-2020-day1-t1-building4/">
         </link>
         <updated>2020-03-22T02:07:32.000Z</updated>
         <content type="html"><![CDATA[<!--more-->
@@ -500,8 +500,8 @@ int main() {
     </entry>
     <entry>
         <title type="html"><![CDATA[笔记 自适应辛普森积分]]></title>
-        <id>http://localhost:4000/post/bi-ji-zi-shi-ying-xin-pu-sen-ji-fen/</id>
-        <link href="http://localhost:4000/post/bi-ji-zi-shi-ying-xin-pu-sen-ji-fen/">
+        <id>https://froldh.github.io/post/bi-ji-zi-shi-ying-xin-pu-sen-ji-fen/</id>
+        <link href="https://froldh.github.io/post/bi-ji-zi-shi-ying-xin-pu-sen-ji-fen/">
         </link>
         <updated>2020-03-09T06:09:30.000Z</updated>
         <summary type="html"><![CDATA[<p>辛普森积分用于计算<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msubsup><mo>∫</mo><mi>a</mi><mi>b</mi></msubsup><mi>f</mi><mo>(</mo><mi>x</mi><mo>)</mo><mi>d</mi><mi>x</mi></mrow><annotation encoding="application/x-tex">\mathcal{\int_{a}^{b}f(x)dx}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.399828em;vertical-align:-0.35582em;"></span><span class="mord"><span class="mop"><span class="mop op-symbol small-op" style="margin-right:0.19445em;position:relative;top:-0.0005599999999999772em;">∫</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.044008em;"><span style="top:-2.34418em;margin-left:-0.19445em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">a</span></span></span></span><span style="top:-3.2579000000000002em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">b</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.35582em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord mathdefault">x</span><span class="mclose">)</span><span class="mord mathdefault">d</span><span class="mord mathdefault">x</span></span></span></span></span>。</p>
@@ -772,8 +772,8 @@ int main() {
     </entry>
     <entry>
         <title type="html"><![CDATA[题解 [起跑线]普及模拟Round5]]></title>
-        <id>http://localhost:4000/post/qpx-pj-round5/</id>
-        <link href="http://localhost:4000/post/qpx-pj-round5/">
+        <id>https://froldh.github.io/post/qpx-pj-round5/</id>
+        <link href="https://froldh.github.io/post/qpx-pj-round5/">
         </link>
         <updated>2020-02-27T14:29:44.000Z</updated>
         <summary type="html"><![CDATA[<p>这场人均AK罢，T2挂了(鬼晓得有负数哦，时间够还去剪枝就是作死)<br>
@@ -972,8 +972,8 @@ int main() {
     </entry>
     <entry>
         <title type="html"><![CDATA[题解 [起跑线]提高模拟Round3]]></title>
-        <id>http://localhost:4000/post/qpx-tg-round3/</id>
-        <link href="http://localhost:4000/post/qpx-tg-round3/">
+        <id>https://froldh.github.io/post/qpx-tg-round3/</id>
+        <link href="https://froldh.github.io/post/qpx-tg-round3/">
         </link>
         <updated>2020-02-26T14:45:05.000Z</updated>
         <summary type="html"><![CDATA[<p>Rnk3  T1、T2连续翻车丢人<br>
@@ -1137,8 +1137,8 @@ int main() {
     </entry>
     <entry>
         <title type="html"><![CDATA[题解 [起跑线]普及模拟Round4]]></title>
-        <id>http://localhost:4000/post/qpx-pj-round4/</id>
-        <link href="http://localhost:4000/post/qpx-pj-round4/">
+        <id>https://froldh.github.io/post/qpx-pj-round4/</id>
+        <link href="https://froldh.github.io/post/qpx-pj-round4/">
         </link>
         <updated>2020-02-25T14:13:37.000Z</updated>
         <summary type="html"><![CDATA[<p>T2 fst Rnk8 丢人了</p>
@@ -1347,8 +1347,8 @@ int main() {
     </entry>
     <entry>
         <title type="html"><![CDATA[题解 [起跑线]提高模拟Round2]]></title>
-        <id>http://localhost:4000/post/qpx-tg-round2/</id>
-        <link href="http://localhost:4000/post/qpx-tg-round2/">
+        <id>https://froldh.github.io/post/qpx-tg-round2/</id>
+        <link href="https://froldh.github.io/post/qpx-tg-round2/">
         </link>
         <updated>2020-02-25T09:40:29.000Z</updated>
         <summary type="html"><![CDATA[<p>三题暴力拿Rnk5很丢人的好伐</p>
@@ -1400,8 +1400,8 @@ int main() {
     </entry>
     <entry>
         <title type="html"><![CDATA[笔记 容斥原理]]></title>
-        <id>http://localhost:4000/post/rong-chi-yuan-li-bi-ji/</id>
-        <link href="http://localhost:4000/post/rong-chi-yuan-li-bi-ji/">
+        <id>https://froldh.github.io/post/rong-chi-yuan-li-bi-ji/</id>
+        <link href="https://froldh.github.io/post/rong-chi-yuan-li-bi-ji/">
         </link>
         <updated>2020-02-25T06:05:40.000Z</updated>
         <summary type="html"><![CDATA[<p>关于容斥原理的学习笔记</p>
