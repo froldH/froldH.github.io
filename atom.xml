@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://froldh.github.io</id>
     <title>oldherd&apos;s blog</title>
-    <updated>2020-07-13T22:52:25.119Z</updated>
+    <updated>2020-07-13T22:54:34.584Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://froldh.github.io"/>
     <link rel="self" href="https://froldh.github.io/atom.xml"/>
@@ -59,17 +59,17 @@ T1是个dp，再看一眼只需要用两个变量存一下扫过去就好了，4
 11:40到hdu，抽签是第四批，遇到了wz带佬，是第二批。坐在那里候场好长时间，wz带佬学了跳表然后教了我一波，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="script">O</mi><mo>(</mo><mi>n</mi><mi>log</mi><mo>⁡</mo><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">\mathcal{O(n \log n)}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathcal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span></span>代替平衡树的好东西啊。<br>
 然后wz带佬去面试了，我继续等啊等啊等啊等了差不多1个钟头(后来看时间表应该是在2:30)终于本批次被叫到了，被带去另一个房间签个保证书然后通知继续等45min进考场。wtf！！！</p>
 <h3 id="正式面试">正式面试</h3>
-<p>带进另一个教师给你15min读一段材料，不能动笔记录。<br>
-下午场的内容是有关于汽车企业在数字化过程中和信息巨头之间的冲突的，大意是21世纪汽车正在和各产业交叉，尤其是信息产业，数字巨头希望将汽车行业作为自己产业生态链的一部分，而汽车产业希望自己掌握自己的一套数字化技术。<br>
+<p>被带进一个教室给15min读一段材料，不能动笔记录。<br>
+下午场的材料内容是有关于汽车企业在数字化过程中和信息巨头之间的冲突的，大意是21世纪汽车正在和各产业交叉，尤其是信息产业，数字巨头希望将汽车行业作为自己产业生态链的一部分，而汽车产业希望自己掌握自己的一套数字化技术。<br>
 我大概花了4min扫了一遍文章，心里划了下层次(感谢zbyls的缩文大法)。然后7min时间提取记忆了关键字，剩下3min左右整理了一下思路(大概就是从汽车巨头角度三层数字巨头角度两层)，并想了一下可能会被问的问题(猜中1/2)。<br>
 然后在考场外面等上一批人结束，感觉我那个考场前面那个人好强，讲话丝毫不卡而且还带各种修辞。<br>
 进到面试房间。<br>
-一个房间有8个教授，进去之后教授先是提问材料相关的内容，再让要求做自我介绍，再是问一些时事相关的以及一些杂七杂八的问题，最后提一些个人相关的内容(这个好像是根据你写的个人自荐问的) 。<br>
+一个房间有8个教授，进去之后教授先是提问材料相关的内容，再让要求做自我介绍，再是问一些时事相关的以及一些杂七杂八的问题，最后提一些个人相关的内容(这个好像是根据报名时写的个人自荐问的) 。<br>
 刚开始，一个主考官很和善的提问，还有一个坐在角落的教授也是一直用一种玩味的眼神打量，剩下的人要么眼神无光要么低着头。<br>
 先是两个和材料有关的问题。<br>
 印象非常深的就是我说到一半，一句他们要投入科研，需要一定量的资金，产品的开发也需要一定的周期……<br>
 “科研”两个字刚说完那两个低着头的教授突然抬头，眼神放光(我当时差点吓了一跳)。<br>
-所以讲话在关键点上很重要，不然教授根本不会特别关注你讲了什么，换言之你讲的可能都是无效内容。<br>
+所以讲话在关键点上很重要，不然教授根本不会关注你讲了什么，换言之你讲的可能都是无效内容。<br>
 后面还问到和时事相关的题目，有一个题目是关于网课的，网课期间zbyls让我们写过作文，我那篇给打了50pts(50 / 60)，就花了6、7秒回想了一下主要的分论点，然后说了一遍。<br>
 然后问了一些其他杂项的问题，一个印象比较深的问题就是你高中有没有住校，大学是肯定要住校的，你能不能适应。  我说我高一的时候住校。然后又问我为什么搬出去了，我说是因为竞赛需要用机子，学校肯定不让带进去的(真实原因只有鬼知道了)。<br>
 最后和个人相关的内容，我写了很多算法竞赛有关的个人陈述，而且我的报名类型也是信息类特长生，所以问了我高中学过哪些算法数据结构，还问了我会不会实现什么什么(一些初级数据结构:栈，队列，堆(这里应该特指二叉堆)和一些简单算法)。感觉主考官对我印象还蛮不错，跟我说我给你规划一下啊，如果你进了hdu可以申请一下免修算法和数据结构，做个免修考试过了就好了，多余的时间可以学一些高级的东西(听到这里我感觉自己稳了)。我跟他说我最近买了《编译原理》和《现代操作系统》打算暑假先自学一波，然后那个人点了点头。(hdu蛮给面子啊，8个考官我能确定有四个是信息相关的ls)<br>
