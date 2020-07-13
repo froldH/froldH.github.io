@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://froldh.github.io</id>
     <title>oldherd&apos;s blog</title>
-    <updated>2020-07-13T22:34:29.381Z</updated>
+    <updated>2020-07-13T22:44:31.910Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://froldh.github.io"/>
     <link rel="self" href="https://froldh.github.io/atom.xml"/>
@@ -26,11 +26,16 @@ day2考面试。</p>
 有看没看看了一些支配树的内容，不过没有很看懂，车上也有点晕车就把手机关掉了。<br>
 中午饭在服务区解决，三个素菜50多块wdnmd，味道还行。<br>
 下午三点到旅馆，房间还是蛮不错的。<br>
-晚上打隔膜，继续康支配树。</p>
+<img src="https://froldh.github.io/post-images/1594679716523.jpg" alt="" loading="lazy"><br>
+晚上打隔膜，继续康支配树。<br>
+夜景<br>
+<img src="https://froldh.github.io/post-images/1594680207660.jpg" alt="" loading="lazy"></p>
 <h2 id="day1">DAY1</h2>
 <p>早上5:30醒了，打了半个小时隔膜，然后简单地看了一下常考算法的板子。<br>
 7:00去宾馆自助餐厅，炒面好评，咖啡好评。好像是因为三一的缘故宾馆又离hdu特别进所以次早饭的人特别多，被挤成鸽子干。<br>
+<img src="https://froldh.github.io/post-images/1594679888158.jpg" alt="" loading="lazy"><br>
 7:50到了HDU，找楼走过了头，最后还是进去了。在报到点签到等着。右前方一个Cu带佬和一个Ag带佬谈笑风生，蒟蒻瑟瑟发抖，拿出CCF的恰烂钱tg书看了一会儿。<br>
+<img src="https://froldh.github.io/post-images/1594679997158.jpg" alt="" loading="lazy"><br>
 8:30进了考场，机子联网但只能上hdoj，其他网站上不去。然后发了三一测试的账号密码。然后突发奇想地登了自己以前的hdoj账号发现能上，还能看到以前做的题。后来主监考来说以前有hdoj的号的不许登进去，吓得我赶紧退掉了。顺带说一下赛制是伪ACM赛制，得分按照AC数且最终折分数不按罚时(就是特长测试的30pts按照每题6pts给分)，但是网页里面显示的ranklist还是把罚时计入在内的。<br>
 8:40开始疯狂堆头，各种define和小函数搞上去。<br>
 9:00开题(因为hdu特长生3=就能报进，所以没什么难度，大概最难的题pj/tg-)，时长2h。<br>
@@ -40,12 +45,14 @@ T1是个dp，再看一眼只需要用两个变量存一下扫过去就好了，4
 12:30回到宾馆翻手机，看了一眼hdoj发现排在rank12(草为什么我明明第是七个打完的)，后来一看表发现虽然其他题目一遍过但是T2(-7)罚时炸成狗，草我原来交了7遍的撒。然后关掉hdoj开始打隔膜康瑟图逛车群顺带调戏ljf带佬。<br>
 15:00继续康支配树，不到一个小时被老爹敲门拉去次饭了。<br>
 晚饭在顺旺基快餐店里点了个卷心菜和番茄炒蛋，卷心菜居然是辣的(鸽子考前忌辣)。但是味道好评以至于多干了一碗饭(真·下饭)。<br>
-晚上打隔膜到20:30左右然后看了会儿支配树终于虚学会了。<br>
+<img src="https://froldh.github.io/post-images/1594680071735.jpg" alt="" loading="lazy"><br>
+晚上打隔膜到20:30左右然后看了会儿支配树终于学会了。<br>
 20:30 wz带佬跟我说他进面试了，然后和我一样都是下午场(面试分为上午场和下午场，主要是人多qaq)。<br>
 22:30 1班的捷克带佬打电话来哭他笔试没过(他当初大概以为信息类特长生考试很难然后他半年没动键盘所以没报特长生考笔试去了)。然后捷克在惊呼声中挂掉了电话(好像有一场CF开始3min了)。</p>
 <h2 id="day2">DAY2</h2>
 <p>4:50起床然后打了会儿隔膜，看了看zbyls友情提供的历届带佬面试心得，感觉好慌啊qaq<br>
 然后6:30下楼到宾馆自助餐厅，一个人都没有。开始浏览发现除了白煮玉米和白煮鸡蛋什么素的都没有，心疼自己。只好坐在角落里啃玉米磕鸡蛋qaq。后来发现有燕麦片和热牛奶，就当场手冲了四碗喝掉。燕麦粥赛高！！！坐到7:20发现人还是很少，毕竟笔试刷掉的6/7的人都走了。<br>
+<img src="https://froldh.github.io/post-images/1594680138062.jpg" alt="" loading="lazy"><br>
 老爹说我初中一个关系不错的蛮强朋友也没过笔试，听到还是蛮难受的。<br>
 回房继续看面试心得。<br>
 中饭次沙县，勉强管饱。<br>
