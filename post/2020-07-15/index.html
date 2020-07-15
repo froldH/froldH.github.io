@@ -1,0 +1,543 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>2020-07-15 | oldherd&#39;s blog</title>
+<link rel="shortcut icon" href="https://froldh.github.io/favicon.ico?v=1594799301817">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://froldh.github.io/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="2020-07-15 | oldherd&#39;s blog - Atom Feed" href="https://froldh.github.io/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+
+    <meta name="description" content="view
+
+过了洛谷支配树的板子
+过了HDU4694 ImportantSister(支配树裸题)
+过了wmd支配树课件的习题CodeChef - GRAPHCNT
+
+detail
+luoguP5180
+事项
+
+不要把dfn[x]的比较写成..." />
+    <meta name="keywords" content="" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://froldh.github.io">
+  <img class="avatar" src="https://froldh.github.io/images/avatar.png?v=1594799301817" alt="">
+  </a>
+  <h1 class="site-title">
+    oldherd&#39;s blog
+  </h1>
+  <p class="site-description">
+    又弱又笨的蒟蒻的博客
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              2020-07-15
+            </h2>
+            <div class="post-info">
+              <span>
+                2020-07-15
+              </span>
+              <span>
+                9 min read
+              </span>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <h2 id="view">view</h2>
+<ol>
+<li>过了<a href="https://www.luogu.com.cn/problem/P5180">洛谷支配树的板子</a></li>
+<li>过了<a href="http://acm.hdu.edu.cn/showproblem.php?pid=4694">HDU4694 ImportantSister(支配树裸题)</a></li>
+<li>过了wmd支配树课件的习题<a href="https://www.codechef.com/problems/GRAPHCNT">CodeChef - GRAPHCNT</a></li>
+</ol>
+<h2 id="detail">detail</h2>
+<h3 id="luogup5180">luoguP5180</h3>
+<h4 id="事项">事项</h4>
+<ol>
+<li>不要把dfn[x]的比较写成x的比较 , 不要把sdom[x]的比较写成x的比较。</li>
+</ol>
+<h4 id="code">code</h4>
+<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
+#define endl '\n'
+#define rep(i,a,b) for(int i=a;i&lt;=(b);++i)
+#define per(i,a,b) for(int i=a;i&gt;=(b);--i)
+#define repp(i,a,b) for(int i=a;i&lt;(b);++i)
+#define perr(i,a,b) for(int i=a;i&gt;(b);--i)
+#define pb push_back
+#define rz resize
+#define VI vector&lt;int&gt;
+
+using namespace std;
+
+vector&lt; VI &gt; G, _G, GDOM;
+VI dfn, idfn, fa;
+int dfs_clock = 1;
+
+void dfs(int pre, int cur) {
+	idfn[dfs_clock] = cur;
+	dfn[cur] = dfs_clock++;
+	fa[cur] = pre;
+	for(int ver : G[cur])
+		if(!dfn[ver])
+			dfs(cur, ver);
+}
+
+inline int minpt(int u, int v) {
+	return dfn[u] &lt; dfn[v] ? u : v;	
+}
+
+VI par, dat, sdom, idom;
+vector&lt; VI &gt; buc;
+int eval(int cur) {
+	if(par[cur] == cur) return cur;
+	int anc = eval(par[cur]);
+	dat[cur] = dfn[sdom[dat[cur]]] &lt; dfn[sdom[dat[par[cur]]]] ? dat[cur] : dat[par[cur]];
+	return par[cur] = anc;
+}
+
+
+void lengauer_tarjan(int n) {
+	for(int i = n; i; --i) sdom[i] = i, par[i] = i, dat[i] = i;
+	for(int i = n; i &gt; 1; --i) {
+		int cur = idfn[i];
+		for(int ver : _G[cur]) {
+			if(!dfn[ver]) continue;
+			eval(ver); 
+			sdom[cur] = minpt(sdom[cur], sdom[dat[ver]]);
+		}
+		par[cur] = fa[cur]; dat[cur] = sdom[cur];
+		buc[sdom[cur]].pb(cur);
+		for(int ver : buc[fa[cur]]) {
+			eval(ver);
+			if(sdom[dat[ver]] == fa[cur]) idom[ver] = sdom[ver];
+			else idom[ver] = dat[ver];
+		}
+		buc[fa[cur]].clear();
+	}
+	rep(i,1,n) {
+		int cur = idfn[i]; 
+		if(idom[cur] != sdom[cur]) idom[cur] = idom[idom[cur]];
+	} 
+}
+
+VI ans;
+
+void work(int cur) {
+	ans[cur] = 1;
+	for(int ver : GDOM[cur]) {
+		work(ver);
+		ans[cur] += ans[ver];
+	}
+}
+
+int main() {
+	ios::sync_with_stdio(false);
+	cin.tie(nullptr);
+	int n, m, u, v;
+	cin &gt;&gt; n &gt;&gt; m;
+	G.rz(n + 1); _G.rz(n + 1); GDOM.rz(n + 1); dfn.rz(n + 1); idfn.rz(n + 1); fa.rz(n + 1); par.rz(n + 1); dat.rz(n + 1); sdom.rz(n + 1); idom.rz(n + 1); buc.rz(n + 1); ans.rz(n + 1);
+	while(m--) {
+		cin &gt;&gt; u &gt;&gt; v;
+		G[u].pb(v);
+		_G[v].pb(u);
+	}
+	dfs(0, 1);
+	lengauer_tarjan(n);
+	rep(i,1,n) GDOM[idom[i]].pb(i);
+	work(1);
+	rep(i,1,n) cout &lt;&lt; ans[i] &lt;&lt; ' ';
+	cout &lt;&lt; endl;
+	return 0;
+}
+</code></pre>
+<h3 id="hdu4694-important-sister">HDU4694 Important Sister</h3>
+<h4 id="事项-2">事项</h4>
+<ol>
+<li>注意并查集中保存的是sdom[x]最小的点的编号而不是sdom的最小值。</li>
+<li>有些点在流图中不可达 , 所以支配树中点的个数应为dfs后dfs_clock - 1。</li>
+<li>初始化sdom[x] = par[x] = dat[x] = x;</li>
+<li>不要把并查集的par[]和dfs树中的fa[]搞混淆</li>
+<li>不要忘记清空buc[]</li>
+<li>一个点求完在并查集中挂fa在buc中挂sdom , 但是弹出是弹出fa</li>
+<li>r无支配点 , 记idom[r] = 0</li>
+<li>最后一步调整的过程为dfn升序</li>
+</ol>
+<h4 id="code-2">code</h4>
+<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
+
+using namespace std;
+
+
+typedef vector&lt; vector&lt;int&gt; &gt; Graph;
+
+const int maxn = 56789;
+
+Graph G, _G, DOM;
+vector&lt; vector&lt;int&gt; &gt; buc;
+int dfn[maxn], idfn[maxn], fa[maxn], dfs_clock = 1;
+int par[maxn], dat[maxn];
+int sdom[maxn], idom[maxn];
+
+void dfs(int pre, int cur) {
+	idfn[dfs_clock] = cur; dfn[cur] = dfs_clock++;
+	fa[cur] = pre;
+	for(int ver : G[cur]) if(!dfn[ver]) dfs(cur, ver);
+}
+
+int find(int x) {
+	if(par[x] == x) return x;
+	int p = find(par[x]);
+	if(dfn[sdom[dat[par[x]]]] &lt; dfn[sdom[dat[x]]]) dat[x] = dat[par[x]];
+	return par[x] = p;
+}
+
+inline int eval(int x) { find(x); return dat[x]; }
+
+void lengauer_tarjan(int n, int r) {
+	memset(dfn, 0, sizeof(dfn));
+	memset(idfn, 0, sizeof(dfn));
+	memset(fa, 0, sizeof(fa));
+	memset(idom, 0, sizeof(idom));
+	dfs_clock = 1;
+	dfs(0, r);
+	--dfs_clock;
+	for(int i = 1; i &lt;= n; ++i) par[i] = dat[i] = sdom[i] = i;
+	for(int i = dfs_clock; i &gt; 1; --i) {
+		int cur = idfn[i];
+		for(int ver : _G[cur]) {
+			if(!dfn[ver]) continue;
+			int ev = eval(ver);
+			if(dfn[sdom[cur]] &gt; dfn[sdom[ev]]) sdom[cur] = sdom[ev];
+		}
+		par[cur] = fa[cur]; buc[sdom[cur]].push_back(cur);
+		for(int ver : buc[fa[cur]]) {
+			if(sdom[eval(ver)] == fa[cur]) idom[ver] = fa[cur];
+			else idom[ver] = eval(ver);
+		}
+		buc[fa[cur]].clear();
+	}
+	for(int i = 2; i &lt;= dfs_clock; i++) {
+			int cur = idfn[i];
+			if(idom[cur] != sdom[cur]) idom[cur] = idom[idom[cur]];
+	}
+	idom[r] = 0;
+}
+
+long long ans[maxn];
+void work(int pre, int cur) {
+	ans[cur] = cur + ans[pre];
+	for(int ver : DOM[cur])
+		work(cur, ver);
+} 
+
+int main() {
+	ios::sync_with_stdio(false);
+	cin.tie(nullptr);
+	cout.tie(nullptr);
+	int n, m, r;
+	while(cin &gt;&gt; n &gt;&gt; m) {
+		r = n;
+		G.clear(); G.resize(n + 1);
+		_G.clear(); _G.resize(n + 1);
+		DOM.clear(); DOM.resize(n + 1);
+		buc.clear(); buc.resize(n + 1);
+		int u, v;
+		while(m--) {
+			cin &gt;&gt; u &gt;&gt; v;
+			G[u].push_back(v);
+			_G[v].push_back(u);
+		}
+		lengauer_tarjan(n, r);
+		for(int i = 1; i &lt;= n; ++i) {
+			DOM[idom[i]].push_back(i);
+		}
+		memset(ans, 0, sizeof(ans));
+		work(0, r);
+		for(int i = 1; i &lt; n; ++i) cout &lt;&lt; ans[i] &lt;&lt; ' ';
+		cout &lt;&lt; ans[n] &lt;&lt; endl;
+	}
+	return 0;
+}
+</code></pre>
+<h3 id="codechef-graphcnt">CodeChef - GRAPHCNT</h3>
+<h4 id="分析">分析</h4>
+<p>原问题可转化为求支配树上lca = r的有序点对数量和<br>
+另一种count法挂了，没搞清楚为什么qaq</p>
+<h4 id="事项-3">事项</h4>
+<ol>
+<li>大于号方向注意不要搞反</li>
+</ol>
+<h4 id="code-3">code</h4>
+<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt; 
+#define pb push_back
+#define rz resize
+
+using namespace std;
+
+typedef vector&lt;int&gt; VI;
+typedef vector&lt;VI&gt; Graph;
+typedef long long ll;
+
+const int maxn = 123456;
+
+Graph G, _G, DOM;
+VI buc[maxn];
+int dfn[maxn], idfn[maxn], fa[maxn], dfs_clock;
+int par[maxn], dat[maxn];
+int sdom[maxn], idom[maxn];
+
+void dfs(int pre, int cur) {
+	idfn[dfs_clock] = cur; dfn[cur] = dfs_clock++;
+	fa[cur] = pre;
+	for(int ver : G[cur]) if(!dfn[ver]) dfs(cur, ver);
+}
+
+int find(int x) {
+	if(par[x] == x) return x;
+	int p = find(par[x]);
+	if(dfn[sdom[dat[x]]] &gt; dfn[sdom[dat[par[x]]]]) dat[x] = dat[par[x]];
+	return par[x] = p;
+}
+
+int eval(int x) { find(x); return dat[x]; }
+
+void lengauer_tarjan(int n, int r) {
+	dfs_clock = 1;
+	dfs(0, r);
+	--dfs_clock;
+	for(int i = 1; i &lt;= n; ++i) par[i] = dat[i] = sdom[i] = i;
+	for(int i = n; i &gt; 1; --i) {
+		int cur = idfn[i];
+		for(int ver : _G[cur]) {
+			if(!dfn[ver]) continue;
+			int ev = eval(ver);
+			if(dfn[sdom[cur]] &gt; dfn[sdom[ev]]) sdom[cur] = sdom[ev];
+		}
+		buc[sdom[cur]].pb(cur); par[cur] = fa[cur];
+		for(int ver : buc[fa[cur]]) {
+			int ev = eval(ver);
+			if(sdom[ev] == fa[cur]) idom[ver] = fa[cur];
+			else idom[ver] = ev;
+		}
+		buc[fa[cur]].clear();
+	}
+	for(int i = 2; i &lt;= dfs_clock; ++i) {
+		int cur = idfn[i];
+		if(idom[cur] != sdom[cur]) idom[cur] = idom[idom[cur]];
+		DOM[idom[cur]].pb(cur); 
+	}
+	idom[r] = 0;
+}
+
+int siz[maxn];
+ll ans = 0;
+void work(int cur) {
+	siz[cur] = 1;
+	for(int ver : DOM[cur]) {
+		work(ver);
+		if(cur == 1) ans += 1ll * siz[cur] * siz[ver];
+		siz[cur] += siz[ver]; 
+	}
+}
+
+int main() {
+	ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
+	int n, m, u, v;
+	cin &gt;&gt; n &gt;&gt; m;
+	G.rz(n + 1); _G.rz(n + 1); DOM.rz(n + 1);
+	while(m--) {
+		cin &gt;&gt; u &gt;&gt; v;
+		G[u].pb(v);
+		_G[v].pb(u);
+	}
+	lengauer_tarjan(n, 1);
+	work(1);
+	cout &lt;&lt; ans &lt;&lt; endl;
+	return 0;
+}
+</code></pre>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#view">view</a></li>
+<li><a href="#detail">detail</a>
+<ul>
+<li><a href="#luogup5180">luoguP5180</a>
+<ul>
+<li><a href="#%E4%BA%8B%E9%A1%B9">事项</a></li>
+<li><a href="#code">code</a></li>
+</ul>
+</li>
+<li><a href="#hdu4694-important-sister">HDU4694 Important Sister</a>
+<ul>
+<li><a href="#%E4%BA%8B%E9%A1%B9-2">事项</a></li>
+<li><a href="#code-2">code</a></li>
+</ul>
+</li>
+<li><a href="#codechef-graphcnt">CodeChef - GRAPHCNT</a>
+<ul>
+<li><a href="#%E5%88%86%E6%9E%90">分析</a></li>
+<li><a href="#%E4%BA%8B%E9%A1%B9-3">事项</a></li>
+<li><a href="#code-3">code</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://froldh.github.io/post/hdu-san-wei-yi-ti-zhao-sheng-you-ji/">
+              <h3 class="post-title">
+                HDU三位一体招生游记
+              </h3>
+            </a>
+          </div>
+        
+
+        
+          
+            <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+<div id="gitalk-container"></div>
+
+<script>
+
+  var gitalk = new Gitalk({
+    clientID: 'a68cadfa7688e46bd19c',
+    clientSecret: 'c28728eae71d03ee5506e3547085f4467a3629b9',
+    repo: 'gridea_blog_talk',
+    owner: 'froldh',
+    admin: ['froldh'],
+    id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+    distractionFreeMode: false  // Facebook-like distraction free mode
+  })
+
+  gitalk.render('gitalk-container')
+
+</script>
+
+          
+
+          
+        
+
+        <div class="site-footer">
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+  <a class="rss" href="https://froldh.github.io/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>
