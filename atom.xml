@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://froldh.github.io</id>
     <title>oldherd&apos;s blog</title>
-    <updated>2020-07-15T07:55:17.012Z</updated>
+    <updated>2020-07-16T14:03:54.082Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://froldh.github.io"/>
     <link rel="self" href="https://froldh.github.io/atom.xml"/>
@@ -10,6 +10,146 @@
     <logo>https://froldh.github.io/images/avatar.png</logo>
     <icon>https://froldh.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, oldherd&apos;s blog</rights>
+    <entry>
+        <title type="html"><![CDATA[2020-07-16 训练日记]]></title>
+        <id>https://froldh.github.io/post/2020-07-16-xun-lian-ri-ji/</id>
+        <link href="https://froldh.github.io/post/2020-07-16-xun-lian-ri-ji/">
+        </link>
+        <updated>2020-07-16T13:29:21.000Z</updated>
+        <content type="html"><![CDATA[<h2 id="view">view</h2>
+<ol>
+<li>学会了fft</li>
+<li>过了<a href="https://www.luogu.com.cn/problem/P3803">fft板子</a></li>
+</ol>
+<h2 id="detail">detail</h2>
+<h3 id="fft板子">fft板子</h3>
+<h4 id="talk">talk</h4>
+<p>终于学会了fft , 在某位L姓带佬的指导下。<br>
+话说能给我这种理解能力和水平巨差的人全程讲下来真的不容易qaq<br>
+稍微记一点关键的东西备忘 , 实际上多数还是源于该带佬的blog</p>
+<h4 id="note">note</h4>
+<p>没写完 , 咕咕咕~</p>
+<h4 id="code">code</h4>
+<pre><code class="language-cpp">void dft(cp *a, int n) {
+	if(n == 1) return;
+	int hf = n &gt;&gt; 1;
+	cp a0[hf], a1[hf];
+	for(int i = 0; i &lt; hf; ++i)	{
+		a0[i] = a[i&lt;&lt;1];
+		a1[i] = a[i&lt;&lt;1|1];
+	}
+	dft(a0, hf);
+	dft(a1, hf);
+	for(int i = 0; i &lt; hf; ++i) {
+		cp omg = cp(cos(2*PI*i/n), sin(2*PI*i/n));
+		a[i] = a0[i] + omg * a1[i];
+		a[i+hf] = a0[i] - omg * a1[i];	
+	}
+}
+
+void idft(cp *a, int n) {
+	reverse(a + 1, a + n);
+	dft(a, n);
+	for(int i = 0; i &lt; n; ++i) a[i] = a[i] / n;
+}
+</code></pre>
+<h3 id="p3803-fft板子">P3803  fft板子</h3>
+<h4 id="事项">事项 :</h4>
+<ol>
+<li>需要使用二进制翻转进行卡常 , 通过观察容易发现在fft递归到底层之后的下标值为原下标的二进制翻转(长度为序列长度) , 该过程可以使用 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="script">O</mi><mo>(</mo><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">\mathcal{O(n)}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathcal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span></span> 递推求解 ，即 <code>t[i] = t[i&gt;&gt;1]&gt;&gt;1 + (i&amp;n?n&gt;&gt;1:0)</code></li>
+<li>复数单位根应当采用递推的形式去做 , 即 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msubsup><mi>ω</mi><mi>n</mi><mi>i</mi></msubsup><mo>=</mo><msubsup><mi>ω</mi><mi>n</mi><mrow><mi>i</mi><mo>−</mo><mn>1</mn></mrow></msubsup><mo>∗</mo><msub><mi>ω</mi><mi>n</mi></msub></mrow><annotation encoding="application/x-tex">\omega_{n}^i = \omega_{n}^{i-1}*\omega_{n}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.071664em;vertical-align:-0.247em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">ω</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.824664em;"><span style="top:-2.4530000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">n</span></span></span></span><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.247em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.071664em;vertical-align:-0.247em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">ω</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.824664em;"><span style="top:-2.4530000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">n</span></span></span></span><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span><span class="mbin mtight">−</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.247em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">ω</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">n</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span><br>
+<strong>好的操作</strong><br>
+<img src="https://froldh.github.io/post-images/1594908193797.png" alt="" loading="lazy"><br>
+<strong>不优的操作</strong><br>
+<img src="https://froldh.github.io/post-images/1594908205241.png" alt="" loading="lazy"></li>
+</ol>
+<h4 id="code-2">code</h4>
+<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
+
+using namespace std;
+
+const double PI = acos(-1);
+const int maxn = 2345678;
+
+struct cp {
+	double x, y;
+	cp() { x = y = 0; }
+	cp(double X, double Y) : x(X), y(Y) {}
+	cp operator + (const cp&amp; o) const {
+		return cp(x + o.x, y + o.y);
+	}
+	cp operator - (const cp&amp; o) const {
+		return cp(x - o.x, y - o.y);
+	}
+	cp operator * (const cp&amp; o) const {
+		return cp(x*o.x-y*o.y, x*o.y+y*o.x);	
+	}
+	void operator *= (const cp&amp; o) {
+		double tx = x * o.x - y * o.y;
+		y = x * o.y + y * o.x;
+		x = tx;
+	}
+	void operator /= (const int&amp; n) {
+		x /= n; y /= n;
+	}
+}a[maxn], b[maxn];
+
+inline void flip(int &amp;x) {
+	int t = 1;
+	while(t &lt; x) t &lt;&lt;= 1;
+	x = t;
+}
+
+int target[maxn];
+
+void dft(cp a[], int n) {
+	for(int i = 0; i &lt; n; ++i) if(i &lt;= target[i]) swap(a[i], a[target[i]]);
+	for(int m = 2; m &lt;= n; m &lt;&lt;= 1) {
+		int hf = m &gt;&gt; 1;
+		for(int i = 0; i &lt; n; i += m) {
+			cp w0 = cp(cos(2*PI/m), sin(2*PI/m));
+			cp omg = cp(1, 0);
+			for(int k = 0; k &lt; hf; ++k, omg *= w0) {
+				cp t = omg * a[i+k+hf];
+				a[i+k+hf] = a[i+k] - t;
+				a[i+k] = a[i+k] + t;
+			}
+		}
+	}
+}
+
+void idft(cp a[], int n) {
+	reverse(a + 1, a + n);
+	dft(a, n);
+	for(int i = 0; i &lt; n; ++i) a[i] /= n;
+}
+
+int main() {
+	ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
+	int n, m;
+	cin &gt;&gt; n &gt;&gt; m;
+	for(int i = 0; i &lt;= n; ++i) cin &gt;&gt; a[i].x;
+	for(int i = 0; i &lt;= m; ++i) cin &gt;&gt; b[i].x;
+	int len = n + m + 1;
+	flip(len);
+	for(int i = 0; i &lt; len; ++i)
+		target[i] = target[i&gt;&gt;1]&gt;&gt;1 | (i&amp;1?len&gt;&gt;1:0);
+	dft(a, len);
+	dft(b, len);
+	for(int i = 0; i &lt; len; ++i) a[i] *= b[i];
+	idft(a, len);
+	for(int i = 0; i &lt;= n + m; ++i) cout &lt;&lt; (int)(a[i].x + 0.5) &lt;&lt; ' ';
+	cout &lt;&lt; endl;
+	return 0;
+}
+</code></pre>
+<h2 id="thought">thought</h2>
+<p>今天被一些事情缠住了 , 没怎么做题qaq<br>
+明天下午好像还要去兵役体检啊QaQ , 明明我近视500°的说 , 一下午又要没了(心疼)<br>
+明天上午有ACM集训的白嫖课 , 开心~</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[2020-07-15 训练日记]]></title>
         <id>https://froldh.github.io/post/2020-07-15-xun-lian-ri-ji/</id>
@@ -1531,216 +1671,6 @@ int main() {
 	for(int i = 1; i &lt;= q; ++i) cout &lt;&lt; ans[i] &lt;&lt; '\n';
 	return 0;
 }
-</code></pre>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[题解 [起跑线]普及模拟Round4]]></title>
-        <id>https://froldh.github.io/post/qpx-pj-round4/</id>
-        <link href="https://froldh.github.io/post/qpx-pj-round4/">
-        </link>
-        <updated>2020-02-25T14:13:37.000Z</updated>
-        <summary type="html"><![CDATA[<p>T2 fst Rnk8 丢人了</p>
-]]></summary>
-        <content type="html"><![CDATA[<p>T2 fst Rnk8 丢人了</p>
-<!-- more -->  
-<h3 id="t1-追击问题">T1 追击问题</h3>
-<p>判断位移和相对速度方向是否一致即可。</p>
-<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
-
-using namespace std;
-
-typedef long long ll;
-
-int main() {
-	ios::sync_with_stdio(false);
-	cin.tie(0);
-	ll x, a, y, b;
-	cin &gt;&gt; x &gt;&gt; a &gt;&gt; y &gt;&gt; b;
-	if((x - y) * (a - b) &lt; 0) {
-		cout &lt;&lt; &quot;YES&quot; &lt;&lt; '\n';	
-	} else {
-		cout &lt;&lt; &quot;NO&quot; &lt;&lt; '\n';
-	}
-	return 0;
-}
-</code></pre>
-<h3 id="t2-最短路问题">T2 最短路问题</h3>
-<p>如果没有额外的边，直接在图上跑BFS即可。<br>
-对于特殊边，显然，如果一个集合的某点先被访问，那么其他点到另一个集合的边就没有更新距离的作用了。所以实际上有效的边只有<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="script">O</mi><mo>(</mo><mi>a</mi><mo>+</mo><mi>b</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">\mathcal{O(a + b)}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathcal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">a</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathdefault">b</span><span class="mclose">)</span></span></span></span></span>而不是<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="script">O</mi><mo>(</mo><mi>a</mi><mi>b</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">\mathcal{O(ab)}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathcal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">a</span><span class="mord mathdefault">b</span><span class="mclose">)</span></span></span></span></span>。<br>
-所以动态判断这些边的处理即可。<br>
-复杂度<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="script">O</mi><mo>(</mo><mi>n</mi><mo>+</mo><mi>m</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">\mathcal{O(n + m)}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathcal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathdefault">m</span><span class="mclose">)</span></span></span></span></span></p>
-<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
-
-using namespace std;
-
-vector&lt; vector&lt;int&gt; &gt; edge;
-vector&lt;int&gt; dis, c, d;
-vector&lt;bool&gt; isC, isD;
-
-queue&lt;int&gt; q;
-void bfs() {
-	bool visc = false, visd = false;
-	q.push(1);
-	dis[1] = 0;
-	while(!q.empty()) {
-		int cur = q.front(); q.pop();
-		for(int ver : edge[cur])
-			if(!~dis[ver]) {
-				dis[ver] = dis[cur] + 1;
-				q.push(ver);
-			}
-		if(isC[cur] &amp;&amp; !visd) {
-			visd = true;
-			for(int ver : d)
-				if(!~dis[ver]) {
-					dis[ver] = dis[cur] + 1;	
-					q.push(ver);
-				}
-		}
-		if(isD[cur] &amp;&amp; !visc) {
-			visc = true;
-			for(int ver : c)
-				if(!~dis[ver]) {
-					dis[ver] = dis[cur] + 1;
-					q.push(ver);	
-				}
-		}
-	}
-}
-
-int main() {
-	ios::sync_with_stdio(false);
-	cin.tie(0);
-	int n, m, a, b, tmp, u, v;
-	cin &gt;&gt; n &gt;&gt; m;
-	edge.resize(n + 1);
-	dis.assign(n + 1, -1);
-	isC.assign(n, false);
-	isD.assign(n, false);
-	for(int i = 1; i &lt;= m; ++i) {
-		cin &gt;&gt; u &gt;&gt; v;
-		edge[u].push_back(v);
-		edge[v].push_back(u);
-	}
-	cin &gt;&gt; a &gt;&gt; b;
-	c.resize(a);
-	d.resize(b);
-	for(int i = 0; i &lt; a; ++i) {
-		cin &gt;&gt; tmp;
-		isC[tmp] = true;
-		c[i] = tmp;
-	}
-	for(int i = 0; i &lt; b; ++i) {
-		cin &gt;&gt; tmp;
-		isD[tmp] = true;
-		d[i] = tmp;
-	}
-	bfs();
-	for(int i = 1; i &lt;= n; ++i)
-		cout &lt;&lt; dis[i] &lt;&lt; '\n';
-	return 0;
-}
-</code></pre>
-<h3 id="t3-数码问题">T3 数码问题</h3>
-<p>咕咕咕。。。</p>
-<h3 id="t4-三角形问题">T4 三角形问题</h3>
-<p>考虑构造最小的不能满足三角形的数列。<br>
-<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn><mo separator="true">,</mo><mn>1</mn><mo separator="true">,</mo><mn>2</mn><mo separator="true">,</mo><mn>3</mn><mo separator="true">,</mo><mn>5</mn><mo separator="true">,</mo><mn>8</mn><mo separator="true">,</mo><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi></mrow><annotation encoding="application/x-tex">1, 1, 2, 3, 5, 8, ...</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8388800000000001em;vertical-align:-0.19444em;"></span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">2</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">3</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">5</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">8</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">.</span><span class="mord">.</span><span class="mord">.</span></span></span></span><br>
-事斐波那契！<br>
-第84项斐波那契<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>⩾</mo><mn>1</mn><msup><mn>0</mn><mn>18</mn></msup></mrow><annotation encoding="application/x-tex">\geqslant 10^{18}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7733399999999999em;vertical-align:-0.13667em;"></span><span class="mrel amsrm">⩾</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span><span class="mord mtight">8</span></span></span></span></span></span></span></span></span></span></span></span>, 根据抽屉原理, 树上路径长度<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>⩾</mo><mn>84</mn></mrow><annotation encoding="application/x-tex">\geqslant 84</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7733399999999999em;vertical-align:-0.13667em;"></span><span class="mrel amsrm">⩾</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">8</span><span class="mord">4</span></span></span></span>的一定能构成。<br>
-<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>⩽</mo><mn>84</mn></mrow><annotation encoding="application/x-tex">\leqslant 84</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7733399999999999em;vertical-align:-0.13667em;"></span><span class="mrel amsrm">⩽</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">8</span><span class="mord">4</span></span></span></span>的路径直接暴力求点权。<br>
-复杂度<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="script">O</mi><mo>(</mo><mo>(</mo><mi>q</mi><mo>+</mo><mi>n</mi><mo>)</mo><mi>l</mi><mi>o</mi><mi>g</mi><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">\mathcal{O((q + n)logn)}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathcal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.03588em;">q</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathdefault">n</span><span class="mclose">)</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">o</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span></span></p>
-<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
-
-using namespace std;
-
-typedef long long ll;
-
-const int maxn = 567890;
-int t[maxn], k[maxn], b[maxn], head[maxn], ver[maxn&lt;&lt;1], nex[maxn&lt;&lt;1], tot;
-inline void addedge(int u, int v) {
-	ver[tot] = v; nex[tot] = head[u]; head[u] = tot++;	
-}
-int n, q;
-
-int fa[maxn][32], dep[maxn];
-void dfs(int cur, int pre) {
-	dep[cur] = dep[pre] + 1; fa[cur][0] = pre;
-	for(int i = 1; i &lt;= 30; ++i) fa[cur][i] = fa[fa[cur][i-1]][i-1];
-	for(int i = head[cur]; ~i; i = nex[i])
-		if(!dep[ver[i]]) dfs(ver[i], cur);
-	
-}
-
-int lca(int u, int v) {
-	if(dep[u] &lt; dep[v])	swap(u, v);
-	for(int i = 30; ~i; --i) 
-		if(dep[fa[u][i]] &gt;= dep[v])	u = fa[u][i];
-	if(u == v) return u;
-	for(int i = 30; ~i; --i)
-		if(fa[u][i] != fa[v][i])
-			u = fa[u][i], v = fa[v][i];
-	return fa[u][0];
-}
-
-int main() {
-	srand((unsigned)time(0));
-	memset(head, -1, sizeof(head));
-	ios::sync_with_stdio(false);
-	cin.tie(0);
-	int u, v;
-	ll x;
-	cin &gt;&gt; n;
-	for(int i = 1; i &lt;= n; ++i)
-		cin	&gt;&gt; t[i] &gt;&gt; k[i] &gt;&gt; b[i];
-	for(int i = 1; i &lt; n; ++i) {
-		cin &gt;&gt; u &gt;&gt; v;
-		addedge(u, v);
-		addedge(v, u);
-	}
-	dfs(1, 1);
-	cin &gt;&gt; q;
-	while(q--) {
-		cin &gt;&gt; u &gt;&gt; v &gt;&gt; x;
-		int lc = lca(u, v);
-		if(-2 * dep[lc] + dep[v] + dep[u] + 1 &gt;= 84)
-			cout &lt;&lt; &quot;YES&quot; &lt;&lt; '\n';
-		else if(u == v) {
-			cout &lt;&lt; &quot;NO&quot; &lt;&lt; '\n';
-		} else {
-			vector&lt;ll&gt; vec;
-			while(u != lc) {
-				vec.push_back(x * x * t[u] + x * k[u] + b[u]);
-				u = fa[u][0];
-			}
-			while(v != lc) {
-				vec.push_back(x * x * t[v] + x * k[v] + b[v]);
-				v = fa[v][0];
-			}
-			vec.push_back(x * x * t[lc] + x * k[lc] + b[lc]);
-			random_shuffle(vec.begin(), vec.end());
-			bool flg = true;
-			for(int i = 0; flg &amp;&amp; i &lt; vec.size(); ++i)
-				for(int j = 0; flg &amp;&amp; j &lt; vec.size(); ++j)
-					for(int k = 0; flg &amp;&amp; k &lt; vec.size(); ++k)
-						if(i &lt; j &amp;&amp; j &lt; k) {
-							ll sum = vec[i] + vec[j] + vec[k];
-							ll mx = max(max(vec[i], vec[j]), vec[k]);
-							if(sum - mx &gt; mx) {
-								flg = false;
-								break;	
-							}
-						}
-			if(!flg) {
-				cout &lt;&lt; &quot;YES&quot; &lt;&lt; '\n';	
-			} else {
-				cout &lt;&lt; &quot;NO&quot;&lt;&lt; '\n';	
-			}
-		}
-	}
-	return 0;
-} 
 </code></pre>
 ]]></content>
     </entry>

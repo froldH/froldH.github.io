@@ -1,0 +1,375 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>2020-07-16 训练日记 | oldherd&#39;s blog</title>
+<link rel="shortcut icon" href="https://froldh.github.io/favicon.ico?v=1594908229736">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://froldh.github.io/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="2020-07-16 训练日记 | oldherd&#39;s blog - Atom Feed" href="https://froldh.github.io/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+
+    <meta name="description" content="view
+
+学会了fft
+过了fft板子
+
+detail
+fft板子
+talk
+终于学会了fft , 在某位L姓带佬的指导下。
+话说能给我这种理解能力和水平巨差的人全程讲下来真的不容易qaq
+稍微记一点关键的东西备忘 , 实际上多数还是源于..." />
+    <meta name="keywords" content="FFT,多项式,训练日记,数学" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://froldh.github.io">
+  <img class="avatar" src="https://froldh.github.io/images/avatar.png?v=1594908229736" alt="">
+  </a>
+  <h1 class="site-title">
+    oldherd&#39;s blog
+  </h1>
+  <p class="site-description">
+    又弱又笨的蒟蒻的博客
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              2020-07-16 训练日记
+            </h2>
+            <div class="post-info">
+              <span>
+                2020-07-16
+              </span>
+              <span>
+                5 min read
+              </span>
+              
+                <a href="https://froldh.github.io/tag/W6i-pukgR/" class="post-tag">
+                  # FFT
+                </a>
+              
+                <a href="https://froldh.github.io/tag/0MuIaAi-xq/" class="post-tag">
+                  # 多项式
+                </a>
+              
+                <a href="https://froldh.github.io/tag/n79epuOasd/" class="post-tag">
+                  # 训练日记
+                </a>
+              
+                <a href="https://froldh.github.io/tag/HkFnZss-yE/" class="post-tag">
+                  # 数学
+                </a>
+              
+            </div>
+            
+              <img class="post-feature-image" src="https://froldh.github.io/post-images/2020-07-16-xun-lian-ri-ji.jpg" alt="">
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <h2 id="view">view</h2>
+<ol>
+<li>学会了fft</li>
+<li>过了<a href="https://www.luogu.com.cn/problem/P3803">fft板子</a></li>
+</ol>
+<h2 id="detail">detail</h2>
+<h3 id="fft板子">fft板子</h3>
+<h4 id="talk">talk</h4>
+<p>终于学会了fft , 在某位L姓带佬的指导下。<br>
+话说能给我这种理解能力和水平巨差的人全程讲下来真的不容易qaq<br>
+稍微记一点关键的东西备忘 , 实际上多数还是源于该带佬的blog</p>
+<h4 id="note">note</h4>
+<p>没写完 , 咕咕咕~</p>
+<h4 id="code">code</h4>
+<pre><code class="language-cpp">void dft(cp *a, int n) {
+	if(n == 1) return;
+	int hf = n &gt;&gt; 1;
+	cp a0[hf], a1[hf];
+	for(int i = 0; i &lt; hf; ++i)	{
+		a0[i] = a[i&lt;&lt;1];
+		a1[i] = a[i&lt;&lt;1|1];
+	}
+	dft(a0, hf);
+	dft(a1, hf);
+	for(int i = 0; i &lt; hf; ++i) {
+		cp omg = cp(cos(2*PI*i/n), sin(2*PI*i/n));
+		a[i] = a0[i] + omg * a1[i];
+		a[i+hf] = a0[i] - omg * a1[i];	
+	}
+}
+
+void idft(cp *a, int n) {
+	reverse(a + 1, a + n);
+	dft(a, n);
+	for(int i = 0; i &lt; n; ++i) a[i] = a[i] / n;
+}
+</code></pre>
+<h3 id="p3803-fft板子">P3803  fft板子</h3>
+<h4 id="事项">事项 :</h4>
+<ol>
+<li>需要使用二进制翻转进行卡常 , 通过观察容易发现在fft递归到底层之后的下标值为原下标的二进制翻转(长度为序列长度) , 该过程可以使用 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="script">O</mi><mo>(</mo><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">\mathcal{O(n)}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathcal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span></span> 递推求解 ，即 <code>t[i] = t[i&gt;&gt;1]&gt;&gt;1 + (i&amp;n?n&gt;&gt;1:0)</code></li>
+<li>复数单位根应当采用递推的形式去做 , 即 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msubsup><mi>ω</mi><mi>n</mi><mi>i</mi></msubsup><mo>=</mo><msubsup><mi>ω</mi><mi>n</mi><mrow><mi>i</mi><mo>−</mo><mn>1</mn></mrow></msubsup><mo>∗</mo><msub><mi>ω</mi><mi>n</mi></msub></mrow><annotation encoding="application/x-tex">\omega_{n}^i = \omega_{n}^{i-1}*\omega_{n}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.071664em;vertical-align:-0.247em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">ω</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.824664em;"><span style="top:-2.4530000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">n</span></span></span></span><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.247em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.071664em;vertical-align:-0.247em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">ω</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.824664em;"><span style="top:-2.4530000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">n</span></span></span></span><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span><span class="mbin mtight">−</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.247em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">ω</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">n</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span><br>
+<strong>好的操作</strong><br>
+<img src="https://froldh.github.io/post-images/1594908193797.png" alt="" loading="lazy"><br>
+<strong>不优的操作</strong><br>
+<img src="https://froldh.github.io/post-images/1594908205241.png" alt="" loading="lazy"></li>
+</ol>
+<h4 id="code-2">code</h4>
+<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
+
+using namespace std;
+
+const double PI = acos(-1);
+const int maxn = 2345678;
+
+struct cp {
+	double x, y;
+	cp() { x = y = 0; }
+	cp(double X, double Y) : x(X), y(Y) {}
+	cp operator + (const cp&amp; o) const {
+		return cp(x + o.x, y + o.y);
+	}
+	cp operator - (const cp&amp; o) const {
+		return cp(x - o.x, y - o.y);
+	}
+	cp operator * (const cp&amp; o) const {
+		return cp(x*o.x-y*o.y, x*o.y+y*o.x);	
+	}
+	void operator *= (const cp&amp; o) {
+		double tx = x * o.x - y * o.y;
+		y = x * o.y + y * o.x;
+		x = tx;
+	}
+	void operator /= (const int&amp; n) {
+		x /= n; y /= n;
+	}
+}a[maxn], b[maxn];
+
+inline void flip(int &amp;x) {
+	int t = 1;
+	while(t &lt; x) t &lt;&lt;= 1;
+	x = t;
+}
+
+int target[maxn];
+
+void dft(cp a[], int n) {
+	for(int i = 0; i &lt; n; ++i) if(i &lt;= target[i]) swap(a[i], a[target[i]]);
+	for(int m = 2; m &lt;= n; m &lt;&lt;= 1) {
+		int hf = m &gt;&gt; 1;
+		for(int i = 0; i &lt; n; i += m) {
+			cp w0 = cp(cos(2*PI/m), sin(2*PI/m));
+			cp omg = cp(1, 0);
+			for(int k = 0; k &lt; hf; ++k, omg *= w0) {
+				cp t = omg * a[i+k+hf];
+				a[i+k+hf] = a[i+k] - t;
+				a[i+k] = a[i+k] + t;
+			}
+		}
+	}
+}
+
+void idft(cp a[], int n) {
+	reverse(a + 1, a + n);
+	dft(a, n);
+	for(int i = 0; i &lt; n; ++i) a[i] /= n;
+}
+
+int main() {
+	ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
+	int n, m;
+	cin &gt;&gt; n &gt;&gt; m;
+	for(int i = 0; i &lt;= n; ++i) cin &gt;&gt; a[i].x;
+	for(int i = 0; i &lt;= m; ++i) cin &gt;&gt; b[i].x;
+	int len = n + m + 1;
+	flip(len);
+	for(int i = 0; i &lt; len; ++i)
+		target[i] = target[i&gt;&gt;1]&gt;&gt;1 | (i&amp;1?len&gt;&gt;1:0);
+	dft(a, len);
+	dft(b, len);
+	for(int i = 0; i &lt; len; ++i) a[i] *= b[i];
+	idft(a, len);
+	for(int i = 0; i &lt;= n + m; ++i) cout &lt;&lt; (int)(a[i].x + 0.5) &lt;&lt; ' ';
+	cout &lt;&lt; endl;
+	return 0;
+}
+</code></pre>
+<h2 id="thought">thought</h2>
+<p>今天被一些事情缠住了 , 没怎么做题qaq<br>
+明天下午好像还要去兵役体检啊QaQ , 明明我近视500°的说 , 一下午又要没了(心疼)<br>
+明天上午有ACM集训的白嫖课 , 开心~</p>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#view">view</a></li>
+<li><a href="#detail">detail</a>
+<ul>
+<li><a href="#fft%E6%9D%BF%E5%AD%90">fft板子</a>
+<ul>
+<li><a href="#talk">talk</a></li>
+<li><a href="#note">note</a></li>
+<li><a href="#code">code</a></li>
+</ul>
+</li>
+<li><a href="#p3803-fft%E6%9D%BF%E5%AD%90">P3803  fft板子</a>
+<ul>
+<li><a href="#%E4%BA%8B%E9%A1%B9">事项 :</a></li>
+<li><a href="#code-2">code</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#thought">thought</a></li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://froldh.github.io/post/2020-07-15-xun-lian-ri-ji/">
+              <h3 class="post-title">
+                2020-07-15 训练日记
+              </h3>
+            </a>
+          </div>
+        
+
+        
+          
+            <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+<div id="gitalk-container"></div>
+
+<script>
+
+  var gitalk = new Gitalk({
+    clientID: 'a68cadfa7688e46bd19c',
+    clientSecret: 'c28728eae71d03ee5506e3547085f4467a3629b9',
+    repo: 'gridea_blog_talk',
+    owner: 'froldh',
+    admin: ['froldh'],
+    id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+    distractionFreeMode: false  // Facebook-like distraction free mode
+  })
+
+  gitalk.render('gitalk-container')
+
+</script>
+
+          
+
+          
+        
+
+        <div class="site-footer">
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+  <a class="rss" href="https://froldh.github.io/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>
