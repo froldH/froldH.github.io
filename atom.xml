@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://froldh.github.io</id>
     <title>oldherd&apos;s blog</title>
-    <updated>2020-07-16T14:16:10.783Z</updated>
+    <updated>2020-07-20T09:01:15.172Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://froldh.github.io"/>
     <link rel="self" href="https://froldh.github.io/atom.xml"/>
@@ -10,6 +10,118 @@
     <logo>https://froldh.github.io/images/avatar.png</logo>
     <icon>https://froldh.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, oldherd&apos;s blog</rights>
+    <entry>
+        <title type="html"><![CDATA[2020-07-19 训练日记]]></title>
+        <id>https://froldh.github.io/post/2020-07-19-xun-lian-ri-ji/</id>
+        <link href="https://froldh.github.io/post/2020-07-19-xun-lian-ri-ji/">
+        </link>
+        <updated>2020-07-19T08:41:04.000Z</updated>
+        <summary type="html"><![CDATA[<h2 id="view">View</h2>
+<ol>
+<li><a href="https://codeforces.com/contest/1379/problem/A">CF1379B (#657Div2B)</a></li>
+<li><a href="https://codeforces.com/contest/1379/problem/A">CF1379C (#657Div2C)</a></li>
+</ol>
+]]></summary>
+        <content type="html"><![CDATA[<h2 id="view">View</h2>
+<ol>
+<li><a href="https://codeforces.com/contest/1379/problem/A">CF1379B (#657Div2B)</a></li>
+<li><a href="https://codeforces.com/contest/1379/problem/A">CF1379C (#657Div2C)</a></li>
+</ol>
+<!-- more -->  
+<h2 id="detail">detail</h2>
+<h3 id="cf1379a-657div2c">CF1379A (#657Div2C)</h3>
+<h4 id="思路">思路</h4>
+<p>b可以选择无限种 , 至多只能选一种的b。<br>
+枚举选择的b , 贪心求选哪些a。<br>
+<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="script">O</mi><mo>(</mo><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">\mathcal{O(n)}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathcal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span></span></p>
+<h4 id="事项">事项</h4>
+<p>注意二分的边界情况 , pls = 0可能是一个都不能选(建议下标从1开始并给0设置一个边界值以区分) , 要特判。</p>
+<h4 id="code">code</h4>
+<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
+#define endl '\n'
+#define rep(i,a,b) for(int i=a;i&lt;=(b);++i)
+#define per(i,a,b) for(int i=a;i&gt;=(b);--i)
+#define repp(i,a,b) for(int i=a;i&lt;(b);++i)
+#define perr(i,a,b) for(int i=a;i&gt;(b);--i)
+#define pb push_back
+#define rz resize
+#define itra std::vector&lt;int&gt;::iterator;
+#define VI vector&lt;int&gt;
+#define VL vector&lt;long long&gt;
+#define VD vector&lt;double&gt;
+
+using namespace std;
+
+typedef long long ll;
+typedef pair&lt;int,int&gt; pii;
+
+inline void ponchline() { cout &lt;&lt; &quot;##################################&quot; &lt;&lt; endl; }
+inline ll qp(ll a, ll b, ll p) { ll res = 1%p; for(;b;b&gt;&gt;=1) { if(b&amp;1)res=res*a%p; a=a*a%p; } return res; }
+inline ll gcd(ll a, ll b) { while(b) { int t = b; b = a%b; a=t; } return a; }
+mt19937 mrand(random_device{}()); int rnd(int x) { return mrand() % x;}
+
+const int inf = 0x3f3f3f3f;
+const ll linf = 0x3f3f3f3f3f3f3f3f;
+const int maxn = 123456;
+
+//vector&lt; VI &gt; edge;
+
+struct pr {
+	int x, y;
+	pr() {}	
+	pr(int x, int y) : x(x), y(y) {}
+} prs[maxn];
+
+ll sum[maxn];
+
+int getpls(int l, int r, int key) {
+	while(l &lt; r) {
+		int mid = (l + r + 1) &gt;&gt; 1;
+		if(prs[mid].x &gt;= key) l = mid;
+		else r = mid - 1;
+	}
+	return l;
+}
+
+int main() {
+	ios::sync_with_stdio(false);
+	cin.tie(0);
+	int tests;
+	cin&gt;&gt;tests;
+	while(tests--) {
+		int n, m, nn;
+		cin &gt;&gt; n &gt;&gt; m;
+		nn = n;
+		for(int i = 0; i &lt; m; ++i) cin &gt;&gt; prs[i].x &gt;&gt; prs[i].y;
+		sort(prs, prs + m, [&amp;](pr x, pr y){return x.x &gt; y.x || x.x == y.x &amp;&amp; x.y &gt; y.y;});
+		sum[0] = prs[0].x;
+		for(int i = 1; i &lt; m; ++i) sum[i] = sum[i-1] + prs[i].x;
+		ll ans = sum[min(m-1, n-1)], tt;
+		for(int i = 0; i &lt; m; ++i) {
+			tt = 0;
+			int pls = getpls(0, m - 1, prs[i].y);
+			if(prs[pls].x &lt; prs[i].y) pls = -1;
+			if(pls + 1 &gt;= n) ans = max(ans, sum[n - 1]);
+			else {
+				if(~pls) {
+					tt += sum[pls];
+					n -= pls + 1;
+				}
+				if(i &gt; pls) --n, tt += prs[i].x;
+				tt += 1ll * n * prs[i].y;
+				ans = max(ans, tt);
+			}
+			n = nn;
+		}
+		cout &lt;&lt; ans &lt;&lt; endl;
+	}
+	return 0;
+}
+
+
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[2020-07-16 训练日记]]></title>
         <id>https://froldh.github.io/post/2020-07-16-xun-lian-ri-ji/</id>
@@ -1511,171 +1623,6 @@ int main() {
 			printf(&quot;%lld\n&quot;, ans);
 		}
 	}
-	return 0;
-}
-</code></pre>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[题解 [起跑线]提高模拟Round3]]></title>
-        <id>https://froldh.github.io/post/qpx-tg-round3/</id>
-        <link href="https://froldh.github.io/post/qpx-tg-round3/">
-        </link>
-        <updated>2020-02-26T14:45:05.000Z</updated>
-        <summary type="html"><![CDATA[<p>Rnk3  T1、T2连续翻车丢人<br>
-60 + 20 + 100</p>
-]]></summary>
-        <content type="html"><![CDATA[<p>Rnk3  T1、T2连续翻车丢人<br>
-60 + 20 + 100</p>
-<!-- more -->  
-<h3 id="t1-简单问题">T1 简单问题</h3>
-<p>给定 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>a</mi><mo separator="true">,</mo><mi>k</mi></mrow><annotation encoding="application/x-tex">a,k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">a</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span></span></span></span>，请你求出 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mi>a</mi><mn>1</mn></msup><mo>+</mo><msup><mi>a</mi><mn>2</mn></msup><mo>+</mo><msup><mi>a</mi><mn>3</mn></msup><mo>+</mo><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mo>+</mo><msup><mi>a</mi><mi>k</mi></msup></mrow><annotation encoding="application/x-tex">a^1+a^2+a^3+...+a^k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.897438em;vertical-align:-0.08333em;"></span><span class="mord"><span class="mord mathdefault">a</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.897438em;vertical-align:-0.08333em;"></span><span class="mord"><span class="mord mathdefault">a</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.897438em;vertical-align:-0.08333em;"></span><span class="mord"><span class="mord mathdefault">a</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord">.</span><span class="mord">.</span><span class="mord">.</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.849108em;vertical-align:0em;"></span><span class="mord"><span class="mord mathdefault">a</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.849108em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.03148em;">k</span></span></span></span></span></span></span></span></span></span></span> 对 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>998244353</mn></mrow><annotation encoding="application/x-tex">998244353</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">9</span><span class="mord">9</span><span class="mord">8</span><span class="mord">2</span><span class="mord">4</span><span class="mord">4</span><span class="mord">3</span><span class="mord">5</span><span class="mord">3</span></span></span></span> 取模后的结果。<br>
-由高中数学知识, 当<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>a</mi><mpadded width="0px"><mo></mo></mpadded><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">a \not = 1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">a</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel"><span class="mord"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.69444em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="rlap"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="inner"><span class="mrel"></span></span><span class="fix"></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.19444em;"><span></span></span></span></span></span></span></span><span class="base"><span class="strut" style="height:0.36687em;vertical-align:0em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span>时结果等于 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>a</mi><mover accent="true"><mfrac><mrow><msup><mi>a</mi><mi>k</mi></msup><mo>−</mo><mn>1</mn></mrow><mrow><mi>a</mi><mo>−</mo><mn>1</mn></mrow></mfrac><mo>˙</mo></mover></mrow><annotation encoding="application/x-tex">a \dot \frac{a^k-1}{a-1}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.581611em;vertical-align:-0.403331em;"></span><span class="mord mathdefault">a</span><span class="mord accent"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.17828em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.9414199999999999em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">a</span><span class="mbin mtight">−</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathdefault mtight">a</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7820285714285713em;"><span style="top:-2.786em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mathdefault mtight" style="margin-right:0.03148em;">k</span></span></span></span></span></span></span></span><span class="mbin mtight">−</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.403331em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span><span style="top:-3.51042em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.13889em;">˙</span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.403331em;"><span></span></span></span></span></span></span></span></span>, <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>a</mi><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">a = 1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">a</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span>时结果等于 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span></span></span></span>.</p>
-<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
-
-using namespace std;
-
-typedef long long ll;
-
-const ll mod = 998244353;
-
-ll qp(ll a, ll b) {
-   ll res = 1 % mod;
-   for(; b; b &gt;&gt;= 1) {
-   	if(b &amp; 1) res = res * a % mod;
-   	a = a * a % mod;
-   }
-   return res;
-}
-
-int main() {
-   ios::sync_with_stdio(false);
-   cin.tie(0);
-   ll a, k;
-   cin &gt;&gt; a &gt;&gt; k;
-   a %= mod;
-   if(a == 1) cout &lt;&lt; (k % mod) &lt;&lt; '\n';
-   else { 
-   	ll res = a * (qp(a, k) - 1) % mod;
-   	res = res * qp(a - 1, mod - 2) % mod;
-   	cout &lt;&lt; res &lt;&lt; '\n';
-   }
-   return 0;
-}
-</code></pre>
-<h3 id="t2-权值覆盖问题">T2 权值覆盖问题</h3>
-<p>并查集写法挂掉了，题解给的是差分约束。<br>
-等弄明白想法对不对再补上罢，咕咕咕。。。</p>
-<h3 id="t3-删边问题">T3 删边问题</h3>
-<p>套路化的离线解法，把删边看作是加边，然后对加边的情况进行讨论和更新(和BFS一致)即可。</p>
-<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
-
-using namespace std;
-
-const int inf = 0x3f3f3f3f;
-
-struct edge {
-	int u, v;
-	edge() {}
-	edge(int U, int V) : u(U), v(V) {}
-};
-vector&lt;edge&gt; edges;
-vector&lt; vector&lt;int&gt; &gt; e, e_raw;
-vector&lt;int&gt; del, ans, dis, dis_raw;
-vector&lt;bool&gt; isdel;
-
-queue&lt;int&gt; que;
-void bfs_raw() {
-	dis_raw[1] = 0;
-	que.push(1);
-	while(!que.empty()) {
-		int cur = que.front(); que.pop();
-		for(int ver : e_raw[cur]) {
-			if(inf == dis_raw[ver]) {
-				dis_raw[ver] = dis_raw[cur] + 1;
-				que.push(ver); 
-			}
-		}
-	}
-
-}
-
-void bfs_end() {
-	dis[1] = 0;
-	que.push(1);
-	while(!que.empty()) {
-		int cur = que.front(); que.pop();
-		for(int ver : e[cur]) {
-			if(inf == dis[ver]) {
-				dis[ver] = dis[cur] + 1;
-				que.push(ver);	
-			}
-		}
-	}
-}
-
-int main() {
-	ios::sync_with_stdio(false);
-	cin.tie(0);
-	int n, m, q, tmp, u, v;
-	cin &gt;&gt; n &gt;&gt; m &gt;&gt; q;
-	isdel.assign(m, false);
-	edges.resize(m);
-	e_raw.resize(n + 1);
-	e.resize(n + 1);
-	dis.assign(n + 1, inf);
-	dis_raw.resize(n + 1, inf);
-	ans.resize(q + 1);
-	for(int i = 0; i &lt; m; ++i) {
-		cin &gt;&gt; u &gt;&gt; v;
-		edges[i] = edge(u, v);
-		e_raw[u].push_back(v);
-		e_raw[v].push_back(u);
-	}
-	for(int i = 0; i &lt; q; ++i) {
-		cin &gt;&gt; tmp;
-		--tmp;
-		if(!isdel[tmp]) {
-			isdel[tmp] = true;
-			del.push_back(tmp);
-		} else {
-			del.push_back(-1);
-		}
-	}
-	bfs_raw();
-	for(int i = 0; i &lt; m; ++i)
-		if(!isdel[i]) {
-			e[edges[i].u].push_back(edges[i].v);
-			e[edges[i].v].push_back(edges[i].u);
-		}
-	bfs_end();
-	for(int i = 1; i &lt;= n; ++i)
-		if(dis[i] != dis_raw[i])
-			++ans[q];
-	for(int i = q - 1; ~i; --i) {
-		ans[i] = ans[i + 1];
-		if(!~del[i]) continue;
-		u = edges[del[i]].u, v = edges[del[i]].v;
-		e[u].push_back(v);
-		e[v].push_back(u);
-		if(abs(dis[u] - dis[v]) &lt;= 1)
-			continue;
-		if(dis[u] &lt; dis[v]) swap(u, v);
-		dis[u] = dis[v] + 1;
-		if(dis[u] == dis_raw[u]) --ans[i];
-		que.push(u);
-		while(!que.empty()) {
-			int cur = que.front(); que.pop();
-			for(int ver : e[cur]) {
-				if(dis[ver] &gt; dis[cur] + 1) {
-					dis[ver] = dis[cur] + 1;
-					if(dis[ver] == dis_raw[ver]) --ans[i];
-					que.push(ver);
-				}
-			}
-		}
-	}
-	for(int i = 1; i &lt;= q; ++i) cout &lt;&lt; ans[i] &lt;&lt; '\n';
 	return 0;
 }
 </code></pre>
