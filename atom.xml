@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://froldh.github.io</id>
     <title>oldherd&apos;s blog</title>
-    <updated>2020-07-20T09:01:15.172Z</updated>
+    <updated>2020-07-20T09:09:00.365Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://froldh.github.io"/>
     <link rel="self" href="https://froldh.github.io/atom.xml"/>
@@ -18,25 +18,82 @@
         <updated>2020-07-19T08:41:04.000Z</updated>
         <summary type="html"><![CDATA[<h2 id="view">View</h2>
 <ol>
-<li><a href="https://codeforces.com/contest/1379/problem/A">CF1379B (#657Div2B)</a></li>
-<li><a href="https://codeforces.com/contest/1379/problem/A">CF1379C (#657Div2C)</a></li>
+<li><a href="https://codeforces.com/contest/1379/problem/B">CF1379B (#657Div2B)</a></li>
+<li><a href="https://codeforces.com/contest/1379/problem/C">CF1379C (#657Div2C)</a></li>
 </ol>
 ]]></summary>
         <content type="html"><![CDATA[<h2 id="view">View</h2>
 <ol>
-<li><a href="https://codeforces.com/contest/1379/problem/A">CF1379B (#657Div2B)</a></li>
-<li><a href="https://codeforces.com/contest/1379/problem/A">CF1379C (#657Div2C)</a></li>
+<li><a href="https://codeforces.com/contest/1379/problem/B">CF1379B (#657Div2B)</a></li>
+<li><a href="https://codeforces.com/contest/1379/problem/C">CF1379C (#657Div2C)</a></li>
 </ol>
 <!-- more -->  
 <h2 id="detail">detail</h2>
-<h3 id="cf1379a-657div2c">CF1379A (#657Div2C)</h3>
+<h3 id="cf1379b-657div2b">CF1379B (#657Div2B)</h3>
 <h4 id="思路">思路</h4>
+<p>枚举a , 贪心求 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="normal">∣</mi><mi>b</mi><mo>−</mo><mi>c</mi><mi mathvariant="normal">∣</mi></mrow><annotation encoding="application/x-tex">|b-c|</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">∣</span><span class="mord mathdefault">b</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">c</span><span class="mord">∣</span></span></span></span> 的两个最小值(分别在<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>b</mi><mo>−</mo><mi>c</mi><mo>⩾</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">b - c \geqslant 0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.77777em;vertical-align:-0.08333em;"></span><span class="mord mathdefault">b</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.7733399999999999em;vertical-align:-0.13667em;"></span><span class="mord mathdefault">c</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel amsrm">⩾</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span> 和 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>b</mi><mo>−</mo><mi>c</mi><mo>⩽</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">b - c \leqslant 0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.77777em;vertical-align:-0.08333em;"></span><span class="mord mathdefault">b</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.7733399999999999em;vertical-align:-0.13667em;"></span><span class="mord mathdefault">c</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel amsrm">⩽</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span> )时。然后看能否构造符合的解。<br>
+<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="script">O</mi><mo>(</mo><mi>r</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">\mathcal{O(r)}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathcal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mclose">)</span></span></span></span></span></p>
+<h4 id="code">code</h4>
+<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
+#define endl '\n'
+#define rep(i,a,b) for(int i=a;i&lt;=(b);++i)
+#define per(i,a,b) for(int i=a;i&gt;=(b);--i)
+#define repp(i,a,b) for(int i=a;i&lt;(b);++i)
+#define perr(i,a,b) for(int i=a;i&gt;(b);--i)
+#define pb push_back
+#define rz resize
+#define itra std::vector&lt;int&gt;::iterator;
+#define VI vector&lt;int&gt;
+#define VL vector&lt;long long&gt;
+#define VD vector&lt;double&gt;
+ 
+using namespace std;
+ 
+typedef long long ll;
+typedef pair&lt;int,int&gt; pii;
+ 
+inline void ponchline() { cout &lt;&lt; &quot;##################################&quot; &lt;&lt; endl; }
+inline ll qp(ll a, ll b, ll p) { ll res = 1%p; for(;b;b&gt;&gt;=1) { if(b&amp;1)res=res*a%p; a=a*a%p; } return res; }
+inline ll gcd(ll a, ll b) { while(b) { int t = b; b = a%b; a=t; } return a; }
+mt19937 mrand(random_device{}()); int rnd(int x) { return mrand() % x;}
+ 
+const int inf = 0x3f3f3f3f;
+const ll linf = 0x3f3f3f3f3f3f3f3f;
+ 
+//vector&lt; VI &gt; edge;
+ 
+int main() {
+	ios::sync_with_stdio(false);
+	cin.tie(0);
+	int tests;
+	cin&gt;&gt;tests;
+	while(tests--) {
+		ll l, r, m;
+		cin &gt;&gt; l &gt;&gt; r &gt;&gt; m;
+		for(ll a = r; a &gt;= l; --a) {
+			ll t = m % a;
+			if(t &lt;= r - l &amp;&amp; m / a != 0) {
+				cout &lt;&lt; a &lt;&lt; ' ' &lt;&lt; l + t &lt;&lt; ' ' &lt;&lt; l &lt;&lt; endl;
+				break;
+			}
+			if((m / a + 1) * a - m &lt;= r - l) {
+				cout &lt;&lt; a &lt;&lt; ' ' &lt;&lt; r - ((m / a + 1) * a - m) &lt;&lt; ' ' &lt;&lt; r &lt;&lt; endl;
+				break;	
+			}
+ 		}
+	}
+	return 0;
+}
+ 
+</code></pre>
+<h3 id="cf1379c-657div2c">CF1379C (#657Div2C)</h3>
+<h4 id="思路-2">思路</h4>
 <p>b可以选择无限种 , 至多只能选一种的b。<br>
 枚举选择的b , 贪心求选哪些a。<br>
 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="script">O</mi><mo>(</mo><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">\mathcal{O(n)}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathcal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span></span></p>
 <h4 id="事项">事项</h4>
 <p>注意二分的边界情况 , pls = 0可能是一个都不能选(建议下标从1开始并给0设置一个边界值以区分) , 要特判。</p>
-<h4 id="code">code</h4>
+<h4 id="code-2">code</h4>
 <pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
 #define endl '\n'
 #define rep(i,a,b) for(int i=a;i&lt;=(b);++i)
