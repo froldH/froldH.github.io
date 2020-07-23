@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://froldh.github.io</id>
     <title>oldherd&apos;s blog</title>
-    <updated>2020-07-20T09:09:00.365Z</updated>
+    <updated>2020-07-23T01:46:49.898Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://froldh.github.io"/>
     <link rel="self" href="https://froldh.github.io/atom.xml"/>
@@ -10,6 +10,520 @@
     <logo>https://froldh.github.io/images/avatar.png</logo>
     <icon>https://froldh.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, oldherd&apos;s blog</rights>
+    <entry>
+        <title type="html"><![CDATA[2020-07-21~2020-07-22 训练日记]]></title>
+        <id>https://froldh.github.io/post/2020-07-20~2020-07-21-xun-lian-ri-ji/</id>
+        <link href="https://froldh.github.io/post/2020-07-20~2020-07-21-xun-lian-ri-ji/">
+        </link>
+        <updated>2020-07-20T15:28:58.000Z</updated>
+        <summary type="html"><![CDATA[<h2 id="view">view</h2>
+<ol>
+<li>学习点分治 , 看了 几篇课件和《进阶指南》4.5 、XD7.15《图论课1》回放以及<a href="https://www.bilibili.com/video/BV1fE411w7RH?from=search&amp;seid=18170482803256782657">这个</a></li>
+<li><a href="https://www.luogu.com.cn/problem/P3806">点分治板子</a></li>
+<li><a href="https://www.luogu.com.cn/problem/P4178">LG4178</a></li>
+<li><a href="https://www.luogu.com.cn/problem/CF161D">CF161D</a></li>
+</ol>
+]]></summary>
+        <content type="html"><![CDATA[<h2 id="view">view</h2>
+<ol>
+<li>学习点分治 , 看了 几篇课件和《进阶指南》4.5 、XD7.15《图论课1》回放以及<a href="https://www.bilibili.com/video/BV1fE411w7RH?from=search&amp;seid=18170482803256782657">这个</a></li>
+<li><a href="https://www.luogu.com.cn/problem/P3806">点分治板子</a></li>
+<li><a href="https://www.luogu.com.cn/problem/P4178">LG4178</a></li>
+<li><a href="https://www.luogu.com.cn/problem/CF161D">CF161D</a></li>
+</ol>
+<!-- more -->  
+<h2 id="detail">detail</h2>
+<h3 id="点分治">点分治</h3>
+<h4 id="思想">思想</h4>
+<p>一般用于做树上路径相关的统计。<br>
+统计根的孩子中跨过根的路径 , 一般需要做到 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="script">O</mi><mo>(</mo><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">\mathcal{O(n)}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathcal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span></span> 或者 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="script">O</mi><mo>(</mo><mi>n</mi><mi>log</mi><mo>⁡</mo><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">\mathcal{O(n \log n)}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathcal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span></span> , 然后删掉根节点 , 递归统计各个子树的情况。<br>
+根选择重心可以保证优秀的复杂度。</p>
+<h4 id="处理方式">处理方式</h4>
+<ol>
+<li>点分治 --&gt; 考虑统计以根为lca的点对的情况。</li>
+<li>处理可以把所有结点放在数组中排序然后two_pointer , 像莫队那样在移动指针的时候统计[l, r]之间的颜色数量。比较适用于求 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>⩽</mo><mi>k</mi></mrow><annotation encoding="application/x-tex">\leqslant k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7733399999999999em;vertical-align:-0.13667em;"></span><span class="mrel amsrm">⩽</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span></span></span></span> 或 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>⩾</mo><mi>k</mi></mrow><annotation encoding="application/x-tex">\geqslant k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7733399999999999em;vertical-align:-0.13667em;"></span><span class="mrel amsrm">⩾</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span></span></span></span>  的节点对。</li>
+<li>可以使用平衡树或者权值树来统计。对每棵子树依次calc-add。  用map可以方便地求 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>=</mo><mi>k</mi></mrow><annotation encoding="application/x-tex">=k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.36687em;vertical-align:0em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span></span></span></span> 的节点对。</li>
+</ol>
+<h3 id="lg点分治板子">LG点分治板子</h3>
+<h4 id="事项">事项</h4>
+<ol>
+<li>work()函数(点分治主过程)用递归实现的效率高于用队列+循环实现。</li>
+<li>用树状数组处理不应用memset , 而是将栈中的点对应的位置清零。(用memset复杂度会炸)</li>
+<li>注意two_pointer的实现方式。</li>
+</ol>
+<h4 id="code">code</h4>
+<h5 id="递归实现12ms-156mb">递归实现(12ms , 1.56MB)</h5>
+<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
+
+const int maxn = 12345, maxm = 123;
+
+struct edge {
+	int x, w;
+	edge() { x = w = 0; }
+	edge(int x, int w) : x(x), w(w) {}
+};
+
+typedef std::vector&lt;std::vector&lt; edge &gt; &gt; Graph;
+
+Graph G;
+int qry[maxm], q;
+int siz[maxn];
+int stk[maxn], top, fa[maxn];
+int d[maxn], col[maxn];
+bool del[maxn], ans[maxn];
+
+void dfs1(int pre, int cur) {
+	stk[top++] = cur; siz[cur] = 1;
+	fa[cur] = pre;
+	for(edge e : G[cur])
+		if(!del[e.x] &amp;&amp; pre != e.x) {
+			dfs1(cur, e.x);
+			siz[cur] += siz[e.x];
+		}
+}
+
+int find_root(int xx) {
+	stk[0] = xx; top = 1;
+	siz[xx] = 1;
+	for(edge e : G[xx])
+		if(!del[e.x]) {
+			dfs1(xx, e.x);
+			siz[xx] += siz[e.x];
+		}
+	for(int i = 0; i &lt; top; ++i)
+		if(top - siz[stk[i]] &lt;= (top &gt;&gt; 1)) {
+			bool flg = true;
+			for(edge e : G[stk[i]])
+				if(!del[e.x] &amp;&amp; e.x != fa[stk[i]] &amp;&amp; siz[e.x] &gt; (top &gt;&gt; 1)) {
+					flg = false;
+					break;
+				}
+			if(flg) return stk[i];
+		}
+}
+
+void dfs2(int pre, int cur, int w, int color) {
+	d[cur] = d[pre] + w;
+	col[cur] = color;
+	for(edge e : G[cur])
+		if(!del[e.x] &amp;&amp; e.x != pre)
+			dfs2(cur, e.x, e.w, color);
+}
+
+void work(int xx) {
+	int rt = find_root(xx);
+	if(top == 1) return;
+	d[rt] = 0; col[rt] = 0;
+	for(edge e : G[rt])
+	 	if(!del[e.x])
+			dfs2(rt, e.x, e.w, e.x);
+	std::sort(stk, stk + top, [&amp;](int x, int y){ return d[x] &lt; d[y]; });
+	for(int i = 0; i &lt; q; ++i) {
+		if(ans[i]) continue;
+		int l = 0, r = top - 1;
+		while(l &lt; r) {
+			if(d[stk[l]] + d[stk[r]] &lt; qry[i]) ++l;
+			else if(d[stk[l]] + d[stk[r]] &gt; qry[i]) --r;
+			else if(d[stk[l]] + d[stk[r]] == qry[i]) {
+				if(col[stk[l]] != col[stk[r]]) {
+					ans[i] = true;
+					break;
+				}
+				if(d[stk[l + 1]] == d[stk[l]]) ++l;
+				else --r;
+			}
+		}
+	}
+	del[rt] = true;
+	for(edge e : G[rt])
+		if(!del[e.x])
+			work(e.x);
+}
+
+int main() {
+	std::ios_base::sync_with_stdio(false);
+	std::cin.tie(NULL);
+	memset(del, false, sizeof(del));
+	int n, u, v, w;
+	std::cin &gt;&gt; n &gt;&gt; q;
+	G.resize(n + 1);
+	for(int i = 1; i &lt; n; ++i) {
+		std::cin &gt;&gt; u &gt;&gt; v &gt;&gt; w;
+		G[u].push_back(edge(v, w));
+		G[v].push_back(edge(u, w));
+	}
+	for(int i = 0; i &lt; q; ++i) std::cin &gt;&gt; qry[i];
+	work(1);
+	for(int i = 0; i &lt; q; ++i)
+		if(ans[i])
+			std::cout &lt;&lt; &quot;AYE\n&quot;;
+		else
+			std::cout &lt;&lt; &quot;NAY\n&quot;;
+	return 0;
+}
+</code></pre>
+<h5 id="队列-循环实现32ms-218mb">队列 + 循环实现(32ms , 2.18MB)</h5>
+<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
+
+using namespace std;
+
+const int maxn = 12345, maxm = 123;
+
+struct edge {
+	int x, w;
+	edge() {}
+	edge(int x, int w) : x(x), w(w) {} 
+};
+typedef vector&lt; vector&lt;edge&gt; &gt; graph;
+
+graph G;
+queue&lt;int&gt; q;
+int qry[maxm], m;
+int stk[maxn], top;
+int siz[maxn], fa[maxn];
+int d[maxn], col[maxn], ans[maxn];
+bool del[maxn];
+
+void dfs1(int pre, int cur) {
+	stk[top++] = cur;
+	siz[cur] = 1; fa[cur] = pre;
+	for(edge e : G[cur])
+		if(!del[e.x] &amp;&amp; e.x != pre)	 {
+			dfs1(cur, e.x);
+			siz[cur] += siz[e.x];
+		}
+}
+
+int findroot(int xx) {
+	top = 1;
+	stk[0] = xx;
+	siz[xx] = 1;
+	for(edge e : G[xx]) 
+		if(!del[e.x]) {
+			dfs1(xx, e.x);
+			siz[xx] += siz[e.x];
+		}
+	if(top == 1) return xx;
+	for(int i = 0; i &lt; top; ++i) {
+		int cur = stk[i];
+		if(top - siz[cur] &gt; top / 2) continue;
+		bool flg = true;
+		for(edge e : G[cur]) 
+			if(!del[e.x] &amp;&amp; e.x != fa[cur] &amp;&amp; siz[e.x] &gt; top / 2) {
+				flg = false;
+				break;
+			}
+		if(flg) return cur;
+	}
+}
+
+void dfs2(int pre, int cur, int w, int color) {
+	col[cur] = color;
+	d[cur] = d[pre] + w;
+	for(edge e : G[cur])
+		if(!del[e.x] &amp;&amp; e.x != pre)
+			dfs2(cur, e.x, e.w, color);
+}
+
+int main() {
+	ios::sync_with_stdio(false);
+	cin.tie(NULL);
+	int n, u, v, w;
+	cin &gt;&gt; n &gt;&gt; m;
+	G.resize(n + 1);
+	for(int i = 1; i &lt; n; ++i) {
+		cin &gt;&gt; u &gt;&gt; v &gt;&gt; w;
+		G[u].push_back(edge(v, w));
+		G[v].push_back(edge(u, w));
+	}
+	for(int i = 1; i &lt;= m; ++i) cin &gt;&gt; qry[i];
+	q.push(1);
+	while(!q.empty()) {
+		int xx = q.front(); q.pop();
+		int root = findroot(xx);
+		if(top == 1) continue;
+		d[root] = col[root] = 0;
+		for(edge e : G[root])
+			if(!del[e.x])
+				dfs2(root, e.x, e.w, e.x);
+		sort(stk, stk + top, [&amp;](int x, int y){ return d[x] &lt; d[y]; });
+		for(int i = 1; i &lt;= m; ++i) {
+			if(ans[i]) continue;
+			int l = 0, r = top - 1; 
+			while(l &lt; r) {
+				if(d[stk[l]] + d[stk[r]] &lt; qry[i]) ++l;
+				else if(d[stk[l]] + d[stk[r]] &gt; qry[i]) --r;
+				else if(col[stk[l]] == col[stk[r]]) {
+					if(d[stk[l]] == d[stk[l + 1]]) ++l;
+					else --r;
+				} else {
+					ans[i] = true;
+					break;
+				}
+			}
+		}
+		del[root] = true;
+		for(edge e : G[root])
+			if(!del[e.x])
+				q.push(e.x);
+	}
+	for(int i = 1; i &lt;= m; ++i)
+	if(ans[i])
+		std::cout &lt;&lt; &quot;AYE\n&quot;;
+	else
+		std::cout &lt;&lt; &quot;NAY\n&quot;;
+	return 0;	
+}
+</code></pre>
+<h3 id="lg4178">LG4178</h3>
+<h4 id="事项-2">事项</h4>
+<p>可用two_pointer解决 , 比较方便地求出点对数目(<code>R-L-num[col[L]]</code>)。</p>
+<h4 id="code-2">code</h4>
+<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
+#define endl '\n'
+#define rep(i,a,b) for(int i=a;i&lt;=(b);++i)
+#define per(i,a,b) for(int i=a;i&gt;=(b);--i)
+#define repp(i,a,b) for(int i=a;i&lt;(b);++i)
+#define perr(i,a,b) for(int i=a;i&gt;(b);--i)
+#define pb push_back
+#define rz resize
+#define itra std::vector&lt;int&gt;::iterator;
+#define VI vector&lt;int&gt;
+#define VL vector&lt;long long&gt;
+#define VD vector&lt;double&gt;
+
+using namespace std;
+
+typedef long long ll;
+typedef pair&lt;int,int&gt; pii;
+
+const int maxn = 56789;
+
+struct edge {
+	int x, w;
+	edge() {}
+	edge(int x, int w) : x(x), w(w) {}
+};
+
+typedef vector&lt; vector&lt;edge&gt; &gt; graph;
+graph G;
+long long ans = 0;
+int k;
+int stk[maxn], top;
+int siz[maxn], fa[maxn];
+int dis[maxn], col[maxn];
+bool del[maxn];
+int num[maxn];
+
+
+void dfs1(int pre, int cur) {
+	siz[cur] = 1; fa[cur] = pre;
+	stk[top++] = cur;
+	for(edge e : G[cur])
+		if(e.x != pre &amp;&amp; !del[e.x]) {
+			dfs1(cur, e.x);
+			siz[cur] += siz[e.x];
+		}
+}
+
+int findroot(int xx) {
+	stk[0] = xx; top = 1;
+	siz[xx] = 1;
+	for(edge e : G[xx]) 
+		if(!del[e.x]) {
+			dfs1(xx, e.x);
+			siz[xx] += siz[e.x];
+		}
+	for(int i = 0; i &lt; top; ++i) {
+		int cur = stk[i];
+		if(top - siz[cur] &gt; top / 2) continue;
+		bool flg = true;
+		for(edge e : G[cur])	
+			if(!del[e.x] &amp;&amp; e.x != fa[cur] &amp;&amp; siz[e.x] &gt; top / 2) {
+				flg = false; break;
+			}
+		if(flg) return cur;
+	}
+}
+
+void dfs2(int pre, int cur, int wei, int color) {
+	dis[cur] = dis[pre] + wei;
+	col[cur] = color;
+	for(edge e : G[cur])
+		if(!del[e.x] &amp;&amp; e.x != pre)
+			dfs2(cur, e.x, e.w, color);
+}
+
+long long calc(int k) {
+	long long ans = 0;
+	int l = 0, r = top - 1;
+	for(int i = 1; i &lt; top; ++i) ++num[col[stk[i]]];
+	for(; l &lt; r; --num[col[stk[++l]]]) {
+		while(dis[stk[r]] + dis[stk[l]] &gt; k) {
+			--num[col[stk[r]]]; --r;
+		}
+		if(r &gt; l)
+			ans += r - l - num[col[stk[l]]];
+	}
+	for(int i = 0; i &lt; top; ++i) num[col[stk[i]]] = 0;
+	return ans;
+}
+
+void work(int xx) {
+	xx = findroot(xx);
+	if(top == 1) return;
+	col[xx] = dis[xx] = 0;
+	for(edge e : G[xx])
+		if(!del[e.x])
+			dfs2(xx, e.x, e.w, e.x);
+	sort(stk, stk + top, [&amp;](int x, int y){ return dis[x] &lt; dis[y]; });
+	ans += calc(k);
+	del[xx] = true;
+	for(edge e : G[xx])
+		if(!del[e.x])
+			work(e.x);
+}
+
+int main() {
+	ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
+	int n, u, v, w;
+	cin &gt;&gt; n;
+	G.resize(n + 1);
+	repp(i,1,n) {
+		cin &gt;&gt; u &gt;&gt; v &gt;&gt; w;
+		G[u].push_back(edge(v, w));
+		G[v].push_back(edge(u, w));
+	}
+	cin &gt;&gt; k;
+	work(1);
+	cout &lt;&lt; ans &lt;&lt; endl;
+	return 0;
+}
+</code></pre>
+<h3 id="cf161d">CF161D</h3>
+<h4 id="事项-3">事项</h4>
+<ol>
+<li>two_pointer法直接解决 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>=</mo><mi>k</mi></mrow><annotation encoding="application/x-tex">=k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.36687em;vertical-align:0em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span></span></span></span> 过程中会有很大的分类讨论麻烦。为减轻代码难度可适当牺牲常数 : 实现<code>calc(k)</code>统计 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>⩽</mo><mi>k</mi></mrow><annotation encoding="application/x-tex">\leqslant k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7733399999999999em;vertical-align:-0.13667em;"></span><span class="mrel amsrm">⩽</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span></span></span></span> , 用<code>calc(k) - calc(k-1)</code>求 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>=</mo><mi>k</mi></mrow><annotation encoding="application/x-tex">=k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.36687em;vertical-align:0em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span></span></span></span> 。</li>
+<li>可用map , 对每棵子树calc-add。然后启发式合并。(没实现过)</li>
+</ol>
+<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
+#define endl '\n'
+#define rep(i,a,b) for(int i=a;i&lt;=(b);++i)
+#define per(i,a,b) for(int i=a;i&gt;=(b);--i)
+#define repp(i,a,b) for(int i=a;i&lt;(b);++i)
+#define perr(i,a,b) for(int i=a;i&gt;(b);--i)
+#define pb push_back
+#define rz resize
+#define itra std::vector&lt;int&gt;::iterator;
+#define VI vector&lt;int&gt;
+#define VL vector&lt;long long&gt;
+#define VD vector&lt;double&gt;
+
+using namespace std;
+
+typedef long long ll;
+typedef pair&lt;int,int&gt; pii;
+
+const int maxn = 56789;
+
+typedef vector&lt; vector&lt;int&gt; &gt; graph;
+graph G;
+long long ans = 0;
+int k;
+int stk[maxn], top;
+int siz[maxn], fa[maxn];
+int dis[maxn], col[maxn];
+bool del[maxn];
+int num[maxn];
+
+
+void dfs1(int pre, int cur) {
+	siz[cur] = 1; fa[cur] = pre;
+	stk[top++] = cur;
+	for(int ver : G[cur])
+		if(ver != pre &amp;&amp; !del[ver]) {
+			dfs1(cur, ver);
+			siz[cur] += siz[ver];
+		}
+}
+
+int findroot(int xx) {
+	stk[0] = xx; top = 1;
+	siz[xx] = 1;
+	for(int ver : G[xx]) 
+		if(!del[ver]) {
+			dfs1(xx, ver);
+			siz[xx] += siz[ver];
+		}
+	for(int i = 0; i &lt; top; ++i) {
+		int cur = stk[i];
+		if(top - siz[cur] &gt; top / 2) continue;
+		bool flg = true;
+		for(int ver : G[cur])	
+			if(!del[ver] &amp;&amp; ver != fa[cur] &amp;&amp; siz[ver] &gt; top / 2) {
+				flg = false; break;
+			}
+		if(flg) return cur;
+	}
+}
+
+void dfs2(int pre, int cur, int color) {
+	dis[cur] = dis[pre] + 1;
+	col[cur] = color;
+	for(int ver : G[cur])
+		if(!del[ver] &amp;&amp; ver != pre)
+			dfs2(cur, ver, color);
+}
+
+long long calc(int k) {
+	long long ans = 0;
+	int l = 0, r = top - 1;
+	for(int i = 1; i &lt; top; ++i) ++num[col[stk[i]]];
+	for(; l &lt; r; --num[col[stk[++l]]]) {
+		while(dis[stk[r]] + dis[stk[l]] &gt; k) {
+			--num[col[stk[r]]]; --r;
+		}
+		if(r &gt; l)
+			ans += r - l - num[col[stk[l]]];
+	}
+	for(int i = 0; i &lt; top; ++i) num[col[stk[i]]] = 0;
+	return ans;
+}
+
+void work(int xx) {
+	xx = findroot(xx);
+	if(top == 1) return;
+	col[xx] = dis[xx] = 0;
+	for(int ver : G[xx])
+		if(!del[ver])
+			dfs2(xx, ver, ver);
+	sort(stk, stk + top, [&amp;](int x, int y){ return dis[x] &lt; dis[y]; });
+	ans += calc(k) - calc(k-1);
+	del[xx] = true;
+	for(int ver : G[xx])
+		if(!del[ver])
+			work(ver);
+}
+
+int main() {
+	ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
+	int n, u, v;
+	cin &gt;&gt; n &gt;&gt; k;
+	G.resize(n + 1);
+	repp(i,1,n) {
+		cin &gt;&gt; u &gt;&gt; v;
+		G[u].push_back(v);
+		G[v].push_back(u);
+	}
+	work(1);
+	cout &lt;&lt; ans &lt;&lt; endl;
+	return 0;
+}
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[2020-07-19 训练日记]]></title>
         <id>https://froldh.github.io/post/2020-07-19-xun-lian-ri-ji/</id>
@@ -706,7 +1220,7 @@ T1是个dp，再看一眼只需要用两个变量存一下扫过去就好了，4
 11:40到hdu，抽签是第四批，遇到了wz带佬，是第二批。坐在那里候场好长时间，wz带佬学了跳表然后教了我一波，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="script">O</mi><mo>(</mo><mi>n</mi><mi>log</mi><mo>⁡</mo><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">\mathcal{O(n \log n)}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathcal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span></span>代替平衡树的好东西啊。<br>
 然后wz带佬去面试了，我继续等啊等啊等啊等了差不多1个钟头(后来看时间表应该是在2:30)终于本批次被叫到了，被带去另一个房间签个保证书然后通知继续等45min进考场。wtf！！！</p>
 <h3 id="正式面试">正式面试</h3>
-<p>被带进一个教室给15min读一段材料，不能动笔记录。<br>
+<h2 id="被带进一个教室给15min读一段材料不能动笔记录-下午场的材料内容是有关于汽车企业在数字化过程中和信息巨头之间的冲突的大意是21世纪汽车正在和各产业交叉尤其是信息产业数字巨头希望将汽车行业作为自己产业生态链的一部分而汽车产业希望自己掌握自己的一套数字化技术-我大概花了4min扫了一遍文章心里划了下层次感谢zbyls的缩文大法-然后7min时间提取记忆了关键字剩下3min左右整理了一下思路大概就是从汽车巨头角度三层数字巨头角度两层并想了一下可能会被问的问题猜中12-然后在考场外面等上一批人结束感觉我那个考场前面那个人好强讲话丝毫不卡而且还带各种修辞-进到面试房间-一个房间有8个教授进去之后教授先是提问材料相关的内容再让要求做自我介绍再是问一些时事相关的以及一些杂七杂八的问题最后提一些个人相关的内容这个好像是根据报名时写的个人自荐问的-刚开始提问的主考官很和善一个坐在角落的教授全程用一种玩味的眼神打量剩下的人要么眼神无光要么低着头-先是两个和材料有关的问题-印象非常深的就是我说到一半一句他们要投入科研需要一定量的资金产品的开发也需要一定的周期科研两个字刚说完那两个低着头的教授突然抬头眼神放光我当时差点吓了一跳-所以讲话在关键点上很重要不然教授根本不会关注你讲了什么换言之你讲的可能都是无效内容-后面还问到和时事相关的题目有一个题目是关于网课的网课期间zbyls让我们写过作文我那篇给打了50pts50-60就花了6-7秒回想了一下主要的分论点然后说了一遍-然后问了一些其他杂项的问题一个印象比较深的问题就是你高中有没有住校大学是肯定要住校的你能不能适应-我说我高一的时候住校-然后又问我为什么搬出去了我说是因为竞赛需要用机子学校肯定不让带进去的真实原因只有鬼知道了-最后和个人相关的内容我写了很多算法竞赛有关的个人陈述而且我的报名类型也是信息类特长生所以问了我高中学过哪些算法数据结构还问了我会不会实现什么什么一些初级数据结构栈队列堆这里应该特指二叉堆和一些简单算法-感觉主考官对我印象还蛮不错跟我说我给你规划一下啊如果你进了hdu可以申请一下免修算法和数据结构做个免修考试过了就好了多余的时间可以学一些高级的东西听到这里我感觉自己稳了-我跟他说我最近买了编译原理和现代操作系统打算暑假先自学一波然后那个人点了点头-hdu蛮给面子啊8个考官我至少能确定有四个是信息相关的教授这中间一个一直不发言的女教授突然问了个很刁难人的问题还指出了我的话中可能存在的问题有一种就是在弄你的感觉-感觉这个考官安排在那里就是挑刺和刁难目的大概是为了考验考生的应变能力的-然后时间差不多到了铃响了就结束了-总结就是说话一定要对到point上然后不必要太紧张尽可能展现自己真实的一面就好了-出考场返程刚上滴滴车外面就下起了暴雨运气蛮好qaq-在车站永和带王次了罗汉素食套餐有点小贵但是味道蛮不错的">被带进一个教室给15min读一段材料，不能动笔记录。<br>
 下午场的材料内容是有关于汽车企业在数字化过程中和信息巨头之间的冲突的，大意是21世纪汽车正在和各产业交叉，尤其是信息产业，数字巨头希望将汽车行业作为自己产业生态链的一部分，而汽车产业希望自己掌握自己的一套数字化技术。<br>
 我大概花了4min扫了一遍文章，心里划了下层次(感谢zbyls的缩文大法)。然后7min时间提取记忆了关键字，剩下3min左右整理了一下思路(大概就是从汽车巨头角度三层数字巨头角度两层)，并想了一下可能会被问的问题(猜中1/2)。<br>
 然后在考场外面等上一批人结束，感觉我那个考场前面那个人好强，讲话丝毫不卡而且还带各种修辞。<br>
@@ -722,7 +1236,9 @@ T1是个dp，再看一眼只需要用两个变量存一下扫过去就好了，4
 这中间一个一直不发言的女教授突然问了个很刁难人的问题，还指出了我的话中可能存在的问题，有一种就是在弄你的感觉。感觉这个考官安排在那里就是挑刺和刁难，目的大概是为了考验考生的应变能力的。<br>
 然后时间差不多到了，铃响了就结束了。<br>
 总结就是说话一定要对到point上，然后不必要太紧张，尽可能展现自己真实的一面就好了。<br>
-出考场返程，刚上滴滴车外面就下起了暴雨，运气蛮好qaq。在车站永和带王次了罗汉素食套餐，有点小贵但是味道蛮不错的。</p>
+出考场返程，刚上滴滴车外面就下起了暴雨，运气蛮好qaq。在车站永和带王次了罗汉素食套餐，有点小贵但是味道蛮不错的。</h2>
+<h2 id="updateday9">(UPDATE)DAY9</h2>
+<p>出分了 : 上机30/30pts + 面试 60.1/70pts = 90.1/100pts</p>
 ]]></content>
     </entry>
     <entry>
@@ -1483,206 +1999,6 @@ int main() {
 </code></pre>
 <h3 id="参考资料">参考资料</h3>
 <p>刘汝佳 《算法竞赛入门经典(训练指南) 第2版》</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[题解 [起跑线]普及模拟Round5]]></title>
-        <id>https://froldh.github.io/post/qpx-pj-round5/</id>
-        <link href="https://froldh.github.io/post/qpx-pj-round5/">
-        </link>
-        <updated>2020-02-27T14:29:44.000Z</updated>
-        <summary type="html"><![CDATA[<p>这场人均AK罢，T2挂了(鬼晓得有负数哦，时间够还去剪枝就是作死)<br>
-Rnk12 300丢死人了</p>
-]]></summary>
-        <content type="html"><![CDATA[<p>这场人均AK罢，T2挂了(鬼晓得有负数哦，时间够还去剪枝就是作死)<br>
-Rnk12 300丢死人了</p>
-<!-- more -->
-<h3 id="t1-解方程">T1 解方程</h3>
-<p>取几个模数暴力就好了。听说自然溢出也能过？<br>
-复杂度<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="script">O</mi><mo>(</mo><mi>n</mi><mi>r</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">\mathcal{O(nr)}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathcal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mclose">)</span></span></span></span></span></p>
-<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
-
-using namespace std;
-
-typedef long long ll;
-
-const ll m1 = 998244353, m2 = 19260817, m3 = 1000000007;
-vector&lt;ll&gt; a, ans;
-
-
-int main() {
-	ios::sync_with_stdio(false);
-	cin.tie(0);
-	int n, l, r, cnt = 0;
-	cin &gt;&gt; n &gt;&gt; l &gt;&gt; r;
-	a.resize(n + 1);
-	for(int i = 0; i &lt;= n; ++i) cin &gt;&gt; a[i];
-	for(int i = l; i &lt;= r; ++i) {
-		ll t1 = 1, t2 = 1, t3 = 1, a1 = 0, a2 = 0, a3 = 0;
-		for(int j = 0; j &lt;= n; ++j) {
-			a1 = (a1 + (t1 * a[j]) % m1) % m1;
-			a2 = (a2 + (t2 * a[j]) % m2) % m2;
-			a3 = (a3 + (t3 * a[j]) % m3) % m3;
-			t1 = t1 * i % m1;
-			t2 = t2 * i % m2;
-			t3 = t3 * i % m3;
-		}
-		if(a1 == 0 &amp;&amp; a2 == 0 &amp;&amp; a3 == 0) {
-			ans.push_back(i);
-			++cnt;
-		}
-	}
-	cout &lt;&lt; cnt &lt;&lt; '\n';
-	for(int i = 0; i &lt; cnt; ++i) cout &lt;&lt; ans[i] &lt;&lt; '\n';
-	return 0;
-}
-</code></pre>
-<h3 id="t2-求和问题">T2 求和问题</h3>
-<p>暴力dfs。<br>
-艹，竟然有负数，不要去用可行性剪枝。<br>
-复杂度<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="script">O</mi><mo>(</mo><msup><mn mathvariant="script">2</mn><mi>n</mi></msup><mo>)</mo></mrow><annotation encoding="application/x-tex">\mathcal{O(2^n)}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathcal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord"><span class="mord mathcal">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.664392em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">n</span></span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span></span></p>
-<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
-
-using namespace std;
-
-typedef long long ll;
-
-vector&lt;ll&gt; x;
-ll ans;
-int n, k, q;
-
-void dfs(int cur, ll sum, int cnt) {
-	if(cur == n) {
-		if(sum == q &amp;&amp; k == cnt) ++ans;
-		return;	
-	}
-	dfs(cur + 1, sum, cnt);
-	if(cnt &lt; k)
-		dfs(cur + 1, sum + x[cur], cnt + 1);
-}
-
-bool cmp(ll a, ll b) {
-	return a &gt; b;	
-}
-
-int main() {
-	ios::sync_with_stdio(false);
-	cin.tie(0);
-	cin &gt;&gt; n &gt;&gt; k &gt;&gt; q;
-	x.resize(n);
-	for(int i = 0; i &lt; n; ++i) {
-		cin &gt;&gt; x[i];
-	}
-	sort(x.begin(), x.end(), cmp); 
-	dfs(0, 0, 0);
-	cout &lt;&lt; ans &lt;&lt; '\n';
-	return 0;
-}
-</code></pre>
-<h3 id="t3-集合">T3 集合</h3>
-<p>先排序，枚举最小值，二分查最大值，中间的数都能选。<br>
-复杂度<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="script">O</mi><mo>(</mo><mi>n</mi><mi>l</mi><mi>o</mi><mi>g</mi><mi>n</mi><mo>+</mo><mi>q</mi><mi>l</mi><mi>o</mi><mi>g</mi><mi>n</mi><mi>l</mi><mi>o</mi><mi>g</mi><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">\mathcal{O(nlogn + qlognlogn)}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathcal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">o</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">q</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">o</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mord mathdefault">n</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">o</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span></span>(预处理2的幂表格应该是<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="script">O</mi><mo>(</mo><mo>(</mo><mi>n</mi><mo>+</mo><mi>q</mi><mo>)</mo><mi>l</mi><mi>o</mi><mi>g</mi><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">\mathcal{O((n+q)logn)}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathcal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">q</span><span class="mclose">)</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">o</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span></span>)</p>
-<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
-
-using namespace std;
-
-typedef long long ll;
-
-const ll mod = 1000000007;
-
-vector&lt;ll&gt; v;
-
-int bsh(int l, int r, ll x) {
-	while(l &lt; r) {
-		int mid = (l + r + 1) &gt;&gt; 1;
-		if(v[mid] &lt;= x) l = mid;
-		else r = mid - 1;
-	}
-	return l;
-}
-
-ll qp(ll a, ll b) {
-	ll res = 1 % mod;
-	for(; b; b &gt;&gt;= 1) {
-		if(b &amp; 1) res = res * a % mod;
-		a = a * a % mod;
-	}
-	return res;
-}
-
-int main() {
-	ios::sync_with_stdio(false);
-	cin.tie(0);
-	ll ans = 0;
-	int n, k;
-	cin &gt;&gt; n &gt;&gt; k;
-	v.resize(n);
-	for(int i = 0; i &lt; n; ++i) cin &gt;&gt; v[i];
-	sort(v.begin(), v.end());
-	for(int i = 0; i &lt; n; ++i) {
-		int nxt = bsh(i, n - 1, v[i] + k);
-		if(v[nxt] == v[i] + k) {
-			ll len = nxt - i + 1 - 2;
-			ans = (ans + qp(2, len)) % mod;
-		}
-	}
-	cout &lt;&lt; ans &lt;&lt; '\n';
-	return 0;
-}
-</code></pre>
-<h3 id="t4-求和">T4 求和</h3>
-<p>对于比较大的<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span></span></span></span>采用暴力求,为<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="script">O</mi><mo>(</mo><mfrac><mi>n</mi><mi>k</mi></mfrac><mo>)</mo></mrow><annotation encoding="application/x-tex">\mathcal{O(\frac{n}{k})}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.095em;vertical-align:-0.345em;"></span><span class="mord"><span class="mord mathcal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.695392em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.03148em;">k</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">n</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mclose">)</span></span></span></span></span>。<br>
-比较小的<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span></span></span></span>打个表预处理。<br>
-当<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span></span></span></span>取到<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msqrt><mi>n</mi></msqrt></mrow><annotation encoding="application/x-tex">\sqrt{n}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.04em;vertical-align:-0.23972em;"></span><span class="mord sqrt"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8002800000000001em;"><span class="svg-align" style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord" style="padding-left:0.833em;"><span class="mord mathdefault">n</span></span></span><span style="top:-2.76028em;"><span class="pstrut" style="height:3em;"></span><span class="hide-tail" style="min-width:0.853em;height:1.08em;"><svg width='400em' height='1.08em' viewBox='0 0 400000 1080' preserveAspectRatio='xMinYMin slice'><path d='M95,702c-2.7,0,-7.17,-2.7,-13.5,-8c-5.8,-5.3,-9.5,
--10,-9.5,-14c0,-2,0.3,-3.3,1,-4c1.3,-2.7,23.83,-20.7,67.5,-54c44.2,-33.3,65.8,
--50.3,66.5,-51c1.3,-1.3,3,-2,5,-2c4.7,0,8.7,3.3,12,10s173,378,173,378c0.7,0,
-35.3,-71,104,-213c68.7,-142,137.5,-285,206.5,-429c69,-144,104.5,-217.7,106.5,
--221c5.3,-9.3,12,-14,20,-14H400000v40H845.2724s-225.272,467,-225.272,467
-s-235,486,-235,486c-2.7,4.7,-9,7,-19,7c-6,0,-10,-1,-12,-3s-194,-422,-194,-422
-s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.23972em;"><span></span></span></span></span></span></span></span></span>的时候从数学上讲对随机数据是理论最快的。<br>
-复杂度<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="script">O</mi><mo>(</mo><mi>q</mi><msqrt><mi>n</mi></msqrt><mo>)</mo></mrow><annotation encoding="application/x-tex">\mathcal{O(q\sqrt{n})}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.05028em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathcal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.03588em;">q</span><span class="mord sqrt"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8002800000000001em;"><span class="svg-align" style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord" style="padding-left:0.833em;"><span class="mord mathdefault">n</span></span></span><span style="top:-2.76028em;"><span class="pstrut" style="height:3em;"></span><span class="hide-tail" style="min-width:0.853em;height:1.08em;"><svg width='400em' height='1.08em' viewBox='0 0 400000 1080' preserveAspectRatio='xMinYMin slice'><path d='M95,702c-2.7,0,-7.17,-2.7,-13.5,-8c-5.8,-5.3,-9.5,
--10,-9.5,-14c0,-2,0.3,-3.3,1,-4c1.3,-2.7,23.83,-20.7,67.5,-54c44.2,-33.3,65.8,
--50.3,66.5,-51c1.3,-1.3,3,-2,5,-2c4.7,0,8.7,3.3,12,10s173,378,173,378c0.7,0,
-35.3,-71,104,-213c68.7,-142,137.5,-285,206.5,-429c69,-144,104.5,-217.7,106.5,
--221c5.3,-9.3,12,-14,20,-14H400000v40H845.2724s-225.272,467,-225.272,467
-s-235,486,-235,486c-2.7,4.7,-9,7,-19,7c-6,0,-10,-1,-12,-3s-194,-422,-194,-422
-s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.23972em;"><span></span></span></span></span></span><span class="mclose">)</span></span></span></span></span>。</p>
-<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
-
-using namespace std;
-
-typedef long long ll;
-
-const int bis = 315, maxn = 123456;
-int a[maxn];
-ll kd[bis + 10][bis + 10];
-
-int main() {
-	int n, q, k, b;
-	scanf(&quot;%d %d&quot;, &amp;n, &amp;q);
-	for(int i = 1; i &lt;= n; ++i)
-		scanf(&quot;%d&quot;, a + i);
-	for(int i = 1; i &lt;= n; ++i) {
-		for(int j = 1; j &lt;= bis; ++j) {
-			kd[j][i % j] += a[i];
-		}
-	}
-	while(q--) {
-		scanf(&quot;%d %d&quot;, &amp;k, &amp;b);
-		if(k &lt;= bis) {
-			if(b &gt; k) printf(&quot;0\n&quot;);
-			else printf(&quot;%lld\n&quot;, kd[k][b]);
-		} else {
-			ll ans = 0;
-			for(int i = 0; ((ll)i * k + b) &lt;= n; ++i) {
-				ans = ans + a[i * k + b];
-			}
-			printf(&quot;%lld\n&quot;, ans);
-		}
-	}
-	return 0;
-}
-</code></pre>
 ]]></content>
     </entry>
 </feed>
