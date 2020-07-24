@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://froldh.github.io</id>
-    <title>oldherd&apos;s blog</title>
-    <updated>2020-07-24T12:10:20.613Z</updated>
+    <title>寒鸽儿のBlog</title>
+    <updated>2020-07-24T12:14:12.113Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://froldh.github.io"/>
     <link rel="self" href="https://froldh.github.io/atom.xml"/>
-    <subtitle>又弱又笨的蒟蒻的博客</subtitle>
+    <subtitle>寒鸽儿gugugu~</subtitle>
     <logo>https://froldh.github.io/images/avatar.png</logo>
     <icon>https://froldh.github.io/favicon.ico</icon>
-    <rights>All rights reserved 2020, oldherd&apos;s blog</rights>
+    <rights>All rights reserved 2020, 寒鸽儿のBlog</rights>
     <entry>
         <title type="html"><![CDATA[一道听来的题目]]></title>
         <id>https://froldh.github.io/post/yi-dao-ting-lai-de-ti-mu/</id>
