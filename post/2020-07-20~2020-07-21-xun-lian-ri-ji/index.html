@@ -3,7 +3,7 @@
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>2020-07-21~2020-07-22 训练日记 | 寒鸽儿のBlog</title>
-<link rel="shortcut icon" href="https://froldh.github.io/favicon.ico?v=1595592848200">
+<link rel="shortcut icon" href="https://froldh.github.io/favicon.ico?v=1596359944882">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://froldh.github.io/styles/main.css">
 <link rel="alternate" type="application/atom+xml" title="2020-07-21~2020-07-22 训练日记 | 寒鸽儿のBlog - Atom Feed" href="https://froldh.github.io/atom.xml">
@@ -33,7 +33,7 @@ detail
       <div class="main-content">
         <div class="site-header">
   <a href="https://froldh.github.io">
-  <img class="avatar" src="https://froldh.github.io/images/avatar.png?v=1595592848200" alt="">
+  <img class="avatar" src="https://froldh.github.io/images/avatar.png?v=1596359944882" alt="">
   </a>
   <h1 class="site-title">
     寒鸽儿のBlog
@@ -122,7 +122,7 @@ detail
             
             <div class="post-content-wrapper">
               <div class="post-content">
-                <h2 id="view">view</h2>
+                <h1 id="view">view</h1>
 <ol>
 <li>学习点分治 , 看了 几篇课件和《进阶指南》4.5 、XD7.15《图论课1》回放以及<a href="https://www.bilibili.com/video/BV1fE411w7RH?from=search&amp;seid=18170482803256782657">这个</a></li>
 <li><a href="https://www.luogu.com.cn/problem/P3806">点分治板子</a></li>
@@ -130,27 +130,27 @@ detail
 <li><a href="https://www.luogu.com.cn/problem/CF161D">CF161D</a></li>
 </ol>
 <!-- more -->  
-<h2 id="detail">detail</h2>
-<h3 id="点分治">点分治</h3>
-<h4 id="思想">思想</h4>
+<h1 id="detail">detail</h1>
+<h2 id="点分治">点分治</h2>
+<h3 id="思想">思想</h3>
 <p>一般用于做树上路径相关的统计。<br>
 统计根的孩子中跨过根的路径 , 一般需要做到 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="script">O</mi><mo>(</mo><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">\mathcal{O(n)}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathcal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span></span> 或者 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="script">O</mi><mo>(</mo><mi>n</mi><mi>log</mi><mo>⁡</mo><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">\mathcal{O(n \log n)}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathcal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span></span> , 然后删掉根节点 , 递归统计各个子树的情况。<br>
 根选择重心可以保证优秀的复杂度。</p>
-<h4 id="处理方式">处理方式</h4>
+<h3 id="处理方式">处理方式</h3>
 <ol>
 <li>点分治 --&gt; 考虑统计以根为lca的点对的情况。</li>
 <li>处理可以把所有结点放在数组中排序然后two_pointer , 像莫队那样在移动指针的时候统计[l, r]之间的颜色数量。比较适用于求 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>⩽</mo><mi>k</mi></mrow><annotation encoding="application/x-tex">\leqslant k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7733399999999999em;vertical-align:-0.13667em;"></span><span class="mrel amsrm">⩽</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span></span></span></span> 或 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>⩾</mo><mi>k</mi></mrow><annotation encoding="application/x-tex">\geqslant k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7733399999999999em;vertical-align:-0.13667em;"></span><span class="mrel amsrm">⩾</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span></span></span></span>  的节点对。</li>
 <li>可以使用平衡树或者权值树来统计。对每棵子树依次calc-add。  用map可以方便地求 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>=</mo><mi>k</mi></mrow><annotation encoding="application/x-tex">=k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.36687em;vertical-align:0em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span></span></span></span> 的节点对。</li>
 </ol>
-<h3 id="lg点分治板子">LG点分治板子</h3>
-<h4 id="事项">事项</h4>
+<h2 id="lg点分治板子">LG点分治板子</h2>
+<h3 id="事项">事项</h3>
 <ol>
 <li>work()函数(点分治主过程)用递归实现的效率高于用队列+循环实现。</li>
 <li>用树状数组处理不应用memset , 而是将栈中的点对应的位置清零。(用memset复杂度会炸)</li>
 <li>注意two_pointer的实现方式。</li>
 </ol>
-<h4 id="code">code</h4>
-<h5 id="递归实现12ms-156mb">递归实现(12ms , 1.56MB)</h5>
+<h3 id="code">Code</h3>
+<h4 id="递归实现12ms-156mb">递归实现(12ms , 1.56MB)</h4>
 <pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
 
 const int maxn = 12345, maxm = 123;
@@ -260,7 +260,7 @@ int main() {
 	return 0;
 }
 </code></pre>
-<h5 id="队列-循环实现32ms-218mb">队列 + 循环实现(32ms , 2.18MB)</h5>
+<h4 id="队列-循环实现32ms-218mb">队列 + 循环实现(32ms , 2.18MB)</h4>
 <pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
 
 using namespace std;
@@ -373,12 +373,12 @@ int main() {
 	return 0;	
 }
 </code></pre>
-<h3 id="lg4178">LG4178</h3>
-<h4 id="事项-2">事项</h4>
+<h2 id="lg4178">LG4178</h2>
+<h3 id="事项-2">事项</h3>
 <ol>
 <li>可用two_pointer解决 , 比较方便地求出点对数目(<code>R-L-num[col[L]]</code>)。</li>
 </ol>
-<h4 id="code-2">code</h4>
+<h3 id="code-2">code</h3>
 <pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
 #define endl '\n'
 #define rep(i,a,b) for(int i=a;i&lt;=(b);++i)
@@ -501,8 +501,8 @@ int main() {
 	return 0;
 }
 </code></pre>
-<h3 id="cf161d">CF161D</h3>
-<h4 id="事项-3">事项</h4>
+<h2 id="cf161d">CF161D</h2>
+<h3 id="事项-3">事项</h3>
 <ol>
 <li>two_pointer法直接解决 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>=</mo><mi>k</mi></mrow><annotation encoding="application/x-tex">=k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.36687em;vertical-align:0em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span></span></span></span> 过程中会有很大的分类讨论麻烦。为减轻代码难度可适当牺牲常数 : 实现<code>calc(k)</code>统计 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>⩽</mo><mi>k</mi></mrow><annotation encoding="application/x-tex">\leqslant k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7733399999999999em;vertical-align:-0.13667em;"></span><span class="mrel amsrm">⩽</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span></span></span></span> , 用<code>calc(k) - calc(k-1)</code>求 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>=</mo><mi>k</mi></mrow><annotation encoding="application/x-tex">=k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.36687em;vertical-align:0em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span></span></span></span> 。</li>
 <li>可用map , 对每棵子树calc-add。然后启发式合并。(没实现过)</li>
@@ -626,8 +626,6 @@ int main() {
               </div>
               <div class="toc-container">
                 <ul class="markdownIt-TOC">
-<li>
-<ul>
 <li><a href="#view">view</a></li>
 <li><a href="#detail">detail</a>
 <ul>
@@ -640,7 +638,7 @@ int main() {
 <li><a href="#lg%E7%82%B9%E5%88%86%E6%B2%BB%E6%9D%BF%E5%AD%90">LG点分治板子</a>
 <ul>
 <li><a href="#%E4%BA%8B%E9%A1%B9">事项</a></li>
-<li><a href="#code">code</a>
+<li><a href="#code">Code</a>
 <ul>
 <li><a href="#%E9%80%92%E5%BD%92%E5%AE%9E%E7%8E%B012ms-156mb">递归实现(12ms , 1.56MB)</a></li>
 <li><a href="#%E9%98%9F%E5%88%97-%E5%BE%AA%E7%8E%AF%E5%AE%9E%E7%8E%B032ms-218mb">队列 + 循环实现(32ms , 2.18MB)</a></li>
@@ -657,8 +655,6 @@ int main() {
 <li><a href="#cf161d">CF161D</a>
 <ul>
 <li><a href="#%E4%BA%8B%E9%A1%B9-3">事项</a></li>
-</ul>
-</li>
 </ul>
 </li>
 </ul>
