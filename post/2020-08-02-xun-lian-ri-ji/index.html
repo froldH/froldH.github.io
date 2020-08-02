@@ -3,7 +3,7 @@
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>2020-08-02训练日记 | 寒鸽儿のBlog</title>
-<link rel="shortcut icon" href="https://froldh.github.io/favicon.ico?v=1596359944882">
+<link rel="shortcut icon" href="https://froldh.github.io/favicon.ico?v=1596360255444">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://froldh.github.io/styles/main.css">
 <link rel="alternate" type="application/atom+xml" title="2020-08-02训练日记 | 寒鸽儿のBlog - Atom Feed" href="https://froldh.github.io/atom.xml">
@@ -20,10 +20,10 @@ LG3834 区间第k大值(可持久化权值线段树板子)
 
 
 Detail
-可持久化线段树
+可持久化线段树(以LG3919为例)
 Note
 思想
-实际上就是用线段树维护了一个数组 , ..." />
+实际上就是用线段..." />
     <meta name="keywords" content="可持久化数据结构,可持久化线段树,可持久化权值线段树,可持久化fhq-treap,可持久化01trie,训练日记,数据结构,线段树,题解,笔记" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
     <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
@@ -33,7 +33,7 @@ Note
       <div class="main-content">
         <div class="site-header">
   <a href="https://froldh.github.io">
-  <img class="avatar" src="https://froldh.github.io/images/avatar.png?v=1596359944882" alt="">
+  <img class="avatar" src="https://froldh.github.io/images/avatar.png?v=1596360255444" alt="">
   </a>
   <h1 class="site-title">
     寒鸽儿のBlog
@@ -93,7 +93,7 @@ Note
                 2020-08-02
               </span>
               <span>
-                8 min read
+                9 min read
               </span>
               
                 <a href="https://froldh.github.io/tag/SfTa3jCma/" class="post-tag">
@@ -151,7 +151,7 @@ Note
 </ol>
 <!-- more -->
 <h1 id="detail">Detail</h1>
-<h2 id="可持久化线段树">可持久化线段树</h2>
+<h2 id="可持久化线段树以lg3919为例">可持久化线段树(以LG3919为例)</h2>
 <h3 id="note">Note</h3>
 <h4 id="思想">思想</h4>
 <p>实际上就是用线段树维护了一个数组 , 然后对修改在线段树上执行可持久化的操作。<br>
@@ -236,9 +236,14 @@ int main() {
 	return 0;
 }
 </code></pre>
-<h2 id="区间第k大值的可持久化权值线段树主席树解法">区间第K大值的可持久化权值线段树(主席树)解法</h2>
+<h2 id="区间第k大值的可持久化权值线段树主席树解法以lg3834为例">区间第K大值的可持久化权值线段树(主席树)解法(以LG3834为例)</h2>
 <h3 id="note-2">Note</h3>
 <p>咕咕咕~</p>
+<h3 id="事项-2">事项</h3>
+<ol>
+<li>在开始扫原数组之前树是空的 , 并且可以不用建树(想一想性质 , 与动态开点线段树中往空树插第一个数据时的情形类似)。</li>
+<li>可以使用动态开点线段树过掉本题(这样不用离散化) , 但是在某些值域更大的题目据说会MLE。</li>
+</ol>
 <h3 id="code-2">Code</h3>
 <pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
 
@@ -310,7 +315,7 @@ int main() {
 <li><a href="#view">View</a></li>
 <li><a href="#detail">Detail</a>
 <ul>
-<li><a href="#%E5%8F%AF%E6%8C%81%E4%B9%85%E5%8C%96%E7%BA%BF%E6%AE%B5%E6%A0%91">可持久化线段树</a>
+<li><a href="#%E5%8F%AF%E6%8C%81%E4%B9%85%E5%8C%96%E7%BA%BF%E6%AE%B5%E6%A0%91%E4%BB%A5lg3919%E4%B8%BA%E4%BE%8B">可持久化线段树(以LG3919为例)</a>
 <ul>
 <li><a href="#note">Note</a>
 <ul>
@@ -323,9 +328,10 @@ int main() {
 <li><a href="#code">Code</a></li>
 </ul>
 </li>
-<li><a href="#%E5%8C%BA%E9%97%B4%E7%AC%ACk%E5%A4%A7%E5%80%BC%E7%9A%84%E5%8F%AF%E6%8C%81%E4%B9%85%E5%8C%96%E6%9D%83%E5%80%BC%E7%BA%BF%E6%AE%B5%E6%A0%91%E4%B8%BB%E5%B8%AD%E6%A0%91%E8%A7%A3%E6%B3%95">区间第K大值的可持久化权值线段树(主席树)解法</a>
+<li><a href="#%E5%8C%BA%E9%97%B4%E7%AC%ACk%E5%A4%A7%E5%80%BC%E7%9A%84%E5%8F%AF%E6%8C%81%E4%B9%85%E5%8C%96%E6%9D%83%E5%80%BC%E7%BA%BF%E6%AE%B5%E6%A0%91%E4%B8%BB%E5%B8%AD%E6%A0%91%E8%A7%A3%E6%B3%95%E4%BB%A5lg3834%E4%B8%BA%E4%BE%8B">区间第K大值的可持久化权值线段树(主席树)解法(以LG3834为例)</a>
 <ul>
 <li><a href="#note-2">Note</a></li>
+<li><a href="#%E4%BA%8B%E9%A1%B9-2">事项</a></li>
 <li><a href="#code-2">Code</a></li>
 </ul>
 </li>

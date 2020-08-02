@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://froldh.github.io</id>
     <title>寒鸽儿のBlog</title>
-    <updated>2020-08-02T09:19:06.959Z</updated>
+    <updated>2020-08-02T09:24:22.807Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://froldh.github.io"/>
     <link rel="self" href="https://froldh.github.io/atom.xml"/>
@@ -33,7 +33,7 @@
 </ol>
 <!-- more -->
 <h1 id="detail">Detail</h1>
-<h2 id="可持久化线段树">可持久化线段树</h2>
+<h2 id="可持久化线段树以lg3919为例">可持久化线段树(以LG3919为例)</h2>
 <h3 id="note">Note</h3>
 <h4 id="思想">思想</h4>
 <p>实际上就是用线段树维护了一个数组 , 然后对修改在线段树上执行可持久化的操作。<br>
@@ -118,9 +118,14 @@ int main() {
 	return 0;
 }
 </code></pre>
-<h2 id="区间第k大值的可持久化权值线段树主席树解法">区间第K大值的可持久化权值线段树(主席树)解法</h2>
+<h2 id="区间第k大值的可持久化权值线段树主席树解法以lg3834为例">区间第K大值的可持久化权值线段树(主席树)解法(以LG3834为例)</h2>
 <h3 id="note-2">Note</h3>
 <p>咕咕咕~</p>
+<h3 id="事项-2">事项</h3>
+<ol>
+<li>在开始扫原数组之前树是空的 , 并且可以不用建树(想一想性质 , 与动态开点线段树中往空树插第一个数据时的情形类似)。</li>
+<li>可以使用动态开点线段树过掉本题(这样不用离散化) , 但是在某些值域更大的题目据说会MLE。</li>
+</ol>
 <h3 id="code-2">Code</h3>
 <pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
 
