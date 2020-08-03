@@ -3,7 +3,7 @@
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>可持久化数据结构 2020-08-02~2020-08-04 | 寒鸽儿のBlog</title>
-<link rel="shortcut icon" href="https://froldh.github.io/favicon.ico?v=1596415565665">
+<link rel="shortcut icon" href="https://froldh.github.io/favicon.ico?v=1596416440351">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://froldh.github.io/styles/main.css">
 <link rel="alternate" type="application/atom+xml" title="可持久化数据结构 2020-08-02~2020-08-04 | 寒鸽儿のBlog - Atom Feed" href="https://froldh.github.io/atom.xml">
@@ -12,17 +12,14 @@
 
 
     <meta name="description" content="View
+可持久化线段树、可持久化权值线段树
 
 LG3919 可持久化数组(可持久化线段树板子)
 LG3834 区间第k大值(可持久化权值线段树板子)
-[POI2014]KUR-Couriers
+[POI2014]KUR-Couriers(区间众数)
 
-
-Detail
-可持久化线段树
-Note
-思想
-实际上就是用线段树维护了一个数..." />
+可持久化平衡树
+可持久化01t..." />
     <meta name="keywords" content="可持久化数据结构,可持久化线段树,可持久化权值线段树,可持久化fhq-treap,可持久化01trie,训练日记,数据结构,线段树,题解,笔记" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
     <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
@@ -32,7 +29,7 @@ Note
       <div class="main-content">
         <div class="site-header">
   <a href="https://froldh.github.io">
-  <img class="avatar" src="https://froldh.github.io/images/avatar.png?v=1596415565665" alt="">
+  <img class="avatar" src="https://froldh.github.io/images/avatar.png?v=1596416440351" alt="">
   </a>
   <h1 class="site-title">
     寒鸽儿のBlog
@@ -92,7 +89,7 @@ Note
                 2020-08-02
               </span>
               <span>
-                11 min read
+                13 min read
               </span>
               
                 <a href="https://froldh.github.io/tag/SfTa3jCma/" class="post-tag">
@@ -142,11 +139,14 @@ Note
             <div class="post-content-wrapper">
               <div class="post-content">
                 <h1 id="view">View</h1>
+<h4 id="可持久化线段树-可持久化权值线段树">可持久化线段树、可持久化权值线段树</h4>
 <ol>
 <li><a href="https://www.luogu.com.cn/problem/P3919">LG3919 可持久化数组(可持久化线段树板子)</a></li>
 <li><a href="https://www.luogu.com.cn/problem/P3834">LG3834 区间第k大值(可持久化权值线段树板子)</a></li>
-<li><a href="https://www.luogu.com.cn/problem/P3567">[POI2014]KUR-Couriers</a></li>
+<li><a href="https://www.luogu.com.cn/problem/P3567">[POI2014]KUR-Couriers(区间众数)</a></li>
 </ol>
+<h4 id="可持久化平衡树">可持久化平衡树</h4>
+<h4 id="可持久化01trie">可持久化01trie</h4>
 <!-- more -->
 <h1 id="detail">Detail</h1>
 <h2 id="可持久化线段树">可持久化线段树</h2>
@@ -190,6 +190,7 @@ Note
 <p>用树状数组套权值线段树 , 可以实现维护任意区间带修。</p>
 <h3 id="习题">习题</h3>
 <h4 id="lg3919可持久化数组">LG3919可持久化数组</h4>
+<h5 id="思路">思路</h5>
 <p>可持久化数组使用可持久化线段树来维护 , 本题不需要用到线段树的其他性质。</p>
 <h5 id="事项">事项</h5>
 <ol>
@@ -254,7 +255,9 @@ int main() {
 	return 0;
 }
 </code></pre>
-<h4 id="lg3834-区间第k大值可持久化权值线段树主席树解法">LG3834 区间第K大值(可持久化权值线段树(主席树)解法)</h4>
+<h4 id="lg3834-区间第k大值可持久化权值线段树解法">LG3834 区间第K大值(可持久化权值线段树解法)</h4>
+<h5 id="思路-2">思路</h5>
+<p>用可持久化权值线段树来维护权值size信息的<strong>区间前缀和</strong> ，不同版本的两棵树作差得到任意区间权值size信息。</p>
 <h5 id="事项-2">事项</h5>
 <ol>
 <li>在开始扫原数组之前树是空的 , 并且可以不用建树(想一想性质 , 与动态开点线段树中往空树插第一个数据时的情形类似)。</li>
@@ -323,11 +326,70 @@ int main() {
 	return 0;
 }
 </code></pre>
+<h4 id="poi2014-kur-couriers区间众数">[POI2014] KUR-Couriers(区间众数)</h4>
+<h5 id="思路-3">思路</h5>
+<p>先考虑用序列上权值线段树求序列众数 , 即每次向权值大于 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mfrac><mn>1</mn><mn>2</mn></mfrac></mrow><annotation encoding="application/x-tex">\frac{1}{2}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.190108em;vertical-align:-0.345em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.845108em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span> 区间长度的子树走 , 能到子树结点且size大于 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mfrac><mn>1</mn><mn>2</mn></mfrac></mrow><annotation encoding="application/x-tex">\frac{1}{2}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.190108em;vertical-align:-0.345em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.845108em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span> 则当前权值即为区间众数 , 否则没有区间众数。</p>
+<p>任意区间则对权值线段树可持久化实现维护前缀序列的权值信息。两树做差得到其间区间的信息。</p>
+<h5 id="事项-3">事项</h5>
+<h5 id="code-3">Code</h5>
+<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
+
+using namespace std;
+
+const int maxs = 10000010, maxn = 500010;
+
+int dat[maxs], ls[maxs], rs[maxs], tot;
+int root[maxn], a[maxn], b[maxn];
+
+inline int read() {
+	char ch; int f = 1, x = 0;
+	do{ch=getchar();if(ch=='-')f=-f;}while(ch&lt;'0'||ch&gt;'9');
+	do{x=(x&lt;&lt;3)+(x&lt;&lt;1)+(ch&amp;15),ch=getchar();}while(ch&gt;='0'&amp;&amp;ch&lt;='9');
+	return x * f;
+}
+
+void insert(int &amp;p, int pre, int lp, int rp, int x) {
+	p = ++tot; ls[p] = ls[pre]; rs[p] = rs[pre]; dat[p] = dat[pre] + 1;
+	if(lp == rp) return;
+	int mid = lp + rp &gt;&gt; 1;
+	if(x &lt;= mid) insert(ls[p], ls[pre], lp, mid, x);
+	else insert(rs[p], rs[pre], mid + 1, rp, x);
+}
+
+int hf;
+int qry(int rtr, int lol, int lp, int rp) {
+	if(lp == rp || dat[rtr] - dat[lol] &lt;= hf) return dat[rtr] - dat[lol] &gt; hf ? lp : 0;
+	int mid = lp + rp &gt;&gt; 1;
+	if(dat[ls[rtr]] - dat[ls[lol]] &gt; hf) return qry(ls[rtr], ls[lol], lp, mid);
+	return qry(rs[rtr], rs[lol], mid + 1, rp);
+}
+
+int main() {
+	int n = read(), m = read(), nn = 1, ll, rr;
+	for(int i = 1; i &lt;= n; ++i) a[i] = b[i] = read();
+	sort(b + 1, b + n + 1);
+	for(int i = 2; i &lt;= n; ++i)
+		if(b[i] != b[i-1]) b[++nn] = b[i];
+	for(int i = 1; i &lt;= n; ++i)
+		insert(root[i], root[i-1], 1, nn, lower_bound(b + 1, b + nn + 1, a[i]) - b); 
+	while(m--) {
+		ll = read(), rr = read();
+		hf = rr - ll + 1 &gt;&gt; 1;
+		printf(&quot;%d\n&quot;, b[qry(root[rr], root[ll-1], 1, nn)]); 
+	}
+	return 0;
+}
+</code></pre>
 
               </div>
               <div class="toc-container">
                 <ul class="markdownIt-TOC">
-<li><a href="#view">View</a></li>
+<li><a href="#view">View</a><br>
+*<br>
+*<br>
+* <a href="#%E5%8F%AF%E6%8C%81%E4%B9%85%E5%8C%96%E7%BA%BF%E6%AE%B5%E6%A0%91-%E5%8F%AF%E6%8C%81%E4%B9%85%E5%8C%96%E6%9D%83%E5%80%BC%E7%BA%BF%E6%AE%B5%E6%A0%91">可持久化线段树、可持久化权值线段树</a><br>
+* <a href="#%E5%8F%AF%E6%8C%81%E4%B9%85%E5%8C%96%E5%B9%B3%E8%A1%A1%E6%A0%91">可持久化平衡树</a><br>
+* <a href="#%E5%8F%AF%E6%8C%81%E4%B9%85%E5%8C%9601trie">可持久化01trie</a></li>
 <li><a href="#detail">Detail</a>
 <ul>
 <li><a href="#%E5%8F%AF%E6%8C%81%E4%B9%85%E5%8C%96%E7%BA%BF%E6%AE%B5%E6%A0%91">可持久化线段树</a>
@@ -354,14 +416,23 @@ int main() {
 <ul>
 <li><a href="#lg3919%E5%8F%AF%E6%8C%81%E4%B9%85%E5%8C%96%E6%95%B0%E7%BB%84">LG3919可持久化数组</a>
 <ul>
+<li><a href="#%E6%80%9D%E8%B7%AF">思路</a></li>
 <li><a href="#%E4%BA%8B%E9%A1%B9">事项</a></li>
 <li><a href="#code">Code</a></li>
 </ul>
 </li>
-<li><a href="#lg3834-%E5%8C%BA%E9%97%B4%E7%AC%ACk%E5%A4%A7%E5%80%BC%E5%8F%AF%E6%8C%81%E4%B9%85%E5%8C%96%E6%9D%83%E5%80%BC%E7%BA%BF%E6%AE%B5%E6%A0%91%E4%B8%BB%E5%B8%AD%E6%A0%91%E8%A7%A3%E6%B3%95">LG3834 区间第K大值(可持久化权值线段树(主席树)解法)</a>
+<li><a href="#lg3834-%E5%8C%BA%E9%97%B4%E7%AC%ACk%E5%A4%A7%E5%80%BC%E5%8F%AF%E6%8C%81%E4%B9%85%E5%8C%96%E6%9D%83%E5%80%BC%E7%BA%BF%E6%AE%B5%E6%A0%91%E8%A7%A3%E6%B3%95">LG3834 区间第K大值(可持久化权值线段树解法)</a>
 <ul>
+<li><a href="#%E6%80%9D%E8%B7%AF-2">思路</a></li>
 <li><a href="#%E4%BA%8B%E9%A1%B9-2">事项</a></li>
 <li><a href="#code-2">Code</a></li>
+</ul>
+</li>
+<li><a href="#poi2014-kur-couriers%E5%8C%BA%E9%97%B4%E4%BC%97%E6%95%B0">[POI2014] KUR-Couriers(区间众数)</a>
+<ul>
+<li><a href="#%E6%80%9D%E8%B7%AF-3">思路</a></li>
+<li><a href="#%E4%BA%8B%E9%A1%B9-3">事项</a></li>
+<li><a href="#code-3">Code</a></li>
 </ul>
 </li>
 </ul>

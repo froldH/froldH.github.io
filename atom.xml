@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://froldh.github.io</id>
     <title>寒鸽儿のBlog</title>
-    <updated>2020-08-03T00:46:18.167Z</updated>
+    <updated>2020-08-03T01:00:44.070Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://froldh.github.io"/>
     <link rel="self" href="https://froldh.github.io/atom.xml"/>
@@ -51,18 +51,24 @@ Boolean binary_search(ForwardIterator _First, ForwardIterator _Last, const Type&
         </link>
         <updated>2020-08-02T08:11:44.000Z</updated>
         <summary type="html"><![CDATA[<h1 id="view">View</h1>
+<h4 id="可持久化线段树-可持久化权值线段树">可持久化线段树、可持久化权值线段树</h4>
 <ol>
 <li><a href="https://www.luogu.com.cn/problem/P3919">LG3919 可持久化数组(可持久化线段树板子)</a></li>
 <li><a href="https://www.luogu.com.cn/problem/P3834">LG3834 区间第k大值(可持久化权值线段树板子)</a></li>
-<li><a href="https://www.luogu.com.cn/problem/P3567">[POI2014]KUR-Couriers</a></li>
+<li><a href="https://www.luogu.com.cn/problem/P3567">[POI2014]KUR-Couriers(区间众数)</a></li>
 </ol>
+<h4 id="可持久化平衡树">可持久化平衡树</h4>
+<h4 id="可持久化01trie">可持久化01trie</h4>
 ]]></summary>
         <content type="html"><![CDATA[<h1 id="view">View</h1>
+<h4 id="可持久化线段树-可持久化权值线段树">可持久化线段树、可持久化权值线段树</h4>
 <ol>
 <li><a href="https://www.luogu.com.cn/problem/P3919">LG3919 可持久化数组(可持久化线段树板子)</a></li>
 <li><a href="https://www.luogu.com.cn/problem/P3834">LG3834 区间第k大值(可持久化权值线段树板子)</a></li>
-<li><a href="https://www.luogu.com.cn/problem/P3567">[POI2014]KUR-Couriers</a></li>
+<li><a href="https://www.luogu.com.cn/problem/P3567">[POI2014]KUR-Couriers(区间众数)</a></li>
 </ol>
+<h4 id="可持久化平衡树">可持久化平衡树</h4>
+<h4 id="可持久化01trie">可持久化01trie</h4>
 <!-- more -->
 <h1 id="detail">Detail</h1>
 <h2 id="可持久化线段树">可持久化线段树</h2>
@@ -106,6 +112,7 @@ Boolean binary_search(ForwardIterator _First, ForwardIterator _Last, const Type&
 <p>用树状数组套权值线段树 , 可以实现维护任意区间带修。</p>
 <h3 id="习题">习题</h3>
 <h4 id="lg3919可持久化数组">LG3919可持久化数组</h4>
+<h5 id="思路">思路</h5>
 <p>可持久化数组使用可持久化线段树来维护 , 本题不需要用到线段树的其他性质。</p>
 <h5 id="事项">事项</h5>
 <ol>
@@ -170,7 +177,9 @@ int main() {
 	return 0;
 }
 </code></pre>
-<h4 id="lg3834-区间第k大值可持久化权值线段树主席树解法">LG3834 区间第K大值(可持久化权值线段树(主席树)解法)</h4>
+<h4 id="lg3834-区间第k大值可持久化权值线段树解法">LG3834 区间第K大值(可持久化权值线段树解法)</h4>
+<h5 id="思路-2">思路</h5>
+<p>用可持久化权值线段树来维护权值size信息的<strong>区间前缀和</strong> ，不同版本的两棵树作差得到任意区间权值size信息。</p>
 <h5 id="事项-2">事项</h5>
 <ol>
 <li>在开始扫原数组之前树是空的 , 并且可以不用建树(想一想性质 , 与动态开点线段树中往空树插第一个数据时的情形类似)。</li>
@@ -235,6 +244,60 @@ int main() {
 	while(m--) {
 		read(l); read(r); read(k);
 		printf(&quot;%d\n&quot;, b[findkth(idx[r], idx[l - 1], 1, nn, k)]);
+	}
+	return 0;
+}
+</code></pre>
+<h4 id="poi2014-kur-couriers区间众数">[POI2014] KUR-Couriers(区间众数)</h4>
+<h5 id="思路-3">思路</h5>
+<p>先考虑用序列上权值线段树求序列众数 , 即每次向权值大于 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mfrac><mn>1</mn><mn>2</mn></mfrac></mrow><annotation encoding="application/x-tex">\frac{1}{2}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.190108em;vertical-align:-0.345em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.845108em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span> 区间长度的子树走 , 能到子树结点且size大于 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mfrac><mn>1</mn><mn>2</mn></mfrac></mrow><annotation encoding="application/x-tex">\frac{1}{2}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.190108em;vertical-align:-0.345em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.845108em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span> 则当前权值即为区间众数 , 否则没有区间众数。</p>
+<p>任意区间则对权值线段树可持久化实现维护前缀序列的权值信息。两树做差得到其间区间的信息。</p>
+<h5 id="事项-3">事项</h5>
+<h5 id="code-3">Code</h5>
+<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
+
+using namespace std;
+
+const int maxs = 10000010, maxn = 500010;
+
+int dat[maxs], ls[maxs], rs[maxs], tot;
+int root[maxn], a[maxn], b[maxn];
+
+inline int read() {
+	char ch; int f = 1, x = 0;
+	do{ch=getchar();if(ch=='-')f=-f;}while(ch&lt;'0'||ch&gt;'9');
+	do{x=(x&lt;&lt;3)+(x&lt;&lt;1)+(ch&amp;15),ch=getchar();}while(ch&gt;='0'&amp;&amp;ch&lt;='9');
+	return x * f;
+}
+
+void insert(int &amp;p, int pre, int lp, int rp, int x) {
+	p = ++tot; ls[p] = ls[pre]; rs[p] = rs[pre]; dat[p] = dat[pre] + 1;
+	if(lp == rp) return;
+	int mid = lp + rp &gt;&gt; 1;
+	if(x &lt;= mid) insert(ls[p], ls[pre], lp, mid, x);
+	else insert(rs[p], rs[pre], mid + 1, rp, x);
+}
+
+int hf;
+int qry(int rtr, int lol, int lp, int rp) {
+	if(lp == rp || dat[rtr] - dat[lol] &lt;= hf) return dat[rtr] - dat[lol] &gt; hf ? lp : 0;
+	int mid = lp + rp &gt;&gt; 1;
+	if(dat[ls[rtr]] - dat[ls[lol]] &gt; hf) return qry(ls[rtr], ls[lol], lp, mid);
+	return qry(rs[rtr], rs[lol], mid + 1, rp);
+}
+
+int main() {
+	int n = read(), m = read(), nn = 1, ll, rr;
+	for(int i = 1; i &lt;= n; ++i) a[i] = b[i] = read();
+	sort(b + 1, b + n + 1);
+	for(int i = 2; i &lt;= n; ++i)
+		if(b[i] != b[i-1]) b[++nn] = b[i];
+	for(int i = 1; i &lt;= n; ++i)
+		insert(root[i], root[i-1], 1, nn, lower_bound(b + 1, b + nn + 1, a[i]) - b); 
+	while(m--) {
+		ll = read(), rr = read();
+		hf = rr - ll + 1 &gt;&gt; 1;
+		printf(&quot;%d\n&quot;, b[qry(root[rr], root[ll-1], 1, nn)]); 
 	}
 	return 0;
 }
