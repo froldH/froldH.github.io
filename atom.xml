@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://froldh.github.io</id>
     <title>寒鸽儿のBlog</title>
-    <updated>2020-08-03T01:04:04.168Z</updated>
+    <updated>2020-08-03T01:09:01.488Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://froldh.github.io"/>
     <link rel="self" href="https://froldh.github.io/atom.xml"/>
@@ -183,7 +183,7 @@ int main() {
 <h5 id="事项-2">事项</h5>
 <ol>
 <li>在开始扫原数组之前树是空的 , 并且可以不用建树(想一想性质 , 与动态开点线段树中往空树插第一个数据时的情形类似)。</li>
-<li>可以使用动态开点线段树思想过掉本题(这样不用离散化) , 但是在某些值域更大的题目据说会MLE。(对于动态开点 , 一定不要去<code>build</code>(实际上非动态开点在本题中也不需要) , 然后直接下来就可以了 , 不用做更改 , 因为可持久化线段树的开点操作本来就是动态的 , 需要注意的是在负数内除以2下取整要用<code>lp + rp &gt;&gt; 1</code> , 不要使用 <code>(lp + rp) / 2</code>  , 它在负数情况中会向下取整)。</li>
+<li>可以使用动态开点线段树思想过掉本题(这样不用离散化) , 但是在某些值域更大的题目据说会MLE。(对于动态开点 , 一定不要去<code>build</code>(实际上非动态开点在本题中也不需要) , 然后直接下来就可以了 , 不用做更改 , 因为可持久化线段树的开点操作本来就是动态的 , 需要注意的是在负数内除以2下取整要用<code>lp + rp &gt;&gt; 1</code> , 不要使用 <code>(lp + rp) / 2</code>  , 它在负数情况中会向上取整)。</li>
 </ol>
 <h5 id="code-2">Code</h5>
 <pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
