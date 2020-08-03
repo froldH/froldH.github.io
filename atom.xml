@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>http://localhost:4000</id>
+    <id>https://froldh.github.io</id>
     <title>寒鸽儿のBlog</title>
-    <updated>2020-08-03T14:45:08.486Z</updated>
+    <updated>2020-08-03T16:02:05.277Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
-    <link rel="alternate" href="http://localhost:4000"/>
-    <link rel="self" href="http://localhost:4000/atom.xml"/>
+    <link rel="alternate" href="https://froldh.github.io"/>
+    <link rel="self" href="https://froldh.github.io/atom.xml"/>
     <subtitle>寒鸽儿gugugu~</subtitle>
-    <logo>http://localhost:4000/images/avatar.png</logo>
-    <icon>http://localhost:4000/favicon.ico</icon>
+    <logo>https://froldh.github.io/images/avatar.png</logo>
+    <icon>https://froldh.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, 寒鸽儿のBlog</rights>
     <entry>
         <title type="html"><![CDATA[STL备忘录]]></title>
-        <id>http://localhost:4000/post/stl-bei-wang-lu/</id>
-        <link href="http://localhost:4000/post/stl-bei-wang-lu/">
+        <id>https://froldh.github.io/post/stl-bei-wang-lu/</id>
+        <link href="https://froldh.github.io/post/stl-bei-wang-lu/">
         </link>
         <updated>2020-08-02T12:19:11.000Z</updated>
         <summary type="html"><![CDATA[<p>有些STL里的东西总是要忘记 , 故而开个坑 , 用到的时候存一下 , 随缘更新。</p>
@@ -46,8 +46,8 @@ Boolean binary_search(ForwardIterator _First, ForwardIterator _Last, const Type&
     </entry>
     <entry>
         <title type="html"><![CDATA[可持久化数据结构 2020-08-02~2020-08-04]]></title>
-        <id>http://localhost:4000/post/2020-08-02-xun-lian-ri-ji/</id>
-        <link href="http://localhost:4000/post/2020-08-02-xun-lian-ri-ji/">
+        <id>https://froldh.github.io/post/2020-08-02-xun-lian-ri-ji/</id>
+        <link href="https://froldh.github.io/post/2020-08-02-xun-lian-ri-ji/">
         </link>
         <updated>2020-08-02T08:11:44.000Z</updated>
         <summary type="html"><![CDATA[<h1 id="view">View</h1>
@@ -55,7 +55,8 @@ Boolean binary_search(ForwardIterator _First, ForwardIterator _Last, const Type&
 <ol>
 <li><a href="https://www.luogu.com.cn/problem/P3919">LG3919 可持久化数组(可持久化线段树板子)</a></li>
 <li><a href="https://www.luogu.com.cn/problem/P3834">LG3834 区间第k大值(可持久化权值线段树板子)</a></li>
-<li><a href="https://www.luogu.com.cn/problem/P3567">[POI2014]KUR-Couriers(区间众数)</a></li>
+<li><a href="https://www.luogu.com.cn/problem/P3567">[POI2014]KUR-Couriers(区间众数板子)</a></li>
+<li><a href="https://www.luogu.com.cn/problem/P4137">LG4137 Rmq Problem(区间mex板子)</a></li>
 </ol>
 <h4 id="可持久化平衡树">可持久化平衡树</h4>
 <h4 id="可持久化01trie">可持久化01trie</h4>
@@ -65,7 +66,8 @@ Boolean binary_search(ForwardIterator _First, ForwardIterator _Last, const Type&
 <ol>
 <li><a href="https://www.luogu.com.cn/problem/P3919">LG3919 可持久化数组(可持久化线段树板子)</a></li>
 <li><a href="https://www.luogu.com.cn/problem/P3834">LG3834 区间第k大值(可持久化权值线段树板子)</a></li>
-<li><a href="https://www.luogu.com.cn/problem/P3567">[POI2014]KUR-Couriers(区间众数)</a></li>
+<li><a href="https://www.luogu.com.cn/problem/P3567">[POI2014]KUR-Couriers(区间众数板子)</a></li>
+<li><a href="https://www.luogu.com.cn/problem/P4137">LG4137 Rmq Problem(区间mex板子)</a></li>
 </ol>
 <h4 id="可持久化平衡树">可持久化平衡树</h4>
 <h4 id="可持久化01trie">可持久化01trie</h4>
@@ -88,30 +90,53 @@ Boolean binary_search(ForwardIterator _First, ForwardIterator _Last, const Type&
 }
 </code></pre>
 <h4 id="空间大小的精确计算对于普通的可持久化线段树-对长度为-mathcaln-的序列建树并做-m-次修改">空间大小的精确计算(对于普通的可持久化线段树 , 对长度为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">\mathcal{n}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord"><span class="mord mathdefault">n</span></span></span></span></span> 的序列建树并做 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>m</mi></mrow><annotation encoding="application/x-tex">m</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">m</span></span></span></span> 次修改) :</h4>
+<h5 id="分析">分析</h5>
 <p>由二叉树的性质 , 线段树树高上界(即链长上界)为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>⌈</mo><msub><mi>log</mi><mo>⁡</mo><mn>2</mn></msub><mi>m</mi><mi>a</mi><mi>x</mi><mi>n</mi><mo>⌉</mo><mo>+</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">\lceil \log _2 maxn \rceil + 1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">⌈</span><span class="mop"><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.20696799999999996em;"><span style="top:-2.4558600000000004em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.24414em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">m</span><span class="mord mathdefault">a</span><span class="mord mathdefault">x</span><span class="mord mathdefault">n</span><span class="mclose">⌉</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span> 个结点空间大小。树中结点个数的上界为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mn>2</mn><mrow><mo>⌈</mo><msub><mi>log</mi><mo>⁡</mo><mn>2</mn></msub><mi>m</mi><mi>a</mi><mi>x</mi><mi>n</mi><mo>⌉</mo><mo>+</mo><mn>1</mn></mrow></msup><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">2^{\lceil \log _2 maxn \rceil + 1} - 1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9713299999999999em;vertical-align:-0.08333em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8879999999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mopen mtight">⌈</span><span class="mop mtight"><span class="mop mtight">lo<span style="margin-right:0.01389em;">g</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.19444571428571428em;"><span style="top:-2.2341314285714287em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.26586857142857145em;"><span></span></span></span></span></span></span><span class="mspace mtight" style="margin-right:0.19516666666666668em;"></span><span class="mord mathdefault mtight">m</span><span class="mord mathdefault mtight">a</span><span class="mord mathdefault mtight">x</span><span class="mord mathdefault mtight">n</span><span class="mclose mtight">⌉</span><span class="mbin mtight">+</span><span class="mord mtight">1</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span> 。</p>
 <p><strong>建树</strong>过程中 , 确切空间花销上界为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mn>2</mn><mrow><mo>⌈</mo><msub><mi>log</mi><mo>⁡</mo><mn>2</mn></msub><mi>m</mi><mi>a</mi><mi>x</mi><mi>n</mi><mo>⌉</mo><mo>+</mo><mn>1</mn></mrow></msup><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">2^{\lceil \log _2 maxn \rceil + 1} - 1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9713299999999999em;vertical-align:-0.08333em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8879999999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mopen mtight">⌈</span><span class="mop mtight"><span class="mop mtight">lo<span style="margin-right:0.01389em;">g</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.19444571428571428em;"><span style="top:-2.2341314285714287em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.26586857142857145em;"><span></span></span></span></span></span></span><span class="mspace mtight" style="margin-right:0.19516666666666668em;"></span><span class="mord mathdefault mtight">m</span><span class="mord mathdefault mtight">a</span><span class="mord mathdefault mtight">x</span><span class="mord mathdefault mtight">n</span><span class="mclose mtight">⌉</span><span class="mbin mtight">+</span><span class="mord mtight">1</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span> 个结点空间大小。</p>
 <p><strong>修改</strong>过程中 , 观察每次修改实际上就是复制了一条链 , 空间花销等于链所占的空间 , 故单次修改的空间上界即为链长上界 。 则 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>m</mi></mrow><annotation encoding="application/x-tex">m</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">m</span></span></span></span>次修改的空间总花销上界为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>m</mi><mo>(</mo><mo>⌈</mo><msub><mi>log</mi><mo>⁡</mo><mn>2</mn></msub><mi>m</mi><mi>a</mi><mi>x</mi><mi>n</mi><mo>⌉</mo><mo>+</mo><mn>1</mn><mo>)</mo></mrow><annotation encoding="application/x-tex">m(\lceil \log _2 maxn \rceil + 1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">m</span><span class="mopen">(</span><span class="mopen">⌈</span><span class="mop"><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.20696799999999996em;"><span style="top:-2.4558600000000004em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.24414em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">m</span><span class="mord mathdefault">a</span><span class="mord mathdefault">x</span><span class="mord mathdefault">n</span><span class="mclose">⌉</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">)</span></span></span></span> 个结点空间大小。</p>
 <p>总共的空间开销上界为(单位 : 结点空间大小)</p>
 <p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mn>2</mn><mrow><mo>⌈</mo><msub><mi>log</mi><mo>⁡</mo><mn>2</mn></msub><mi>m</mi><mi>a</mi><mi>x</mi><mi>n</mi><mo>⌉</mo><mo>+</mo><mn>1</mn></mrow></msup><mo>+</mo><mi>m</mi><mo>(</mo><mo>⌈</mo><msub><mi>log</mi><mo>⁡</mo><mn>2</mn></msub><mi>m</mi><mi>a</mi><mi>x</mi><mi>n</mi><mo>⌉</mo><mo>+</mo><mn>1</mn><mo>)</mo><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">2^{\lceil \log _2 maxn \rceil + 1} + m(\lceil \log _2 maxn \rceil + 1) - 1
 </annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.0213299999999998em;vertical-align:-0.08333em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.9379999999999998em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mopen mtight">⌈</span><span class="mop mtight"><span class="mop mtight">lo<span style="margin-right:0.01389em;">g</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.19444571428571428em;"><span style="top:-2.2341314285714287em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.26586857142857145em;"><span></span></span></span></span></span></span><span class="mspace mtight" style="margin-right:0.19516666666666668em;"></span><span class="mord mathdefault mtight">m</span><span class="mord mathdefault mtight">a</span><span class="mord mathdefault mtight">x</span><span class="mord mathdefault mtight">n</span><span class="mclose mtight">⌉</span><span class="mbin mtight">+</span><span class="mord mtight">1</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">m</span><span class="mopen">(</span><span class="mopen">⌈</span><span class="mop"><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.20696799999999996em;"><span style="top:-2.4558600000000004em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.24414em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">m</span><span class="mord mathdefault">a</span><span class="mord mathdefault">x</span><span class="mord mathdefault">n</span><span class="mclose">⌉</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span></span></p>
-<p>具体做题时可以直接拿来算( 先算出满足 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mn>2</mn><mi>k</mi></msup><mo>⩾</mo><mi>n</mi></mrow><annotation encoding="application/x-tex">2^k \geqslant n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.985778em;vertical-align:-0.13667em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.849108em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.03148em;">k</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel amsrm">⩾</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span></span></span></span> 的最小的 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span></span></span></span> )。</p>
 <p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>(</mo></mrow><annotation encoding="application/x-tex">\mathcal(</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span></span></span></span> i.e. 空间复杂度为<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="script">O</mi><mo>(</mo><mi>n</mi><mo>+</mo><mi>m</mi><mtext> </mtext><mi>l</mi><mi>o</mi><mi>g</mi><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">\mathcal{O(n + m\ log n)}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathcal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathdefault">m</span><span class="mspace"> </span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">o</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span></span> <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>)</mo></mrow><annotation encoding="application/x-tex">\mathcal)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mclose">)</span></span></span></span></p>
+<h5 id="具体写题时的操作">具体写题时的操作</h5>
+<p>记忆 : 链长上界为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>⌈</mo><msub><mi>log</mi><mo>⁡</mo><mn>2</mn></msub><mi>m</mi><mi>a</mi><mi>x</mi><mi>n</mi><mo>⌉</mo><mo>+</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">\lceil \log _2 maxn \rceil + 1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">⌈</span><span class="mop"><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.20696799999999996em;"><span style="top:-2.4558600000000004em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.24414em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">m</span><span class="mord mathdefault">a</span><span class="mord mathdefault">x</span><span class="mord mathdefault">n</span><span class="mclose">⌉</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span> ， <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>m</mi><mi>a</mi><mi>x</mi><mi>n</mi></mrow><annotation encoding="application/x-tex">maxn</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">m</span><span class="mord mathdefault">a</span><span class="mord mathdefault">x</span><span class="mord mathdefault">n</span></span></span></span> 为序列长(叶子结点个数)。</p>
+<ol>
+<li><strong>先算出满足 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mn>2</mn><mi>k</mi></msup><mo>⩾</mo><mi>n</mi></mrow><annotation encoding="application/x-tex">2^k \geqslant n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.985778em;vertical-align:-0.13667em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.849108em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.03148em;">k</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel amsrm">⩾</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span></span></span></span> 的最小的 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span></span></span></span> , 就是 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>⌈</mo><msub><mi>log</mi><mo>⁡</mo><mn>2</mn></msub><mi>m</mi><mi>a</mi><mi>x</mi><mi>n</mi><mo>⌉</mo></mrow><annotation encoding="application/x-tex">\lceil \log _2 maxn \rceil</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">⌈</span><span class="mop"><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.20696799999999996em;"><span style="top:-2.4558600000000004em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.24414em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">m</span><span class="mord mathdefault">a</span><span class="mord mathdefault">x</span><span class="mord mathdefault">n</span><span class="mclose">⌉</span></span></span></span> 。</strong></li>
+</ol>
+<p>（p.s. 平时可以打开IDLE</p>
+<pre><code class="language-python">&gt;i = 1
+&gt;k = 0
+&gt;t = ...(maxn)
+&gt;while i &lt; t:
+...	i = i * 2
+...	k = k + 1
+&gt;k
+</code></pre>
+<ol start="2">
+<li><strong>然后链长为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>k</mi><mo>+</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">k + 1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.77777em;vertical-align:-0.08333em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span>  , <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>q</mi></mrow><annotation encoding="application/x-tex">q</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">q</span></span></span></span> 个查询的最多产生结点个数 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>q</mi><mo>(</mo><mi>k</mi><mo>+</mo><mn>1</mn><mo>)</mo></mrow><annotation encoding="application/x-tex">q(k+1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">q</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">)</span></span></span></span> 。</strong></li>
+<li>如果有初始化build操作 , 不要忘记初始build的空间</li>
+</ol>
 <h4 id="区间修改引发的问题及两种解决方式">区间修改引发的问题及两种解决方式</h4>
 <p>在进行可持久化线段树维护区间修改的时候 , 注意不能直接下放标记。因为在修改时可能出现下放标记到的点被其他的版本共用。解决的一个方案是将要被下放到待修改的点复制一遍然后对复制出来的点做修改并作为这个版本的新点 , 这样的坏处是空间利用率非常低很容易MLE。另一种策略是标记永久化 , 但这样做的局限是要下放的标记是相对标记(区间加减是相对标记 , 区间赋值是绝对标记)???</p>
 <p>特殊地 , 对于刚开始为空的树不用进行build操作(想想性质)。</p>
 <h4 id="可持久化权值线段树">可持久化权值线段树</h4>
 <p>对权值线段树进行可持久化 , 可以得到不同历史版本的区间上的权值信息。</p>
-<h5 id="维护任意区间">维护任意区间</h5>
-<h6 id="思想-2">思想</h6>
-<p>把序列下标顺序作为时间轴 , 按照序列递进作为时间演进顺序 , 可以得到所有<strong>前缀序列</strong><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>[</mo><mn>1</mn><mo separator="true">,</mo><mi>i</mi><mo>]</mo></mrow><annotation encoding="application/x-tex">[1, i]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">i</span><span class="mclose">]</span></span></span></span>的权值和信息。具体地 , 从左向右扫一遍序列 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>A</mi><mo>=</mo><mrow><msub><mi>a</mi><mn>1</mn></msub><mo separator="true">,</mo><msub><mi>a</mi><mn>2</mn></msub><mo separator="true">,</mo><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mo separator="true">,</mo><msub><mi>a</mi><mi>n</mi></msub></mrow></mrow><annotation encoding="application/x-tex">A = {a_1, a_2, ..., a_n}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">A</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord"><span class="mord mathdefault">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">.</span><span class="mord">.</span><span class="mord">.</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span> , 每次插入1个值 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>a</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">a_i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> , 当前版本即为区间<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>[</mo><mn>1</mn><mo separator="true">,</mo><mi>i</mi><mo>]</mo></mrow><annotation encoding="application/x-tex">[1,i]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">i</span><span class="mclose">]</span></span></span></span>的权值信息。</p>
-<p>由于区间权值个数支持第三维上的区间减 , 故而可以用<strong>前缀和</strong>之差在可持久化权值树上查询任意一段区间的权值信息(用r版本的个数减去l-1版本的个数得到区间 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>[</mo><mi>l</mi><mo separator="true">,</mo><mi>r</mi><mo>]</mo></mrow><annotation encoding="application/x-tex">[l, r]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mclose">]</span></span></span></span> 上的权值信息)。</p>
-<h6 id="用途">用途</h6>
-<p>可以用来高效求不带修的<strong>在线</strong>查询<strong>任意区间第 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span></span></span></span> 大值</strong> , <strong>任意区间众数</strong>等等。</p>
-<p>实际思考中 , 在权值线段树维护的序列上能简单高效查询的信息几乎都可以用可持久化权值树利用<strong>前缀和</strong>的思想支持任意区间快速查询。</p>
-<h6 id="实现带修">实现带修</h6>
-<p>用树状数组套权值线段树 , 可以实现维护任意区间带修。</p>
+<h5 id="动态开点">动态开点</h5>
+<p>对于未定的值域采用动态开点是权值线段树的常见操作。但是由于可持久化线段树本身也是动态开点的 , 所以几乎不用做任何修改 , 直接上即可。在细节处需注意特判<code>p = 0</code>的情况以及其意义。</p>
+<h4 id="维护任意区间">维护任意区间</h4>
+<h5 id="思想-2">思想</h5>
+<p>把序列下标顺序作为时间轴 , 按照序列递进作为时间演进顺序 , 可以得到所有<strong>前缀序列</strong><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>[</mo><mn>1</mn><mo separator="true">,</mo><mi>i</mi><mo>]</mo></mrow><annotation encoding="application/x-tex">[1, i]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">i</span><span class="mclose">]</span></span></span></span>的信息。具体地 , 从左向右扫一遍序列 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>A</mi><mo>=</mo><mrow><msub><mi>a</mi><mn>1</mn></msub><mo separator="true">,</mo><msub><mi>a</mi><mn>2</mn></msub><mo separator="true">,</mo><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mo separator="true">,</mo><msub><mi>a</mi><mi>n</mi></msub></mrow></mrow><annotation encoding="application/x-tex">A = {a_1, a_2, ..., a_n}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">A</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord"><span class="mord mathdefault">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">.</span><span class="mord">.</span><span class="mord">.</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span> , 每次插入1个值 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>a</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">a_i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> , 当前版本即为区间<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>[</mo><mn>1</mn><mo separator="true">,</mo><mi>i</mi><mo>]</mo></mrow><annotation encoding="application/x-tex">[1,i]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">i</span><span class="mclose">]</span></span></span></span>的信息。</p>
+<p>对于支持区间减的信息 , 可以用 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>r</mi></mrow><annotation encoding="application/x-tex">r</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span></span></span></span> 版本的线段树的数据减去 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>l</mi><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">l-1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.77777em;vertical-align:-0.08333em;"></span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span> 版本的数据进而统计区间 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>[</mo><mi>l</mi><mo>−</mo><mn>1</mn><mo separator="true">,</mo><mi>r</mi><mo>]</mo></mrow><annotation encoding="application/x-tex">[l-1, r]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mclose">]</span></span></span></span> 上的信息(同时对两棵树同步递归查询 , 值域相减就相当于一棵 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>[</mo><mi>l</mi><mo separator="true">,</mo><mi>r</mi><mo>]</mo></mrow><annotation encoding="application/x-tex">[l,r]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mclose">]</span></span></span></span> 区间上的线段树)。</p>
+<p>对于另一部分信息 , 可以维护一个最晚出现的时间 , 在查询 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>[</mo><mi>l</mi><mo separator="true">,</mo><mi>r</mi><mo>]</mo></mrow><annotation encoding="application/x-tex">[l,r]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mclose">]</span></span></span></span> 时查询 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>r</mi></mrow><annotation encoding="application/x-tex">r</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span></span></span></span> 版本的树并判断是否在 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>[</mo><mi>l</mi><mo separator="true">,</mo><mi>r</mi><mo>]</mo></mrow><annotation encoding="application/x-tex">[l,r]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mclose">]</span></span></span></span> 内(比较最晚出现的位置和 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>l</mi></mrow><annotation encoding="application/x-tex">l</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span></span></span></span> 的大小关系)。</p>
+<h5 id="用途">用途</h5>
+<p>对于<strong>可持久化权值线段树</strong>维护的区间可查询任意一段区间的权值信息(用r版本的个数减去l-1版本的个数得到区间 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>[</mo><mi>l</mi><mo separator="true">,</mo><mi>r</mi><mo>]</mo></mrow><annotation encoding="application/x-tex">[l, r]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mclose">]</span></span></span></span> 上的权值信息)。进而用来高效求不带修的<strong>在线</strong>查询<strong>任意区间第 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span></span></span></span> 大值</strong> , <strong>任意区间众数</strong>等等。</p>
+<h5 id="做题思路">做题思路</h5>
+<p>实际思考中 , 考虑在当前版本(序列即前缀区间)上维护一个信息 , 然后再拓展到可持久化上。</p>
+<p>在线段树/权值线段树维护的序列上能简单高效查询的信息几乎都可以用可持久化线段树/权值线段树利用<strong>前缀和</strong>的思想支持任意区间快速查询。</p>
+<h5 id="实现带修">实现带修</h5>
+<p>用树状数组套线段树 , 可以实现维护任意区间带修。</p>
 <h3 id="习题">习题</h3>
-<h4 id="lg3919可持久化数组">LG3919可持久化数组</h4>
+<h4 id="lg3919可持久化数组可持久化线段树板子">LG3919可持久化数组(可持久化线段树板子)</h4>
 <h5 id="思路">思路</h5>
 <p>可持久化数组使用可持久化线段树来维护 , 本题不需要用到线段树的其他性质。</p>
 <h5 id="事项">事项</h5>
@@ -177,7 +202,7 @@ int main() {
 	return 0;
 }
 </code></pre>
-<h4 id="lg3834-区间第k大值可持久化权值线段树解法">LG3834 区间第K大值(可持久化权值线段树解法)</h4>
+<h4 id="lg3834-区间第k大值可持久化权值线段树板子">LG3834 区间第K大值(可持久化权值线段树板子)</h4>
 <h5 id="思路-2">思路</h5>
 <p>用可持久化权值线段树来维护权值size信息的<strong>区间前缀和</strong> ，不同版本的两棵树作差得到任意区间权值size信息。</p>
 <h5 id="事项-2">事项</h5>
@@ -248,7 +273,7 @@ int main() {
 	return 0;
 }
 </code></pre>
-<h4 id="poi2014-kur-couriers区间众数">[POI2014] KUR-Couriers(区间众数)</h4>
+<h4 id="poi2014-kur-couriers区间众数板子">[POI2014] KUR-Couriers(区间众数板子)</h4>
 <h5 id="思路-3">思路</h5>
 <p>先考虑用序列上权值线段树求序列众数 , 即每次向权值大于 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mfrac><mn>1</mn><mn>2</mn></mfrac></mrow><annotation encoding="application/x-tex">\frac{1}{2}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.190108em;vertical-align:-0.345em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.845108em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span> 区间长度的子树走 , 能到子树结点且size大于 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mfrac><mn>1</mn><mn>2</mn></mfrac></mrow><annotation encoding="application/x-tex">\frac{1}{2}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.190108em;vertical-align:-0.345em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.845108em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span> 则当前权值即为区间众数 , 否则没有区间众数。</p>
 <p>任意区间则对权值线段树可持久化实现维护前缀序列的权值信息。两树做差得到其间区间的信息。</p>
@@ -302,30 +327,93 @@ int main() {
 	return 0;
 }
 </code></pre>
+<h4 id="lg4137-rmq-problem区间mex板子">LG4137 Rmq Problem(区间mex板子)</h4>
+<h5 id="思路-4">思路</h5>
+<p>用<strong>可持久化线段树</strong>维护前缀区间中每个权值最晚出现的次数的最小值。在前缀版本 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>[</mo><mn>1</mn><mo separator="true">,</mo><mi>r</mi><mo>]</mo></mrow><annotation encoding="application/x-tex">[1,r]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mclose">]</span></span></span></span> 中查询询问 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>[</mo><mi>l</mi><mo separator="true">,</mo><mi>r</mi><mo>]</mo></mrow><annotation encoding="application/x-tex">[l,r]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mclose">]</span></span></span></span>  , 若 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>d</mi><mi>a</mi><mi>t</mi><mo>&lt;</mo><mi>l</mi></mrow><annotation encoding="application/x-tex">dat &lt; l</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.73354em;vertical-align:-0.0391em;"></span><span class="mord mathdefault">d</span><span class="mord mathdefault">a</span><span class="mord mathdefault">t</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span></span></span></span> 说明该段中某个权值在区间之外(序列中不存在该数用初值 <strong><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span></strong> 表示)。优先向左查 , 到叶子返回(必然存在区间mex)。</p>
+<p>权值较大需要动态开点。</p>
+<h5 id="事项-4">事项</h5>
+<ol>
+<li>动态开点树中孩子不存在的情况 , 说明它代表的区间的 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>d</mi><mi>a</mi><mi>t</mi></mrow><annotation encoding="application/x-tex">dat</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">d</span><span class="mord mathdefault">a</span><span class="mord mathdefault">t</span></span></span></span> 为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span>  , 或者说 , 这些权值不存在。递归到这样的点&quot;则直接返回区间左端点。不要忘记特判。</li>
+</ol>
+<h5 id="code-4">code</h5>
+<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
+
+using namespace std;
+
+const int maxn = 200010, maxs = 6200010;
+
+int dat[maxs], ls[maxs], rs[maxs], tot;
+int root[maxn], a[maxn];
+
+inline void read(int &amp;x) {
+	x=0; char ch; int f=1;
+	do{ch=getchar();if(ch=='-')f=-f;}while(ch&lt;'0'||ch&gt;'9');
+	do{x=(x&lt;&lt;3)+(x&lt;&lt;1)+(ch&amp;15),ch=getchar();}while(ch&gt;='0'&amp;&amp;ch&lt;='9');
+	x*=f;
+}
+
+void insert(int &amp;p, int pre, int lp, int rp, int x, int v) {
+	p = ++tot; ls[p] = ls[pre]; rs[p] = rs[pre]; dat[p] = dat[pre];
+	if(lp==rp) {
+		dat[p] = v; return;
+	}
+	int mid = lp + rp &gt;&gt; 1;
+	if(x &lt;= mid) insert(ls[p], ls[pre], lp, mid, x, v);
+	else insert(rs[p], rs[pre], mid + 1, rp, x, v);
+	dat[p] = min(dat[ls[p]], dat[rs[p]]);
+}
+
+int limit;
+int qry(int p, int lp, int rp) {
+	if(!p || lp == rp) return lp;
+	int mid = lp + rp &gt;&gt; 1;
+	if(dat[ls[p]] &lt; limit) return qry(ls[p], lp, mid);
+	return qry(rs[p], mid + 1, rp);
+}
+
+int main() {
+	ios::sync_with_stdio(false);
+	cin.tie(NULL);
+	int n, m, mx = -1, l, r;
+	read(n); read(m);
+	for(int i = 1; i &lt;= n; ++i) {
+		read(a[i]); mx = max(mx, a[i]);
+	}
+	++mx;
+	for(int i = 1; i &lt;= n; ++i)
+		insert(root[i], root[i-1], 0, mx, a[i], i);
+	while(m--) {
+		read(l); read(r);
+		limit = l;
+		printf(&quot;%d\n&quot;, qry(root[r], 0, mx));
+	}
+	return 0;
+}
+</code></pre>
 ]]></content>
     </entry>
     <entry>
         <title type="html"><![CDATA[一道听来的题目]]></title>
-        <id>http://localhost:4000/post/yi-dao-ting-lai-de-ti-mu/</id>
-        <link href="http://localhost:4000/post/yi-dao-ting-lai-de-ti-mu/">
+        <id>https://froldh.github.io/post/yi-dao-ting-lai-de-ti-mu/</id>
+        <link href="https://froldh.github.io/post/yi-dao-ting-lai-de-ti-mu/">
         </link>
         <updated>2020-07-23T13:23:10.000Z</updated>
-        <content type="html"><![CDATA[<p><img src="http://localhost:4000/post-images/1595510681965.jpg" alt="" loading="lazy"><br>
+        <content type="html"><![CDATA[<p><img src="https://froldh.github.io/post-images/1595510681965.jpg" alt="" loading="lazy"><br>
 思路 :<br>
-<img src="http://localhost:4000/post-images/1595511083324.png" alt="" loading="lazy"><br>
+<img src="https://froldh.github.io/post-images/1595511083324.png" alt="" loading="lazy"><br>
 使用差分法 :<br>
 对怪排序 ,  扫过去 , 同时统计当前有效的伤害值的总和(相当于一个求前缀和的过程) , 在扫到某个技能结束的地方总伤害-1。<br>
 具体可以用two pointer或者维护技能与怪物两个栈实现。<br>
 two pointer<br>
-<img src="http://localhost:4000/post-images/1595510961449.png" alt="" loading="lazy"><br>
+<img src="https://froldh.github.io/post-images/1595510961449.png" alt="" loading="lazy"><br>
 栈<br>
-<img src="http://localhost:4000/post-images/1595511024902.png" alt="" loading="lazy"></p>
+<img src="https://froldh.github.io/post-images/1595511024902.png" alt="" loading="lazy"></p>
 ]]></content>
     </entry>
     <entry>
         <title type="html"><![CDATA[点分治1 2020-07-21~2020-07-22]]></title>
-        <id>http://localhost:4000/post/2020-07-20~2020-07-21-xun-lian-ri-ji/</id>
-        <link href="http://localhost:4000/post/2020-07-20~2020-07-21-xun-lian-ri-ji/">
+        <id>https://froldh.github.io/post/2020-07-20~2020-07-21-xun-lian-ri-ji/</id>
+        <link href="https://froldh.github.io/post/2020-07-20~2020-07-21-xun-lian-ri-ji/">
         </link>
         <updated>2020-07-20T15:28:58.000Z</updated>
         <summary type="html"><![CDATA[<h1 id="view">view</h1>
@@ -840,8 +928,8 @@ int main() {
     </entry>
     <entry>
         <title type="html"><![CDATA[2020-07-19 训练日记]]></title>
-        <id>http://localhost:4000/post/2020-07-19-xun-lian-ri-ji/</id>
-        <link href="http://localhost:4000/post/2020-07-19-xun-lian-ri-ji/">
+        <id>https://froldh.github.io/post/2020-07-19-xun-lian-ri-ji/</id>
+        <link href="https://froldh.github.io/post/2020-07-19-xun-lian-ri-ji/">
         </link>
         <updated>2020-07-19T08:41:04.000Z</updated>
         <summary type="html"><![CDATA[<h2 id="view">View</h2>
@@ -1009,8 +1097,8 @@ int main() {
     </entry>
     <entry>
         <title type="html"><![CDATA[fft1 2020-07-16]]></title>
-        <id>http://localhost:4000/post/2020-07-16-xun-lian-ri-ji/</id>
-        <link href="http://localhost:4000/post/2020-07-16-xun-lian-ri-ji/">
+        <id>https://froldh.github.io/post/2020-07-16-xun-lian-ri-ji/</id>
+        <link href="https://froldh.github.io/post/2020-07-16-xun-lian-ri-ji/">
         </link>
         <updated>2020-07-16T13:29:21.000Z</updated>
         <summary type="html"><![CDATA[<h2 id="view">view</h2>
@@ -1063,9 +1151,9 @@ void idft(cp *a, int n) {
 <li>需要使用二进制翻转进行卡常 , 通过观察容易发现在fft递归到底层之后的下标值为原下标的二进制翻转(长度为序列长度) , 该过程可以使用 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="script">O</mi><mo>(</mo><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">\mathcal{O(n)}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathcal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span></span> 递推求解 ，即 <code>t[i] = t[i&gt;&gt;1]&gt;&gt;1 + (i&amp;n?n&gt;&gt;1:0)</code></li>
 <li>复数单位根应当采用递推的形式去做 , 即 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msubsup><mi>ω</mi><mi>n</mi><mi>i</mi></msubsup><mo>=</mo><msubsup><mi>ω</mi><mi>n</mi><mrow><mi>i</mi><mo>−</mo><mn>1</mn></mrow></msubsup><mo>∗</mo><msub><mi>ω</mi><mi>n</mi></msub></mrow><annotation encoding="application/x-tex">\omega_{n}^i = \omega_{n}^{i-1}*\omega_{n}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.071664em;vertical-align:-0.247em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">ω</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.824664em;"><span style="top:-2.4530000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">n</span></span></span></span><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.247em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.071664em;vertical-align:-0.247em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">ω</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.824664em;"><span style="top:-2.4530000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">n</span></span></span></span><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span><span class="mbin mtight">−</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.247em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">ω</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">n</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span><br>
 <strong>好的操作</strong><br>
-<img src="http://localhost:4000/post-images/1594908193797.png" alt="" loading="lazy"><br>
+<img src="https://froldh.github.io/post-images/1594908193797.png" alt="" loading="lazy"><br>
 <strong>不优的操作</strong><br>
-<img src="http://localhost:4000/post-images/1594908205241.png" alt="" loading="lazy"></li>
+<img src="https://froldh.github.io/post-images/1594908205241.png" alt="" loading="lazy"></li>
 </ol>
 <h4 id="code-2">code</h4>
 <pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
@@ -1156,8 +1244,8 @@ int main() {
     </entry>
     <entry>
         <title type="html"><![CDATA[支配树 2020-07-15]]></title>
-        <id>http://localhost:4000/post/2020-07-15-xun-lian-ri-ji/</id>
-        <link href="http://localhost:4000/post/2020-07-15-xun-lian-ri-ji/">
+        <id>https://froldh.github.io/post/2020-07-15-xun-lian-ri-ji/</id>
+        <link href="https://froldh.github.io/post/2020-07-15-xun-lian-ri-ji/">
         </link>
         <updated>2020-07-15T07:26:39.000Z</updated>
         <summary type="html"><![CDATA[<h2 id="view">view</h2>
@@ -1487,8 +1575,8 @@ int main() {
     </entry>
     <entry>
         <title type="html"><![CDATA[HDU三位一体招生游记]]></title>
-        <id>http://localhost:4000/post/hdu-san-wei-yi-ti-zhao-sheng-you-ji/</id>
-        <link href="http://localhost:4000/post/hdu-san-wei-yi-ti-zhao-sheng-you-ji/">
+        <id>https://froldh.github.io/post/hdu-san-wei-yi-ti-zhao-sheng-you-ji/</id>
+        <link href="https://froldh.github.io/post/hdu-san-wei-yi-ti-zhao-sheng-you-ji/">
         </link>
         <updated>2020-07-13T15:00:22.000Z</updated>
         <content type="html"><![CDATA[<h2 id="day-1">DAY-1</h2>
@@ -1501,16 +1589,16 @@ day2考面试。</p>
 有看没看看了一些支配树的内容，不过没有很看懂，车上也有点晕车就把手机关掉了。<br>
 中午饭在服务区解决，三个素菜50多块wdnmd，味道还行。<br>
 下午三点到旅馆，房间还是蛮不错的。<br>
-<img src="http://localhost:4000/post-images/1594679716523.jpg" alt="" loading="lazy"><br>
+<img src="https://froldh.github.io/post-images/1594679716523.jpg" alt="" loading="lazy"><br>
 晚饭后在大街上乱晃了一会儿，回到宾馆打隔膜，继续康支配树。<br>
 夜景<br>
-<img src="http://localhost:4000/post-images/1594680207660.jpg" alt="" loading="lazy"></p>
+<img src="https://froldh.github.io/post-images/1594680207660.jpg" alt="" loading="lazy"></p>
 <h2 id="day1">DAY1</h2>
 <p>早上5:30醒了，打了半个小时隔膜，然后简单地看了一下常考算法的板子。<br>
 7:00去宾馆自助餐厅，炒面好评，咖啡好评。好像是因为三一的缘故宾馆又离hdu特别进所以次早饭的人特别多，被挤成鸽子干。<br>
-<img src="http://localhost:4000/post-images/1594679888158.jpg" alt="" loading="lazy"><br>
+<img src="https://froldh.github.io/post-images/1594679888158.jpg" alt="" loading="lazy"><br>
 7:50到了HDU，找楼走过了头，最后还是进去了。在报到点签到等着。右前方一个Cu带佬和一个Ag带佬谈笑风生，蒟蒻瑟瑟发抖，拿出CCF的恰烂钱tg书看了一会儿。<br>
-<img src="http://localhost:4000/post-images/1594679997158.jpg" alt="" loading="lazy"><br>
+<img src="https://froldh.github.io/post-images/1594679997158.jpg" alt="" loading="lazy"><br>
 8:30进了考场，机子联网但只能上hdoj，其他网站上不去。然后发了三一测试的账号密码。然后突发奇想地登了自己以前的hdoj账号发现能上，还能看到以前做的题。后来主监考来说以前有hdoj的号的不许登进去，吓得我赶紧退掉了。顺带说一下赛制是伪ACM赛制，得分按照AC数且最终折分数不按罚时(就是特长测试的30pts按照每题6pts给分)，但是网页里面显示的ranklist还是把罚时计入在内的。<br>
 8:40开始疯狂堆头，各种define和小函数搞上去。<br>
 9:00开题(因为hdu特长生3=就能报进，所以没什么难度，大概最难的题pj/tg-)，时长2h。<br>
@@ -1520,14 +1608,14 @@ T1是个dp，再看一眼只需要用两个变量存一下扫过去就好了，4
 12:30回到宾馆翻手机，看了一眼hdoj发现排在rank12(草为什么我明明第是七个打完的)，后来一看表发现虽然其他题目一遍过但是T2(-7)罚时炸成狗，草我原来交了7遍的撒。然后关掉hdoj开始打隔膜康瑟图逛车群顺带调戏ljf带佬。<br>
 15:00继续康支配树，不到一个小时被老爹敲门拉去次饭了。<br>
 晚饭在顺旺基快餐店里点了个卷心菜和番茄炒蛋，卷心菜居然是辣的(鸽子考前忌辣)。但是味道好评以至于多干了一碗饭(真·下饭)。<br>
-<img src="http://localhost:4000/post-images/1594680071735.jpg" alt="" loading="lazy"><br>
+<img src="https://froldh.github.io/post-images/1594680071735.jpg" alt="" loading="lazy"><br>
 晚上打隔膜到20:30左右然后看了会儿支配树终于学会了。<br>
 20:30 wz带佬跟我说他进面试了，然后和我一样都是下午场(面试分为上午场和下午场，主要是人多qaq)。<br>
 22:30 捷克带佬打电话来哭他笔试没过(他当初大概以为信息类特长生考试很难然后他半年没动键盘所以没报特长生考笔试去了)。然后捷克在惊呼声中挂掉了电话(好像有一场CF开始3min了)。</p>
 <h2 id="day2">DAY2</h2>
 <p>4:50起床然后打了会儿隔膜，看了看zbyls友情提供的历届带佬面试心得，感觉好慌啊qaq<br>
 然后6:30下楼到宾馆自助餐厅，一个人都没有。开始浏览发现除了白煮玉米和白煮鸡蛋什么素的都没有，心疼自己。只好坐在角落里啃玉米磕鸡蛋qaq。后来发现有燕麦片和热牛奶，就当场手冲了四碗喝掉。燕麦粥赛高！！！坐到7:20发现人还是很少，毕竟笔试刷掉的6/7的人都走了。<br>
-<img src="http://localhost:4000/post-images/1594680138062.jpg" alt="" loading="lazy"><br>
+<img src="https://froldh.github.io/post-images/1594680138062.jpg" alt="" loading="lazy"><br>
 老爹说我初中一个关系不错的蛮强朋友也没过笔试，听到还是蛮难受的。<br>
 回房继续看面试心得。<br>
 中饭次沙县，勉强管饱。<br>
@@ -1557,8 +1645,8 @@ T1是个dp，再看一眼只需要用两个变量存一下扫过去就好了，4
     </entry>
     <entry>
         <title type="html"><![CDATA[题解(部分) Educational Codeforces Round 85 [Rated for Div. 2]]]></title>
-        <id>http://localhost:4000/post/ti-jie-bu-fen-educational-codeforces-round-85-rated-for-div-2/</id>
-        <link href="http://localhost:4000/post/ti-jie-bu-fen-educational-codeforces-round-85-rated-for-div-2/">
+        <id>https://froldh.github.io/post/ti-jie-bu-fen-educational-codeforces-round-85-rated-for-div-2/</id>
+        <link href="https://froldh.github.io/post/ti-jie-bu-fen-educational-codeforces-round-85-rated-for-div-2/">
         </link>
         <updated>2020-04-11T02:30:25.000Z</updated>
         <content type="html"><![CDATA[<!-- more -->  
@@ -1771,8 +1859,8 @@ int main() {
     </entry>
     <entry>
         <title type="html"><![CDATA[题解 P4655 【[CEOI2017]Building Bridges】]]></title>
-        <id>http://localhost:4000/post/ti-jie-p4655-ceoi2017building-bridges/</id>
-        <link href="http://localhost:4000/post/ti-jie-p4655-ceoi2017building-bridges/">
+        <id>https://froldh.github.io/post/ti-jie-p4655-ceoi2017building-bridges/</id>
+        <link href="https://froldh.github.io/post/ti-jie-p4655-ceoi2017building-bridges/">
         </link>
         <updated>2020-04-05T02:30:50.000Z</updated>
         <summary type="html"><![CDATA[<p>题外话： 前几天神tommy教了李超线段树。</p>
