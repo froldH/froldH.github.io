@@ -3,7 +3,7 @@
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>STL备忘录 | 寒鸽儿のBlog</title>
-<link rel="shortcut icon" href="https://froldh.github.io/favicon.ico?v=1597722533901">
+<link rel="shortcut icon" href="https://froldh.github.io/favicon.ico?v=1597730937859">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://froldh.github.io/styles/main.css">
 <link rel="alternate" type="application/atom+xml" title="STL备忘录 | 寒鸽儿のBlog - Atom Feed" href="https://froldh.github.io/atom.xml">
@@ -25,7 +25,7 @@ ForwardIterator lower_bound(ForwardIterator _First, ForwardIterator..." />
       <div class="main-content">
         <div class="site-header">
   <a href="https://froldh.github.io">
-  <img class="avatar" src="https://froldh.github.io/images/avatar.png?v=1597722533901" alt="">
+  <img class="avatar" src="https://froldh.github.io/images/avatar.png?v=1597730937859" alt="">
   </a>
   <h1 class="site-title">
     寒鸽儿のBlog
@@ -85,7 +85,7 @@ ForwardIterator lower_bound(ForwardIterator _First, ForwardIterator..." />
                 2020-08-02
               </span>
               <span>
-                2 min read
+                3 min read
               </span>
               
                 <a href="https://froldh.github.io/tag/2pJQAO3Zo/" class="post-tag">
@@ -134,6 +134,12 @@ Boolean binary_search(ForwardIterator _First, ForwardIterator _Last, const Type&
 <li><code>greater&lt;type&gt;()</code> 调成小于。</li>
 <li>返回指针(需要减去头指针得到下标) , 找不到<code>return _Last</code>。</li>
 </ol>
+<h2 id="容器">容器</h2>
+<h3 id="vector">vector</h3>
+<h4 id="vectorassign"><code>vector::assign()</code></h4>
+<p><code>void assign(const_iterator first, const_iterator last);</code><br>
+<code>void assign(size_type n, const T&amp; x = T());</code><br>
+<code>vector::assign()</code>将原vector清空 , 并且赋值为iterator指定的区间值(第一个)或者 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span></span></span></span> 个<code>T</code>(第二个)。</p>
 
               </div>
               <div class="toc-container">
@@ -143,6 +149,15 @@ Boolean binary_search(ForwardIterator _First, ForwardIterator _Last, const Type&
 <li><a href="#%E6%9C%89%E5%BA%8F%E5%BA%8F%E5%88%97%E6%93%8D%E4%BD%9C">有序序列操作</a>
 <ul>
 <li><a href="#%E4%BA%8C%E5%88%86">二分</a></li>
+</ul>
+</li>
+<li><a href="#%E5%AE%B9%E5%99%A8">容器</a>
+<ul>
+<li><a href="#vector">vector</a>
+<ul>
+<li><a href="#vectorassign"><code>vector::assign()</code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
